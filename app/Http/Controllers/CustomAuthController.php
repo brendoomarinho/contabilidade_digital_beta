@@ -38,7 +38,7 @@ class CustomAuthController extends Controller
                         ->withSuccess('Signed in');
         }
          
-        return redirect("signin")->withErrors('usuário ou senha incorretos.');
+        return redirect("signin")->withErrors('Email / Senha inválida.');
     }
     public function registration()
     {
