@@ -48,8 +48,8 @@
             width: 100%;
         }
         .login-logo {
-            display: block;
-            max-width: 150px;
+            display: flex;
+            justify-content: center;
             margin: auto;
             img {
                 margin-bottom: 25px;
@@ -112,15 +112,15 @@
         .login-userheading {
             @include margin-padding( 0 0 24px, null);
              h3 {
-                font-size: $font-size-24;
+                font-size: $font-size-19;
                 font-weight: $font-weight-bold;
                 @include margin-padding( 0 0 10px, null);
-                color: $black;
+                color: $dark;
             }
              h4 {
                 font-size: $font-size-15;
                 font-weight: $font-weight-normal;
-                color: $secondary;
+                color: $secondary-600;
                 line-height: 1.4;
             }
             .verfy-mail-content {
@@ -166,8 +166,7 @@
                 margin-top:5px;
                 color: $white;
                 &:hover{
-                   box-shadow:0  50px $white inset !important;
-                   color: $primary;
+                    background: $primary-hover;
                 }
             }
             .alreadyuser {
@@ -411,7 +410,6 @@
         }
     }
     .login-logo {
-        max-width: 150px;
         margin: auto;
     }
 }
@@ -427,6 +425,7 @@
     justify-content: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
+    background: $gray-100;
     .login-content.user-login {
         .login-userset {
             form .otp-box { 

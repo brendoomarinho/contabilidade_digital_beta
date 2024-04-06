@@ -12,7 +12,7 @@
     <title>Contact | Contabilidade</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('/build/img/favicon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('/build/img/logo-small.png')}}">
 
     @include('layout.partials.head')
 </head>
