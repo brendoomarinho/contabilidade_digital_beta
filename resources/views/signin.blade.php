@@ -15,20 +15,23 @@
                             <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
                         </a>
                         <div class="login-userheading text-center">
-                            <h4>A <b>contabilidade</b> do seu <b>negócio</b> de forma muito <br>mais prática e acessível é aqui.</h4>
+                            <h4>A <b>contabilidade</b> do seu <b>negócio</b> de forma muito <br>mais prática e acessível
+                                é aqui.</h4>
                         </div>
                         <div class="form-login mb-3">
                             <label class="form-label">Email</label>
                             <div class="form-addons">
-                                <input type="text" class="form- control" id="email" name="email" value="{{ old('email') }}">
-                                <img src="{{ URL::asset('/build/img/icons/mail.svg') }}" alt="img">
+                                <input type="text" class="form- control" id="email" name="email"
+                                    value="{{ old('email') }}">
+                                <img src="{{ URL::asset('/build/img/icons/mail.svg') }}"
+                                    alt="img">
                             </div>
                             <div class="text-danger small">
                                 @error('0')
-                                <i class='fa fa-exclamation-triangle'></i> {{ $message }}
+                                    <i class='fa fa-exclamation-triangle'></i> {{ $message }}
                                 @enderror
                                 @error('email')
-                                <i class='fa fa-exclamation-triangle'></i> {{ $message }}
+                                    <i class='fa fa-exclamation-triangle'></i> {{ $message }}
                                 @enderror
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                             </div>
                             <div class="text-danger pt-1 small">
                                 @error('password')
-                                <i class='fa fa-exclamation-triangle'></i> {{ $message }}
+                                    <i class='fa fa-exclamation-triangle'></i> {{ $message }}
                                 @enderror
                             </div>
                         </div>
@@ -55,7 +58,7 @@
                                         </label>
                                     </div>
                                     <div class="text-end">
-                                        <a class="forgot-link" href="{{ url('forgot-password') }}">
+                                        <a class="forgot-link" href="{{ route('forgot.password') }}">
                                             <span class='small'>Esqueceu sua senha?</span>
                                         </a>
                                     </div>
@@ -63,12 +66,14 @@
                             </div>
                         </div>
                         <div class="form-login">
-                            <button type="submit" class="btn btn-login" onclick="this.disabled=true; this.innerHTML='<i class=\'fas fa-spinner fa-spin me-2\'></i>acessando...'; this.form.submit();">
+                            <button type="submit" class="btn btn-login"
+                                onclick="this.disabled=true; this.innerHTML='<i class=\'fas fa-spinner fa-spin me-2\'></i>acessando...'; this.form.submit();">
                                 <span>Entrar</span>
                             </button>
                         </div>
                         <div class="signinform">
-                            <span class='small'><b>Ainda não tem cadastro?</b><a href="{{ url('register') }}" class="hover-a"> Criar uma conta.</a>
+                            <span class='small'><b>Ainda não tem cadastro?</b><a
+                                    href="{{ url('register') }}" class="hover-a"> Criar uma conta.</a>
                             </span>
                         </div>
                     </div>

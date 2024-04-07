@@ -13,19 +13,9 @@ Route::post('custom-register', [CustomAuthController::class, 'customRegister'])-
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
-Route::get('/forgot-password-3', function () {
-    return view('forgot-password-3');
-})->name('forgot.password');
-
-
-
 Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
-
-
-
-
+    return view('forgot-password');
+})->name('forgot.password');
 
 
 Route::get('/', function () {
@@ -35,28 +25,6 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 })->name('index');
-
-
-
-
-
-
-
-Route::get('/meu-movimento', [Clients\MovimentoController::class, 'indexMovimento'])->name('movimento-index');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/product-list', function () {
     return view('product-list');
@@ -713,16 +681,6 @@ Route::get('/reset-password-2', function () {
 Route::get('/reset-password', function () {
     return view('reset-password');
 })->name('reset-password');
-
-
-
-Route::get('/forgot-password-2', function () {
-    return view('forgot-password-2');
-})->name('forgot-password-2');
-
-Route::get('/forgot-password', function () {
-    return view('forgot-password');
-})->name('forgot-password');
 
 Route::get('/register-3', function () {
     return view('register-3');
