@@ -58,7 +58,7 @@
                                         </label>
                                     </div>
                                     <div class="text-end">
-                                        <a class="forgot-link" href="{{ route('forgot.password') }}">
+                                        <a class="forgot-link" href="{{ route('password.request') }}">
                                             <span class='small'>Esqueceu sua senha?</span>
                                         </a>
                                     </div>

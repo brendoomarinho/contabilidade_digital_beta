@@ -14,15 +14,35 @@ Route::get('register', [CustomAuthController::class, 'registration'])->name('reg
 Route::post('custom-register', [CustomAuthController::class, 'customRegister'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-Route::get('/mensagem-teste', function(){
-    return new MensagemTesteMail();
+//Route::get('/mensagem-teste', function(){
+    //return new MensagemTesteMail();
     //Mail::to('brendomarinho94@gmail.com')->send(new MensagemTesteMail());
     //return 'Email enviado com sucesso!!!';
-});
+//});
+
+
+
 
 Route::get('/forgot-password', function () {
-    return view('forgot-password');
-})->name('forgot.password');
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/', function () {

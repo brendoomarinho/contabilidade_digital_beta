@@ -43,4 +43,9 @@ class User extends Authenticatable implements CanResetPassword
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        dd ('chegamos até aqui');
+    }
 }
