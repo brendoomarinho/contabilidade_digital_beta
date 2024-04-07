@@ -22096,10 +22096,10 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu > ul > li.submenu-open ul l
 }
 .login-wrapper .login-content.user-login .login-userset {
   background: #ffffff;
-  box-shadow: 0px 2px 10px 0px rgba(190, 190, 190, 0.27);
+  box-shadow: 0px 4px 60px 0px rgba(190, 190, 190, 0.27);
   margin: 0;
   padding: 40px;
-  border: 1px solid #eff2f7;
+  border: 1px solid #e8ebed;
 }
 .login-wrapper .login-img {
   width: 50%;

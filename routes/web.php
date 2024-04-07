@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Clients;
+use App\Mail\MensagemTesteMail;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('signin', [CustomAuthController::class, 'index'])->name('signin');
@@ -12,6 +14,11 @@ Route::get('register', [CustomAuthController::class, 'registration'])->name('reg
 Route::post('custom-register', [CustomAuthController::class, 'customRegister'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
+Route::get('/mensagem-teste', function(){
+    return new MensagemTesteMail();
+    //Mail::to('brendomarinho94@gmail.com')->send(new MensagemTesteMail());
+    //return 'Email enviado com sucesso!!!';
+});
 
 Route::get('/forgot-password', function () {
     return view('forgot-password');
