@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\Clients;
 use App\Mail\MensagemTesteMail;
 use Illuminate\Support\Facades\Mail;
+
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('signin', [CustomAuthController::class, 'index'])->name('signin');
@@ -14,27 +18,29 @@ Route::get('register', [CustomAuthController::class, 'registration'])->name('reg
 Route::post('custom-register', [CustomAuthController::class, 'customRegister'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-//Route::get('/mensagem-teste', function(){
-    //return new MensagemTesteMail();
-    //Mail::to('brendomarinho94@gmail.com')->send(new MensagemTesteMail());
-    //return 'Email enviado com sucesso!!!';
-//});
-
-
-
 
 Route::get('/forgot-password', function () {
+
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 
 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 
 
-
-
-
-
-
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
 
 
 
