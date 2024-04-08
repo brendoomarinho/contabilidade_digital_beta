@@ -4,73 +4,54 @@
 <div class="account-content">
     <div class="login-wrapper login-new">
         <div class="container">
-
             <div class="login-content user-login">
-                <div class="login-logo">
-                    <img src="{{ URL::asset('/build/img/logo.png') }}" alt="img">
-                    <a href="{{ url('index') }}" class="login-logo logo-white">
-                        <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
-                    </a>
+                @if (session()->has('status'))
+                <div class="alert alert-solid-success alert-dismissible fade show">
+                    <i class="feather-check-circle flex-shrink-0 me-2"></i>
+                    <span> Email para redefinição de senha enviado com sucesso!</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="fas fa-xmark"></i </button>
                 </div>
-                @if(session()->has('status'))
-                    <span class="text text-success">{{ session()->get('status') }}</span>
                 @endif
                 <form action="{{ route('password.email') }}" method="post">
-                @csrf
-                @error('email')
-                <div class="text text-danger">{{$message}}</div>
-                @enderror
+                    @csrf
                     <div class="login-userset">
+                        <div class="login-logo logo-normal">
+                            <img src="{{ URL::asset('/build/img/logo.svg') }}" alt="img">
+                        </div>
+                        <a href="{{ url('index') }}" class="login-logo logo-white">
+                            <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
+                        </a>
                         <div class="login-userheading">
-                            <h3>Recuperar senha</h3>
-                            <h4>Enviaremos as instruções de recuperação para o email cadastrado.</h4>
+                            <h3><i class="fa fa-unlock-alt text-gray"></i> Recuperar senha</h3>
+                            <h4>Enviaremos as instruções de recuperação de senha para o email cadastrado.</h4>
                         </div>
                         <div class="form-login">
                             <label>Email</label>
                             <div class="form-addons">
-                                <input type="email" class="form-control" name="email">
-                                <img src="{{ URL::asset('/build/img/icons/mail.svg') }}"
-                                    alt="img">
+                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <img src="{{ URL::asset('/build/img/icons/mail.svg') }}" alt="img">
+                            </div>
+                            <div class="text text-danger mt-1">
+                                @error('email')
+                                <i class='fa fa-exclamation-circle'></i> {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="form-login">
-                            <button type="submit" class="btn btn-login">Recuperar</button>
+                            <button type="submit" class="btn btn-login">
+                                <span>Recuperar</span>
+                            </button>
                         </div>
                         <div class="signinform text-center">
-                            <h4>Return to<a href="{{ route('signin') }}" class="hover-a"> login </a>
+                            <h4>Voltar para o<a href="{{ route('signin') }}" class="hover-a"> login </a>
                             </h4>
-                        </div>
-                        <div class="form-setlogin or-text">
-                            <h4>OR</h4>
-                        </div>
-                        <div class="form-sociallink">
-                            <ul class="d-flex justify-content-center">
-                                <li>
-                                    <a href="javascript:void(0);" class="facebook-logo">
-                                        <img src="{{ URL::asset('/build/img/icons/facebook-logo.svg') }}"
-                                            alt="Facebook">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="{{ URL::asset('/build/img/icons/google.png') }}"
-                                            alt="Google">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="apple-logo">
-                                        <img src="{{ URL::asset('/build/img/icons/apple-logo.svg') }}"
-                                            alt="Apple">
-                                    </a>
-                                </li>
-
-                            </ul>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                <p>Copyright &copy; 2023 DreamsPOS. All rights reserved</p>
+                <p>Copyright &copy; 2024.</p>
             </div>
         </div>
     </div>

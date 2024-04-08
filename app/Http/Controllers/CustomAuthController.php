@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +40,7 @@ class CustomAuthController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("signin")->withErrors('Email / Senha inválida.');
+        return redirect("signin")->withErrors('Email ou senha inválida.');
     }
     public function registration()
     {

@@ -30,15 +30,20 @@ Route::get('/forgot-password', function () {
 })->middleware('guest')->name('password.request');
 
 Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
- 
+    $request->validate([
+        'email' => 'required|email|exists:users,email',
+    ], [
+        'email.required' => 'É necessário informar um email.',
+        'email.exists' => 'Email não cadastrado.',
+    ]);
+
     $status = Password::sendResetLink(
         $request->only('email')
     );
- 
+
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
@@ -51,25 +56,31 @@ Route::post('/reset-password', function (Request $request) {
         'email' => 'required|email',
         'password' => 'required|min:6|confirmed',
     ]);
- 
+
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
         function (User $user, string $password) {
             $user->password = Hash::make($password);
             $user->save();
- 
-           // event(new PasswordReset($user));
+
+            // event(new PasswordReset($user));
         }
     );
- 
+
     return $status === Password::PASSWORD_RESET
-                ? redirect()->route('signin')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('signin')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
 // End logic reset password
 
+// logica de registro
 
+Route::get('/register', function () {
+    return view('register-3');
+})->name('register');
+
+// End logica de registro
 
 
 
@@ -727,18 +738,6 @@ Route::get('/email-verification-2', function () {
 Route::get('/email-verification', function () {
     return view('email-verification');
 })->name('email-verification');
-
-Route::get('/register-3', function () {
-    return view('register-3');
-})->name('register-3');
-
-Route::get('/register-2', function () {
-    return view('register-2');
-})->name('register-2');
-
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
 
 Route::get('/signin-3', function () {
     return view('signin-3');
