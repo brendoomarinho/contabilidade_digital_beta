@@ -77,7 +77,7 @@ Route::post('/reset-password', function (Request $request) {
 // logica de registro
 
 Route::get('/register', function () {
-    return view('register-3');
+    return view('auth.register');
 })->name('register');
 
 // End logica de registro
