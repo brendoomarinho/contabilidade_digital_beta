@@ -12,26 +12,32 @@
                         <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
                     </a>
                 </div>
-                <form action="signin-3">
+                @if(session()->has('status'))
+                    <span class="text text-success">{{ session()->get('status') }}</span>
+                @endif
+                <form action="{{ route('password.email') }}" method="post">
+                @csrf
+                @error('email')
+                <div class="text text-danger">{{$message}}</div>
+                @enderror
                     <div class="login-userset">
                         <div class="login-userheading">
-                            <h3>Forgot password?</h3>
-                            <h4>If you forgot your password, well, then we’ll email you instructions to reset your
-                                password.</h4>
+                            <h3>Recuperar senha</h3>
+                            <h4>Enviaremos as instruções de recuperação para o email cadastrado.</h4>
                         </div>
                         <div class="form-login">
                             <label>Email</label>
                             <div class="form-addons">
-                                <input type="email" class="form-control">
+                                <input type="email" class="form-control" name="email">
                                 <img src="{{ URL::asset('/build/img/icons/mail.svg') }}"
                                     alt="img">
                             </div>
                         </div>
                         <div class="form-login">
-                            <button type="submit" class="btn btn-login">Sign Up</button>
+                            <button type="submit" class="btn btn-login">Recuperar</button>
                         </div>
                         <div class="signinform text-center">
-                            <h4>Return to<a href="{{ url('signin-3') }}" class="hover-a"> login </a>
+                            <h4>Return to<a href="{{ route('signin') }}" class="hover-a"> login </a>
                             </h4>
                         </div>
                         <div class="form-setlogin or-text">

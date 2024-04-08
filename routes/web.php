@@ -1,14 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\Clients;
-use App\Mail\MensagemTesteMail;
-use Illuminate\Support\Facades\Mail;
+
 
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
@@ -19,11 +23,11 @@ Route::post('custom-register', [CustomAuthController::class, 'customRegister'])-
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
-Route::get('/forgot-password', function () {
+//logic reset password
 
+Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
-
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
@@ -37,12 +41,33 @@ Route::post('/forgot-password', function (Request $request) {
                 : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
-
 Route::get('/reset-password/{token}', function (string $token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:6|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->password = Hash::make($password);
+            $user->save();
+ 
+           // event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('signin')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
 
+// End logic reset password
 
 
 
@@ -702,18 +727,6 @@ Route::get('/email-verification-2', function () {
 Route::get('/email-verification', function () {
     return view('email-verification');
 })->name('email-verification');
-
-Route::get('/reset-password-3', function () {
-    return view('reset-password-3');
-})->name('reset-password-3');
-
-Route::get('/reset-password-2', function () {
-    return view('reset-password-2');
-})->name('reset-password-2');
-
-Route::get('/reset-password', function () {
-    return view('reset-password');
-})->name('reset-password');
 
 Route::get('/register-3', function () {
     return view('register-3');
