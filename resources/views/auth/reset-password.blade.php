@@ -4,31 +4,33 @@
     <div class="account-content">
         <div class="login-wrapper login-new">
             <div class="login-content user-login">
-                <div class="login-logo">
-                    <img src="{{ URL::asset('/build/img/logo.png') }}" alt="img">
-                    <a href="{{ url('index') }}" class="login-logo logo-white">
-                        <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
-                    </a>
-                </div>
                 @if (session()->has('status'))
                     <span class="text text-success">{{ session()->get('status') }}</span>
                 @endif
-                @error('email')
-                    <div class="text text-danger">{{ $message }}</div>
-                @enderror
                 <form action="{{ route('password.update', ['token' => $token]) }}" method="post">
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
                     <div class="login-userset">
+                        <div class="login-logo">
+                            <img src="{{ URL::asset('/build/img/logo.png') }}" alt="img">
+                            <a href="{{ url('index') }}" class="login-logo logo-white">
+                                <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
+                            </a>
+                        </div>
                         <div class="login-userheading">
                             <h3>Redefinir senha</h3>
-                            <h4>Para redefinir sua senha, digite uma nova senha e depois confirme</h4>
+                            <h4>Para redefinir, digite uma nova senha e depois confirme.</h4>
                         </div>
                         <div class="form-login">
                             <label>Email</label>
                             <div class="form-addons">
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" value={{ old('email') }}>
                                 <img src="{{ URL::asset('/build/img/icons/mail.svg') }}" alt="img">
+                            </div>
+                            <div class="text text-danger mt-1">
+                                @error('email')
+                                    <i class='fa fa-exclamation-circle'></i> {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="form-login">
@@ -37,12 +39,22 @@
                                 <input type="password" class="pass-inputa" name="password">
                                 <span class="fas toggle-passworda fa-eye-slash"></span>
                             </div>
+                            <div class="text text-danger mt-1">
+                                @error('password')
+                                    <i class='fa fa-exclamation-circle'></i> {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-login">
                             <label> Confirme a nova senha</label>
                             <div class="pass-group">
                                 <input type="password" class="pass-inputs" name="password_confirmation">
                                 <span class="fas toggle-passwords fa-eye-slash"></span>
+                            </div>
+                            <div class="text text-danger mt-1">
+                                @error('password_confirmation')
+                                    <i class='fa fa-exclamation-circle'></i> {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="form-login">

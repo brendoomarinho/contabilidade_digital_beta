@@ -1,19 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
-
 use App\Http\Controllers\CustomAuthController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Clients;
-
-
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Route;
 
 Route::get('index', [CustomAuthController::class, 'dashboard']);
 Route::get('signin', [CustomAuthController::class, 'index'])->name('signin');
@@ -21,7 +13,6 @@ Route::post('custom-login', [CustomAuthController::class, 'customSignin'])->name
 Route::get('register', [CustomAuthController::class, 'registration'])->name('register');
 Route::post('custom-register', [CustomAuthController::class, 'customRegister'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
-
 
 //logic reset password
 
@@ -53,8 +44,14 @@ Route::get('/reset-password/{token}', function (string $token) {
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|exists:users,email',
         'password' => 'required|min:6|confirmed',
+    ], [
+        'email.required' => 'É necessário informar o email.',
+        'email.exists' => 'Email inválido.',
+        'password.required' => 'É necessário informar nova senha.',
+        'password.min' => 'Senha deve conter no mínio 6 dígitos.',
+        'password.confirmed' => 'Senhas não coincidem.',
     ]);
 
     $status = Password::reset(
@@ -62,8 +59,6 @@ Route::post('/reset-password', function (Request $request) {
         function (User $user, string $password) {
             $user->password = Hash::make($password);
             $user->save();
-
-            // event(new PasswordReset($user));
         }
     );
 
@@ -81,11 +76,6 @@ Route::get('/register', function () {
 })->name('register');
 
 // End logica de registro
-
-
-
-
-
 
 Route::get('/', function () {
     return view('index');
@@ -302,7 +292,6 @@ Route::get('/payroll-list', function () {
 Route::get('/payslip', function () {
     return view('payslip');
 })->name('payslip');
-
 
 Route::get('/sales-list', function () {
     return view('sales-list');
