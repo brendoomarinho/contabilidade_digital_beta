@@ -60,7 +60,7 @@
                     <h6 class="submenu-hdr">Menu principal</h6>
                     <ul>
                     <li class="{{ Request::is('meu-movimento') ? 'active' : '' }}"><a
-                                href="#"><i data-feather="box"></i><span>Meu movimento</span></a>
+                                href="{{ route('movimento.index') }}"><i data-feather="box"></i><span>Meu movimento</span></a>
                         </li>
                         <li class="{{ Request::is('add-product','edit-product') ? 'active' : '' }}"><a
                                 href="{{ url('add-product') }}"><i data-feather="plus-square"></i><span>Guias mensais

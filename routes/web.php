@@ -3,9 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Notifications\ResetPasswordNotification;
 
+use App\Http\Controllers\Clients;
+use App\Http\Controllers\Clients\MovimentoController;
+
 require __DIR__ . '/auth.php';
 
 // protected routes
+
+Route::get('/meu-movimento', [MovimentoController::class, 'index'])->name('movimento.index');
+
+
 
 Route::get('/product-list', function () {
     return view('product-list');
