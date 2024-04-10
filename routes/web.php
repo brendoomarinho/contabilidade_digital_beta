@@ -1,12 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Mail\ResetPasswordMail;
 
 require __DIR__.'/auth.php';
 
 
+// rota para inspecionar email
 
-
+Route::get('/mensagem-teste', function () {
+   return new ResetPasswordMail();
+   //Mail::to('brendomarinho94@gmail.com')->send(new ResetPasswordMail());
+   return 'e-mail enviado com sucesso';
+});
 
 
 
