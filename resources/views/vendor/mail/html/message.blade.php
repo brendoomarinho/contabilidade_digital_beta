@@ -5,7 +5,7 @@
 {{ config('app.name') }}
 </x-mail::header>
 </x-slot:header>
-<img src="{{ asset('build/img/logo.png') }}" class="logo" alt="Laravel Logo">
+<img src="{{ asset('build/img/var_logo/logo_suporte.svg') }}" class="logo" alt="Laravel Logo">
 {{-- Body --}}
 {{ $slot }}
 
