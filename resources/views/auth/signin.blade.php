@@ -84,7 +84,7 @@
                 </form>
             </div>
             <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                <p>Copyright &copy; 2024.</p>
+                <p><i class="fa-solid fa-arrow-pointer"></i> Sistema | {{ config('app.name') }}</p>
             </div>
         </div>
     </div>

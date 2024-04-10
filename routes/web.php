@@ -1,38 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Mail\ResetPasswordMail;
+use App\Notifications\ResetPasswordNotification;
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-
-// rota para inspecionar email
-
-Route::get('/mensagem-teste', function () {
-   return new ResetPasswordMail();
-   //Mail::to('brendomarinho94@gmail.com')->send(new ResetPasswordMail());
-   return 'e-mail enviado com sucesso';
-});
-
-
-
-
-
-// logica de registro
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-// End logica de registro
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
+// protected routes
 
 Route::get('/product-list', function () {
     return view('product-list');
@@ -676,18 +649,6 @@ Route::get('/email-verification-2', function () {
 Route::get('/email-verification', function () {
     return view('email-verification');
 })->name('email-verification');
-
-Route::get('/signin-3', function () {
-    return view('signin-3');
-})->name('signin-3');
-
-Route::get('/signin-2', function () {
-    return view('signin-2');
-})->name('signin-2');
-
-Route::get('/signin', function () {
-    return view('signin');
-})->name('signin');
 
 Route::get('/success-3', function () {
     return view('success-3');

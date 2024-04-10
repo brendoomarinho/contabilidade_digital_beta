@@ -50,8 +50,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                    <p>Copyright &copy; 2024.</p>
+                <div class="my-4 d-flex justify-content-center align-items-center">
+                <p><i class="fa-solid fa-wrench"></i> Suporte Técnico | {{ config('app.name') }}</p>
                 </div>
             </div>
         </div>

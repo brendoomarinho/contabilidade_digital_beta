@@ -14,7 +14,7 @@ class CustomAuthController extends Controller
     public function index()
     {
 
-        return view('signin');
+        return view('auth.signin');
     }
 
 
@@ -42,9 +42,10 @@ class CustomAuthController extends Controller
 
         return redirect("signin")->withErrors('Email ou senha inválida.');
     }
+    
     public function registration()
     {
-        return view('register');
+        return view('error_pages.error-500');
     }
 
     public function customRegister(Request $request)

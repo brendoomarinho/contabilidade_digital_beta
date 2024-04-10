@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
-//logic login
+Route::redirect('/', '/signin');
 
-Route::get('index', [CustomAuthController::class, 'dashboard']);
+// protected routes
+Route::middleware('auth')->group(function () {
+    Route::get('index', [CustomAuthController::class, 'dashboard']);
+});
+
 Route::get('signin', [CustomAuthController::class, 'index'])->name('signin');
 Route::post('custom-login', [CustomAuthController::class, 'customSignin'])->name('signin.custom');
 Route::get('register', [CustomAuthController::class, 'registration'])->name('register');
@@ -68,5 +72,3 @@ Route::post('/reset-password', function (Request $request) {
         ? redirect()->route('signin')->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
-
-

@@ -11,12 +11,16 @@ class ResetPasswordNotification extends Notification
 {
     use Queueable;
     public $token;
+    public $email;
+    public $name;
     /**
      * Create a new notification instance.
      */
-    public function __construct($token)
+    public function __construct($token, $email, $name)
     {
-        $this->token = $token;
+       $this->token = $token;
+       $this->email = $email;
+       $this->name = $name;
     }
 
     /**
@@ -34,17 +38,14 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $url = 'http://localhost:8000/reset-password/' . $this->$token;
-
+        $url = 'http://localhost:8000/reset-password/'.$this->token.'?email='.$this->email;
+        $saudacao = 'Olá! '. $this->name. '.';
         return (new MailMessage)
-            ->markdown('email.reset-password')
             ->subject('Recuperação de senha')
-            ->greeting('Equipe de suporte,')
-            ->salutation('Suporte técnico.')
-            ->from('contato@contactcontabilidade.com')
-            ->line('Olá, você solicitou a redefinição de senha, clique no botão abaixo para prosseguir com a solicitação.')
+            ->greeting($saudacao)
+            ->line('Clique no botão abaixo para redefinir sua senha. Caso você não tenha feito esta solicitação, apenas ignore este email.')
             ->action('Redefinir senha', $url)
-            ->line('Caso você não tenha solicitado a recuperação de senha, desconsidere este email!');
+            ->salutation('Suporte técnico.');
     }
 
     /**
