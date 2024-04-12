@@ -16,4 +16,19 @@ class MovimentoEnvio extends Model
         'atendimento',
         'doc_anexo',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function competencia()
+    {
+        return $this->belongsTo(Competencia::class, 'competencia_id');
+    }
+
+    public function movimentoTitle()
+    {
+        return $this->belongsTo(movimentoTitle::class, 'title_id');
+    }
 }

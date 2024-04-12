@@ -32,8 +32,12 @@ class User extends Authenticatable implements CanResetPassword
     ];
 
     public function sendPasswordResetNotification($token): void
-{
-    $this->notify(new ResetPasswordNotification($token, $this->email, $this->name));
-}
+    {
+        $this->notify(new ResetPasswordNotification($token, $this->email, $this->name));
+    }
 
+    public function movimentoEnvios()
+    {
+        return $this->hasMany(MovimentoEnvio::class);
+    }
 }

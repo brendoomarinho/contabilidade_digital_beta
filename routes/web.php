@@ -10,7 +10,11 @@ require __DIR__ . '/auth.php';
 
 // protected routes
 
-Route::resource('movimento', ClientMovimentoController::class);
+Route::resource('meu-movimento', ClientMovimentoController::class, [
+    'names' => [
+        'index' => 'movimento.index',
+    ],
+]);
 
 
 

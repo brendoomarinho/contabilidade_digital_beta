@@ -12,4 +12,9 @@ class CompetenciaAno extends Model
     protected $fillable = [
         'ano',
     ];
+
+    public function competencias()
+    {
+        return $this->hasMany(Competencia::class, 'ano_id');
+    }
 }

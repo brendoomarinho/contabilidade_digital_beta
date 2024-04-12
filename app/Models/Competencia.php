@@ -13,4 +13,19 @@ class Competencia extends Model
         'mes_id',
         'ano_id',
     ];
+
+    public function mes()
+    {
+        return $this->belongsTo(CompetenciaMes::class, 'mes_id');
+    }
+
+    public function ano()
+    {
+        return $this->belongsTo(CompetenciaAno::class, 'ano_id');
+    }
+
+    public function movimentoEnvios()
+    {
+        return $this->hasMany(MovimentoEnvio::class);
+    }
 }

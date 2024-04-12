@@ -256,7 +256,7 @@ button {
             background-color: #{$value} !important;
             border: 1px solid #{$value} !important;
             color: $white;
-            box-shadow: 0 4px 20px rgba($value, .15);
+          //box-shadow: 0 4px 20px rgba($value, .15);
             &:hover,
             &:focus,
             &.focus,
@@ -264,7 +264,7 @@ button {
             &.active {
                 background-color: #{darken($value, 7%)}!important;
                 border:1px solid #{darken($value, 7%)}!important;
-                box-shadow: 0 3px 10px rgba($value, 0.5);
+              //box-shadow: 0 3px 10px rgba($value, 0.5);
                 color: $white !important;
             }
         }
@@ -511,7 +511,7 @@ button {
     &.active {
         background-color: $primary !important;
         border:1px solid $primary !important;
-        box-shadow: 0 3px 10px rgba($primary, 0.5);
+      //box-shadow: 0 3px 10px rgba($primary, 0.5);
         color: $white !important;
     }
 }
@@ -525,7 +525,7 @@ button {
     &.active {
         background-color: $secondary !important;
         border:1px solid $secondary !important;
-        box-shadow: 0 3px 10px rgba($secondary, 0.5);
+      //box-shadow: 0 3px 10px rgba($secondary, 0.5);
         color: $white !important;
     }
 }
@@ -539,7 +539,7 @@ button {
     &.active {
         background-color: $success !important;
         border:1px solid $success !important;
-        box-shadow: 0 3px 10px rgba($success, 0.5);
+      //box-shadow: 0 3px 10px rgba($success, 0.5);
         color: $white !important;
     }
 }
@@ -553,7 +553,7 @@ button {
     &.active {
         background-color: $danger !important;
         border:1px solid $danger !important;
-        box-shadow: 0 3px 10px rgba($danger, 0.5);
+      //box-shadow: 0 3px 10px rgba($danger, 0.5);
         color: $white !important;
     }
 }
@@ -567,7 +567,7 @@ button {
     &.active {
         background-color: $warning !important;
         border:1px solid $warning !important;
-        box-shadow: 0 3px 10px rgba($warning, 0.5);
+      //box-shadow: 0 3px 10px rgba($warning, 0.5);
         color: $white !important;
     }
 }
@@ -581,7 +581,7 @@ button {
     &.active {
         background-color: $info !important;
         border:1px solid $info !important;
-        box-shadow: 0 3px 10px rgba($info, 0.5);
+      //box-shadow: 0 3px 10px rgba($info, 0.5);
         color: $white !important;
     }
 }
@@ -608,7 +608,7 @@ button {
     &.active {
         background-color: $dark !important;
         border:1px solid $dark !important;
-        box-shadow: 0 3px 10px rgba($dark, 0.5);
+      //box-shadow: 0 3px 10px rgba($dark, 0.5);
         color: $white !important;
     }
 }
