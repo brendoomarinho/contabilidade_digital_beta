@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Models\ClientModel;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MovimentoModel extends Model
+class MovimentoTitle extends Model
 {
     use HasFactory;
 
-    protected $table = 'movimentos_titles';
-
     protected $fillable = [
-        'title_movimento',
+        'title',
     ];
 }

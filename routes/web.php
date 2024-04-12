@@ -4,13 +4,38 @@ use Illuminate\Support\Facades\Route;
 use App\Notifications\ResetPasswordNotification;
 
 use App\Http\Controllers\Clients;
-use App\Http\Controllers\Clients\MovimentoController;
+use App\Http\Controllers\ClientMovimentoController;
 
 require __DIR__ . '/auth.php';
 
 // protected routes
 
-Route::get('/meu-movimento', [MovimentoController::class, 'index'])->name('movimento.index');
+Route::resource('movimento', ClientMovimentoController::class);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

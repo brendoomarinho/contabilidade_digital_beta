@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-  
     public function up(): void
     {
-        Schema::create('movimentos_titles', function (Blueprint $table) {
+        Schema::create('competencia_meses', function (Blueprint $table) {
             $table->id();
-            $table->string('title_movimento', 50);
+            $table->string('mes');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('movimentos_titles');
+        Schema::dropIfExists('competencia_meses');
     }
 };
