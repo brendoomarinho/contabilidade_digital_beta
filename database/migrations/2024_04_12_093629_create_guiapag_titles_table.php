@@ -8,15 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('competencia_meses', function (Blueprint $table) {
+        Schema::create('guiapag_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('mes')->unique();
+            $table->string('titulo', 30)->unique();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('competencia_meses');
+        Schema::dropIfExists('guiapag_titles');
     }
 };
