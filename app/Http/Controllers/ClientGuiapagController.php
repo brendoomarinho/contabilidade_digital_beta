@@ -15,7 +15,7 @@ class ClientGuiapagController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
-        return view('clients.guiapag', ['registros' => $registros]);
+        return view('page_clients.guiapag', ['registros' => $registros]);
     }
 
     public function create()

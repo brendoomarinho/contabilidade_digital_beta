@@ -36,8 +36,6 @@
                                                 </th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Descrição</th>
-                                                <th scope="col">Valor</th>
-                                                <th scope="col">Vencimento</th>
                                                 <th scope="col">Ações</th>
                                             </tr>
                                         </thead>
@@ -50,41 +48,19 @@
                                                     <td>
                                                         <span
                                                             class="badge rounded-pill bg-outline-{{ $registro->rtc == 0 ? 'success' : 'warning' }}">
-                                                            {{ $registro->rtc == 0 ? 'original' : 'retificado' }}
+                                                            {{ $registro->rtc == 0 ? 'recebido' : 'retificado' }}
                                                         </span>
                                                     </td>
                                                     </td>
                                                     <td>{{ $registro->movimentoTitle->title }}</td>
-                                                    <td>R$ 10,984.29</td>
-                                                    <td>10/05/2024</td>
                                                     <td>
                                                         <div class="hstack gap-2 fs-15">
                                                             <a href="javascript:void(0);"
-                                                                class="btn btn-icon btn-sm btn-success"><i
+                                                                class="btn btn-icon btn-sm btn-info"><i
                                                                     class="feather-download"></i></a>
                                                             <a href="javascript:void(0);"
                                                                 class="btn btn-icon btn-sm btn-info">
-                                                                <i class="feather-printer"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        10/05/2024 05:45:45
-                                                    </td>
-                                                    <td><span class="badge rounded-pill bg-outline-success">original</span>
-                                                    </td>
-                                                    <td>PGDAS Simples Nacional</td>
-                                                    <td>R$ 10,984.29</td>
-                                                    <td>10/05/2024</td>
-                                                    <td>
-                                                        <div class="hstack gap-2 fs-15">
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-icon btn-sm btn-success"><i
-                                                                    class="feather-download"></i></a>
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-icon btn-sm btn-info">
-                                                                <i class="feather-printer"></i></a>
+                                                                <i class="feather-trash-2"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>

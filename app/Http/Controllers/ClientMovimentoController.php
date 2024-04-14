@@ -23,7 +23,7 @@ class ClientMovimentoController extends Controller
 
         $movimentoTitle = MovimentoTitle::all();
 
-        return view('clients.movimentos', [
+        return view('page_clients.movimentos', [
             'registros' => $registros,
             'competencias' => $competencias,
             'movimentoTitle' => $movimentoTitle
