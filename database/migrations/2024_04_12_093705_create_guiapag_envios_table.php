@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('guiapag_envios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('competencia_id');
             $table->unsignedBigInteger('title_id');
+            $table->unsignedBigInteger('competencia_id');
             $table->decimal('valor', 10, 2);
             $table->date('dt_venc');
             $table->integer('rtf');

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('guiapag_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo', 30)->unique();
+            $table->string('title', 30)->unique();
             $table->timestamps();
         });
     }

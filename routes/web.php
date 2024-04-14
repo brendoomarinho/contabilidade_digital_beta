@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CatchFileController;
 use App\Notifications\ResetPasswordNotification;
 
 use App\Http\Controllers\Clients;
 use App\Http\Controllers\ClientMovimentoController;
+use App\Http\Controllers\ClientGuiapagController;
 
 require __DIR__ . '/auth.php';
 
@@ -16,6 +18,17 @@ Route::resource('meu-movimento', ClientMovimentoController::class, [
     ],
 ]);
 
+Route::resource('guia-pagamento', ClientGuiapagController::class, [
+    'names' => [
+        'index' => 'guiapag.index',
+    ],
+]);
+
+
+// action view & download
+Route::get('/file/{directory}/{action}/{file}', [CatchFileController::class, 'handleFile'])
+    ->where('action', 'download|view')
+    ->name('fileAction');
 
 
 

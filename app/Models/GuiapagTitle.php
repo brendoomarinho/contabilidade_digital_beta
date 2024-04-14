@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class GuiapagTitle extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+    ];
+
+    public function guiapagEnvios()
+    {
+        return $this->hasMany(GuiapagEnvios::class);
+    }
 }

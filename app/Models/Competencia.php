@@ -28,4 +28,9 @@ class Competencia extends Model
     {
         return $this->hasMany(MovimentoEnvio::class);
     }
+
+    public function guiapagEnvios() 
+    {
+        return $this->hasMany(GuiapagEnvios::class);
+    }
 }

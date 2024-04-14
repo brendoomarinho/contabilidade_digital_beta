@@ -10,7 +10,7 @@ class ClientGuiapagController extends Controller
     {
         $user = auth()->user();
 
-        $registros = $user->guiaEnvios()->with('competencia.mes', 'competencia.ano', 'guiaLista')
+        $registros = $user->guiapagEnvios()->with('competencia.mes', 'competencia.ano', 'guiapagTitle')
             ->orderBy('competencia_id', 'desc')
             ->orderBy('created_at', 'desc')
             ->paginate(15);

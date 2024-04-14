@@ -63,7 +63,7 @@
                                 href="{{ route('movimento.index') }}"><i data-feather="box"></i><span>Meu movimento</span></a>
                         </li>
                         <li class="{{ Request::is('add-product','edit-product') ? 'active' : '' }}"><a
-                                href="{{ url('add-product') }}"><i data-feather="plus-square"></i><span>Guias mensais
+                                href="{{ route('guiapag.index') }}"><i data-feather="plus-square"></i><span>Guias mensais
                                     </span></a></li>
                         <li class="submenu">
                             <a href="{{ url('#') }}"

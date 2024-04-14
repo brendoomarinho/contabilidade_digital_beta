@@ -40,4 +40,10 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->hasMany(MovimentoEnvio::class);
     }
+
+    public function guiapagEnvios()
+    {
+        return $this->hasMany(GuiapagEnvio::class);
+    }
 }
+

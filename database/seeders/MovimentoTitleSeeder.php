@@ -9,8 +9,14 @@ class MovimentoTitleSeeder extends Seeder
 {
     public function run()
     {
-        MovimentoTitle::create(['title' => 'Notas de serviços tomados']);
-        MovimentoTitle::create(['title' => 'Relatório máquina de cartão']);
-        MovimentoTitle::create(['title' => 'Simples Remessa']);
+        $titles = [
+            'Notas de serviços tomados',
+            'Relatório máquina de cartão',
+            'Simples Remessa'
+        ];
+
+        foreach ($titles as $title) {
+            MovimentoTitle::create(['title' => $title]);
+        }
     }
 }
