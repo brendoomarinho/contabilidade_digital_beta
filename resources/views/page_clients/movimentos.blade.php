@@ -3,16 +3,15 @@
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
-
             @component('components.breadcrumb')
                 @slot('title')
-                    Data Tables
+                    Category
                 @endslot
                 @slot('li_1')
-                    Dashboard
+                    Manage your categories
                 @endslot
                 @slot('li_2')
-                    Data Tables
+                    Add Category
                 @endslot
             @endcomponent
             <!-- Always responsive -->
