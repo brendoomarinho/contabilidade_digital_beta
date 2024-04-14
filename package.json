@@ -1,16 +1,26 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "devDependencies": {
-        "axios": "^1.6.4",
-        "laravel-vite-plugin": "^1.0.0",
-        "vite": "^5.0.12"
-    },
-    "dependencies": {
-        "vite-plugin-static-copy": "^1.0.0"
-    }
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "axios": "^1.6.4",
+    "laravel-vite-plugin": "^1.0.0",
+    "vite": "^5.0.12"
+  },
+  "dependencies": {
+    "sass": "^1.75.0",
+    "vite-plugin-static-copy": "^1.0.0"
+  },
+  "name": "contabilidade_digital_beta",
+  "description": "",
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "author": "",
+  "license": "ISC"
 }

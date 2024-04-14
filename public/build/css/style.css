@@ -521,7 +521,6 @@ ul .btn-primary:not(:disabled):not(.disabled):active:focus, ul .btn-primary:not(
 }
 
 .bg-outline-warning {
-  background-color: #ffffff;
   border: 1px solid #FF9900;
   color: #FF9900;
 }
@@ -533,7 +532,6 @@ ul .btn-primary:not(:disabled):not(.disabled):active:focus, ul .btn-primary:not(
 }
 
 .bg-outline-success {
-  background-color: #ffffff;
   border: 1px solid #28C76F;
   color: #28C76F;
 }
@@ -13113,7 +13111,6 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   -webkit-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  border-right: 1px solid #dbe0e6;
   border-bottom: 1px solid #dbe0e6;
 }
 .header .header-left .logo {
