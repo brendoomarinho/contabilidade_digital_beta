@@ -11,13 +11,16 @@ use App\Http\Controllers\ClientGuiapagController;
 require __DIR__ . '/auth.php';
 
 // protected routes
+Route::middleware('auth')->group(function () {
+    Route::resource('meu-movimento', ClientMovimentoController::class, [
+        'names' => [
+            'index' => 'movimento.index',
+            'store' => 'movimento.store',
+        ],
+    ]);
+});
 
-Route::resource('meu-movimento', ClientMovimentoController::class, [
-    'names' => [
-        'index' => 'movimento.index',
-        'store' => 'movimento.store',
-    ],
-]);
+
 
 Route::resource('guia-pagamento', ClientGuiapagController::class, [
     'names' => [

@@ -38,6 +38,7 @@ class ClientMovimentoController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $validatedData = $request->validate([
             'competencia_id' => 'required',
             'title_id' => 'required',
@@ -91,7 +92,8 @@ class ClientMovimentoController extends Controller
 
     public function destroy(Movimento $movimento)
     {
-        //
+        $destroyMovimento = Movimento::findOrFail($id);
+        $destroyMovimento->delete();
     }
 }
 

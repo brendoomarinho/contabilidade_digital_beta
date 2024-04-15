@@ -49,9 +49,9 @@
                                                     <td>{{ $registro->movimentoTitle->title }}</td>
                                                     <td>
                                                         <div class="hstack gap-2 fs-15">
-                                                            <a href="javascript:void(0);"
-                                                                class="btn btn-icon btn-sm btn-info"><i
-                                                                    class="feather-download"></i></a>
+                                                             <a href="{{ route('fileAction', ['directory' => 'movimentos_mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
+                                                                    class="btn btn-icon btn-sm btn-info" target="_blank"><i
+                                                                        class="feather-download"></i></a>
                                                             <a href="javascript:void(0);"
                                                                 class="btn btn-icon btn-sm btn-info">
                                                                 <i class="feather-trash-2"></i></a>
@@ -70,6 +70,7 @@
             <!-- /Always responsive -->
         </div>
     </div>
+
     <!-- modal adicionar Movimento -->
     <div class="modal fade" id="add-movimento">
         <div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -87,7 +88,7 @@
                         <div class="modal-body custom-modal-body">
                             <form method="post" action="{{ route('movimento.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                 <input class="d-none" name="atendimento" type="number" value="0" />
+                                <input class="d-none" name="atendimento" type="number" value="0" />
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
@@ -158,3 +159,8 @@
         });
     </script>
 @endsection
+
+
+
+
+
