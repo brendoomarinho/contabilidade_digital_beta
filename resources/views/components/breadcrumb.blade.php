@@ -1,4 +1,4 @@
-@if (Route::is(['add-product']))
+{{-- @if (Route::is(['add-product']))
     <div class="page-header">
         <div class="add-item d-flex">
             <div class="page-title">
@@ -22,7 +22,7 @@
     </div>
 @endif
 
-@if (
+ @if ( 
     !Route::is([
         'add-product',
         'chart-apex',
@@ -135,12 +135,6 @@
             <div class="page-btn">
                 <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-stores"><i
                         data-feather="plus-circle" class="me-2"></i> Add Store</a>
-            </div>
-        @endif
-        @if (Route::is(['movimento-index']))
-            <div class="page-btn">
-                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-movimento"><i
-                        data-feather="plus-circle" class="me-2"></i> Novo</a>
             </div>
         @endif
         @if (Route::is(['stock-transfer']))
@@ -322,7 +316,7 @@
             </div>
         @endif
     </div>
-@endif
+@endif 
 
 @if (Route::is([
         'chart-apex',
@@ -379,4 +373,39 @@
         </div>
     </div>
     <!-- /Page Header -->
+@endif
+--}}
+
+{{--Meu projeto--}}
+
+
+
+
+@if (
+    !Route::is([
+        '',
+    ]))
+    <div class="page-header">
+        <div class="add-item d-flex">
+            <div class="page-title">
+                <h4>{{ $title }}</h4>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('index') }}">{{ $li_1 }}</a></li>
+                    <li class="breadcrumb-item active">{{ $li_2 }}</li>
+                </ul>
+            </div>
+        </div>
+        <ul class="table-top-head">
+            <li>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Atualizar"><i data-feather="rotate-ccw"
+                        class="feather-rotate-ccw"></i></a>
+            </li>
+        </ul>
+         @if (Route::is(['movimento.index']))
+            <div class="page-btn">
+                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-movimento"><i
+                        data-feather="plus-circle" class="me-2"></i>Novo</a>
+            </div>
+        @endif
+    </div>
 @endif

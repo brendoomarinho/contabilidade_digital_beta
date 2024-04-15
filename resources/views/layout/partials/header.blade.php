@@ -85,7 +85,7 @@
         <!-- /Search -->
 
 
-        <!-- Select Store -->
+     {{-- <!-- Select Filial -->
         <li class="nav-item dropdown has-arrow main-drop select-store-dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link select-store" data-bs-toggle="dropdown">
                 <span class="user-info">
@@ -117,29 +117,7 @@
                 </a>
             </div>
         </li>
-        <!-- /Select Store -->
-
-        <!-- Flag -->
-        <li class="nav-item dropdown has-arrow flag-nav nav-item-box">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
-                <img src="{{ URL::asset('/build/img/flags/us.png') }}" alt="Language" class="img-fluid">
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="javascript:void(0);" class="dropdown-item active">
-                    <img src="{{ URL::asset('/build/img/flags/us.png') }}" alt="" height="16"> English
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="{{ URL::asset('/build/img/flags/fr.png') }}" alt="" height="16"> French
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="{{ URL::asset('/build/img/flags/es.png') }}" alt="" height="16"> Spanish
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <img src="{{ URL::asset('/build/img/flags/de.png') }}" alt="" height="16"> German
-                </a>
-            </div>
-        </li>
-        <!-- /Flag -->
+        <!-- /Select Store --> --}}
 
         <li class="nav-item nav-item-box">
             <a href="javascript:void(0);" id="btnFullscreen">
@@ -190,9 +168,6 @@
         </li>
         <!-- /Notifications -->
 
-        <li class="nav-item nav-item-box">
-            <a href="{{ url('general-settings') }}"><i data-feather="settings"></i></a>
-        </li>
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                 <span class="user-info">
@@ -201,8 +176,8 @@
                             class="img-fluid">
                     </span>
                     <span class="user-detail">
-                        <span class="user-name">John Smilga</span>
-                        <span class="user-role">Super Admin</span>
+                        <span class="user-name">Brendo Marinho</span>
+                        <span class="user-role">34.391.002/0001-70</span>
                     </span>
                 </span>
             </a>
@@ -219,13 +194,13 @@
                     </div>
                     <hr class="m-0">
                     <a class="dropdown-item" href="{{ url('profile') }}"> <i class="me-2"
-                            data-feather="user"></i> My Profile</a>
+                            data-feather="user"></i> Meu cadastro</a>
                     <a class="dropdown-item" href="{{ url('general-settings') }}"><i class="me-2"
-                            data-feather="settings"></i>Settings</a>
+                            data-feather="settings"></i>Configurações</a>
                     <hr class="m-0">
                     <a class="dropdown-item logout pb-0" href="{{ route('signout') }}"><img
                             src="{{ URL::asset('/build/img/icons/log-out.svg') }}" class="me-2"
-                            alt="img">Logout</a>
+                            alt="img">Sair</a>
                 </div>
             </div>
         </li>

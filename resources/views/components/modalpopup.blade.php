@@ -1,3 +1,62 @@
+{{-- Meu projeto --}}
+@if(Route::is(['movimento.index']))
+		<!-- Adicionar Movimento -->
+		<div class="modal fade" id="add-movimento">
+			<div class="modal-dialog modal-dialog-centered custom-modal-two">
+				<div class="modal-content">
+					<div class="page-wrapper-new p-0">
+						<div class="content">
+							<div class="modal-header border-0 custom-modal-header">
+								<div class="page-title">
+									<h4>Enviar movimento</h4>
+								</div>
+								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body custom-modal-body">
+								<form action="designation">
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="mb-3">
+												<label class="form-label">Selecione a competência</label>
+												{{-- <select class="form-select @error('competencia_id') is-invalid @enderror" id="competencia_id" name="competencia_id">
+                                                    <option></option>
+                                                    @foreach ($competencias->reverse() as $competencia)
+                                                    <option value="{{ $competencia->id }}">
+                                                        {{ $competencia->mes->mes }}
+                                                        {{ $competencia->ano->ano }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                    @error('competencia_id')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror --}}
+											</div>
+										</div>		
+										<div class="input-blocks m-0">
+											<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
+												<span class="status-label">Status</span>
+												<input type="checkbox" id="user5" class="check" checked>
+												<label for="user5" class="checktoggle">	</label>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer-btn">
+										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-submit">Enviar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Add Department -->
+@endif
+
+
 @if (Route::is(['product-list']))
     <!-- Add Payroll -->
     <div class="offcanvas offcanvas-end em-payrol-add" tabindex="-1" id="offcanvasRight-add">

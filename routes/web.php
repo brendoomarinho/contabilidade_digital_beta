@@ -15,6 +15,7 @@ require __DIR__ . '/auth.php';
 Route::resource('meu-movimento', ClientMovimentoController::class, [
     'names' => [
         'index' => 'movimento.index',
+        'store' => 'movimento.store',
     ],
 ]);
 

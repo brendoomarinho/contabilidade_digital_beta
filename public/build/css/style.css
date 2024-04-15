@@ -24359,6 +24359,8 @@ table .edit-delete-action.data {
 }
 
 .custom-modal-header {
+  display: flex;
+  justify-content: space-between;
   background: #FAFBFE;
   padding: 24px;
 }

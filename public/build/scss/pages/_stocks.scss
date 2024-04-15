@@ -251,6 +251,8 @@ table {
     }
 }
 .custom-modal-header {
+    display: flex;
+    justify-content: space-between;
    background: $body-bg;
    padding: 24px;
    .page-title {

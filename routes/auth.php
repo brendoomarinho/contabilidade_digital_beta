@@ -32,6 +32,7 @@ Route::post('/forgot-password', function (Request $request) {
     ], [
         'email.required' => 'É necessário informar um email.',
         'email.exists' => 'Email não cadastrado.',
+        '*' => 'Token expirado ou inválido.',
     ]);
 
     $status = Password::sendResetLink(
