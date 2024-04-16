@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('certidao_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+            $table->string('title');
             $table->string('orgao');
             $table->timestamps();
         });

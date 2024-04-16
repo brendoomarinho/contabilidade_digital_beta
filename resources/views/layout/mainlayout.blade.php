@@ -14,6 +14,9 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('/build/img/logo-small.png') }}">
 
+    <!-- Biblioteca jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     @include('layout.partials.head')
 </head>
 

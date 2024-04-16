@@ -44,13 +44,13 @@ class ClientMovimentoController extends Controller
             'title_id' => 'required',
             'doc_anexo' => 'required|file|max:51200|mimes:pdf,zip,7z',
         ], [
-            'competencia_id.required' => 'O campo competência é obrigatório.',
-            'title_id.required' => 'O campo tipo de movimento é obrigatório.',
-            'doc_anexo.required' => 'O campo anexo é obrigatório.',
-            'doc_anexo.file' => 'O arquivo anexado não é válido.',
-            'doc_anexo.max' => 'O tamanho do arquivo anexado não pode exceder 50MB.',
-            'doc_anexo.mimes' => 'O arquivo anexado deve ser do tipo PDF, ZIP, ou 7Z.',
-            '*' => 'Formato de arquivo inválido ou corrompido.',
+            'competencia_id.required' => 'Competência é obrigatório.',
+            'title_id.required' => 'Descrição é obrigatório.',
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.file' => 'Arquivo anexado não é válido.',
+            'doc_anexo.max' => 'Tamanho do arquivo anexado não pode exceder 50MB.',
+            'doc_anexo.mimes' => 'Arquivo anexado deve ser do tipo PDF, ZIP, ou 7Z.',
+            '*' => 'Falha em anexar o arquivo.',
         ]);
         
         $doc_anexo = $request->file('doc_anexo');
@@ -70,7 +70,7 @@ class ClientMovimentoController extends Controller
             'doc_anexo' => $originalName,
         ]);
         
-        $successMessage = 'Enviado com sucesso! Em breve seu contador(a) confirmará o recebimento.';
+        $successMessage = 'Em breve seu contador(a) confirmará o recebimento.';
         
         return redirect()->back()->with('successMessage', $successMessage);        
     }
@@ -90,9 +90,9 @@ class ClientMovimentoController extends Controller
         //
     }
 
-    public function destroy(Movimento $movimento)
+    public function destroy($id)
     {
-        $destroyMovimento = Movimento::findOrFail($id);
+        $destroyMovimento = MovimentoEnvio::findOrFail($id);
         $destroyMovimento->delete();
     }
 }

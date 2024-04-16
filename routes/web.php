@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
         'names' => [
             'index' => 'movimento.index',
             'store' => 'movimento.store',
+            'destroy' => 'movimento.destroy',
         ],
     ]);
 });

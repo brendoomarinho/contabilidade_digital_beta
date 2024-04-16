@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CertidaoTitle extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'orgao',
+    ];
+
+    public function certidaoEnvio()
+    {
+        return $this->hasMany(CertidaoEnvio::class);
+    }
 }

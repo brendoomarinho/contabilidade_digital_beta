@@ -397,7 +397,7 @@
         </div>
         <ul class="table-top-head">
             <li>
-                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Atualizar"><i data-feather="rotate-ccw"
+                <a onclick="location.reload();" data-bs-toggle="tooltip" data-bs-placement="top" title="Atualizar"><i data-feather="rotate-ccw"
                         class="feather-rotate-ccw"></i></a>
             </li>
         </ul>
