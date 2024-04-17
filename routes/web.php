@@ -32,11 +32,7 @@ Route::resource('guia-pagamento', ClientGuiapagController::class, [
 
 
 
-Route::get('certidoes', ClientCertidaoController::class, [
-
-
-
-
+Route::get('certidoes', [ClientCertidaoController::class, 'index'])->name('certidao.index');
 
 
 

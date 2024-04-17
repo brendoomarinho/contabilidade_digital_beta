@@ -8,11 +8,11 @@ use App\Services\ContagemDiasService;
 
 class ClientCertidaoController extends Controller
 {
-    public function indexCertidoes(ContagemDiasService $contagemDiasService)
+    public function index(ContagemDiasService $contagemDiasService)
     {
-        $user = auth->user();
+        $user = auth()->user();
       
-        $registros = $user->certidaoEnvio()->with('certidaoTitle')->get();
+        $registros = $user->certidaoEnvios()->with('certidaoTitle')->get();
       
         foreach ($registros as $registro) {
             $registro->dias_restantes = $contagemDiasService->calcularDiasRestantes($registro->dt_vencimento);

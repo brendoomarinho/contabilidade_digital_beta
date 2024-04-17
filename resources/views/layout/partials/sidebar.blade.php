@@ -93,7 +93,7 @@
                                 href="{{ url('category-list') }}"><i
                                     data-feather="codepen"></i><span>Balanços</span></a></li>
                         <li class="{{ Request::is('sub-categories') ? 'active' : '' }}"><a
-                                href="{{ url('sub-categories') }}"><i data-feather="speaker"></i><span>Certidões
+                                href="{{ route('certidao.index') }}"><i data-feather="speaker"></i><span>Certidões
                                     </span></a></li>
                         <li class="{{ Request::is('brand-list') ? 'active' : '' }}"><a
                                 href="{{ url('brand-list') }}"><i data-feather="tag"></i><span>Alvarás e Licenças</span></a></li>

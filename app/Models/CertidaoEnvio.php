@@ -23,7 +23,7 @@ class CertidaoEnvio extends Model
     
     public function certidaoTitle()
     {
-        return $this->belongsTo(CertidaoTitle::class);
+        return $this->belongsTo(CertidaoTitle::class, 'title_id');
     }
 }
 

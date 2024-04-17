@@ -11,9 +11,9 @@ class CertidaoTitleSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['title' => 'ALVARÁ DE FUNCIONAMENTO', 'orgao' => 'Municipal'],
-            ['title' => 'LICENÇA AMBIENTAL', 'orgao' => 'Estadual'],
-            ['title' => 'USO DO SOLO', 'orgao' => 'Federal'],
+            ['title' => 'Certidão negativa de débitos municipais', 'orgao' => 'Municipal'],
+            ['title' => 'Certidão negativa SEFAZ', 'orgao' => 'Estadual'],
+            ['title' => 'Certidão negativa de débitos Federais', 'orgao' => 'Federal'],
         ];
 
         foreach ($data as $item) {

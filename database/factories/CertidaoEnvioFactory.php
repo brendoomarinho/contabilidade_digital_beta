@@ -12,7 +12,7 @@ class CertidaoEnvioFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 5),
+            'user_id' => $this->faker->numberBetween(1, 3),
             'title_id' => $this->faker->numberBetween(1, 3),
             'dt_venc' => $this->faker->dateTimeBetween('now', '+6 months'),
             'doc_anexo' => 'certidao.pdf',

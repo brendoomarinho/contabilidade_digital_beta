@@ -10,6 +10,6 @@ class CertidaoEnvioSeeder extends Seeder
 {
     public function run(): void
     {
-        CertidaoEnvio::factory(10)->create();
+        CertidaoEnvio::factory(20)->create();
     }
 }
