@@ -15,7 +15,7 @@ class ClientCertidaoController extends Controller
         $registros = $user->certidaoEnvios()->with('certidaoTitle')->get();
       
         foreach ($registros as $registro) {
-            $registro->dias_restantes = $contagemDiasService->calcularDiasRestantes($registro->dt_vencimento);
+            $registro->dias_restantes = $contagemDiasService->calcularDiasRestantes($registro->dt_venc);
         }
        
         return view('page_clients.certidoes', ['registros' => $registros]);
