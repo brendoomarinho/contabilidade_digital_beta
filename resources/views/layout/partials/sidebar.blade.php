@@ -2,18 +2,14 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
-
-@if(auth()->check())
-    <p>Olá, {{ auth()->user()->name }}</p>
-@endif
             <ul>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Main</h6>
+                    <h6 class="submenu-hdr">Qualificação</h6>
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);"
                                 class="{{ Request::is('index', '/', 'sales-dashboard') ? 'active subdrop' : '' }}"><i
-                                    data-feather="grid"></i><span>Dashboard</span><span class="menu-arrow"></span></a>
+                                    data-feather="grid"></i><span>Empresas</span><span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ url('index') }}"
                                         class="{{ Request::is('index', '/') ? 'active' : '' }}">Admin Dashboard</a></li>
@@ -22,10 +18,10 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="submenu">
+                        {{--<li class="submenu">
                             <a href="javascript:void(0);"
-                                class="{{ Request::is('chat', 'file-manager', 'file-archived','file-document','file-favourites','file-manager-seleted','file-recent','file-shared','notes', 'todo', 'email', 'calendar', 'call-history', 'audio-call', 'video-call','file-manager-deleted') ? 'active subdrop' : '' }} "><i
-                                    data-feather="smartphone"></i><span>Application</span><span
+                                class="{{ Request::is('chat', 'file-manager', 'file-archived', 'file-document', 'file-favourites', 'file-manager-seleted', 'file-recent', 'file-shared', 'notes', 'todo', 'email', 'calendar', 'call-history', 'audio-call', 'video-call', 'file-manager-deleted') ? 'active subdrop' : '' }} "><i
+                                    data-feather="smartphone"></i><span>Aplicações</span><span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ url('chat') }}"
@@ -50,21 +46,23 @@
                                         Do</a></li>
                                 <li><a class="{{ Request::is('notes') ? 'active' : '' }}"
                                         href="{{ url('notes') }}">Notes</a></li>
-                                <li><a class="{{ Request::is('file-manager', 'file-archived','file-document','file-favourites','file-manager-seleted','file-recent','file-shared','file-manager-deleted') ? 'active' : '' }}"
+                                <li><a class="{{ Request::is('file-manager', 'file-archived', 'file-document', 'file-favourites', 'file-manager-seleted', 'file-recent', 'file-shared', 'file-manager-deleted') ? 'active' : '' }}"
                                         href="{{ url('file-manager') }}">File Manager</a></li>
                             </ul>
-                        </li>
+                        </li>--}}
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Menu principal</h6>
                     <ul>
-                    <li class="{{ Request::is('meu-movimento') ? 'active' : '' }}"><a
-                                href="{{ route('movimento.index') }}"><i data-feather="box"></i><span>Meu movimento</span></a>
+                        <li class="{{ Request::is('meu-movimento') ? 'active' : '' }}"><a
+                                href="{{ route('movimento.index') }}"><i data-feather="box"></i><span>Meu
+                                    movimento</span></a>
                         </li>
-                        <li class="{{ Request::is('add-product','edit-product') ? 'active' : '' }}"><a
-                                href="{{ route('guiapag.index') }}"><i data-feather="plus-square"></i><span>Guias mensais
-                                    </span></a></li>
+                        <li class="{{ Request::is('add-product', 'edit-product') ? 'active' : '' }}"><a
+                                href="{{ route('guiapag.index') }}"><i data-feather="plus-square"></i><span>Guias
+                                    mensais
+                                </span></a></li>
                         <li class="submenu">
                             <a href="{{ url('#') }}"
                                 class="{{ Request::is('payroll-list', 'payslip') ? 'active subdrop' : '' }}"><i
@@ -94,9 +92,10 @@
                                     data-feather="codepen"></i><span>Balanços</span></a></li>
                         <li class="{{ Request::is('sub-categories') ? 'active' : '' }}"><a
                                 href="{{ route('certidao.index') }}"><i data-feather="speaker"></i><span>Certidões
-                                    </span></a></li>
+                                </span></a></li>
                         <li class="{{ Request::is('brand-list') ? 'active' : '' }}"><a
-                                href="{{ route('docRegulatorio.index') }}"><i data-feather="tag"></i><span>Alvarás e Licenças</span></a></li>
+                                href="{{ route('docRegulatorio.index') }}"><i data-feather="tag"></i><span>Alvarás e
+                                    Licenças</span></a></li>
                         <li class="{{ Request::is('units') ? 'active' : '' }}"><a href="{{ url('units') }}"><i
                                     data-feather="speaker"></i><span>Contratos</span></a></li>
                         <li class="{{ Request::is('varriant-attributes') ? 'active' : '' }}"><a
@@ -105,36 +104,35 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Stock</h6>
+                    <h6 class="submenu-hdr">Solicitação</h6>
                     <ul>
-                    <li class="{{ Request::is('warranty') ? 'active' : '' }}"><a href="{{ url('warranty') }}"><i
-                                    data-feather="bookmark"></i><span>Warranties</span></a></li>
+                        <li class="{{ Request::is('warranty') ? 'active' : '' }}"><a href="{{ url('warranty') }}"><i
+                                    data-feather="bookmark"></i><span>Alteração contratual</span></a></li>
                         <li class="{{ Request::is('barcode') ? 'active' : '' }}"><a href="{{ url('barcode') }}"><i
-                                    data-feather="align-justify"></i><span>Print
-                                    Barcode</span></a></li>
+                                    data-feather="align-justify"></i><span>Certificado digital</span></a></li>
                         <li class="{{ Request::is('qrcode') ? 'active' : '' }}"><a href="{{ url('qrcode') }}"><i
-                                    data-feather="maximize"></i><span>Print QR Code</span></a></li>
-                        <li class="{{ Request::is('manage-stocks') ? 'active' : '' }}"><a
+                                    data-feather="clipboard"></i><span>Imposto de renda</span></a></li>
+                        {{--<li class="{{ Request::is('manage-stocks') ? 'active' : '' }}"><a
                                 href="{{ url('manage-stocks') }}"><i data-feather="package"></i><span>Manage
                                     Stock</span></a></li>
                         <li class="{{ Request::is('stock-adjustment') ? 'active' : '' }}"><a
-                                href="{{ url('stock-adjustment') }}"><i data-feather="clipboard"></i><span>Stock
+                                href="{{ url('stock-adjustment') }}"><i data-feather="maximize"></i><span>Stock
                                     Adjustment</span></a></li>
                         <li class="{{ Request::is('stock-transfer') ? 'active' : '' }}"><a
                                 href="{{ url('stock-transfer') }}"><i data-feather="truck"></i><span>Stock
-                                    Transfer</span></a></li>
+                                    Transfer</span></a></li>--}}
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Sales</h6>
+                    <h6 class="submenu-hdr">Processos</h6>
                     <ul>
                         <li class="{{ Request::is('sales-list') ? 'active' : '' }}"><a
                                 href="{{ url('sales-list') }}"><i
-                                    data-feather="shopping-cart"></i><span>Sales</span></a></li>
+                                    data-feather="copy"></i><span>Em andamento</span></a></li>
                         <li class="{{ Request::is('invoice-report') ? 'active' : '' }}"><a
                                 href="{{ url('invoice-report') }}"><i
-                                    data-feather="file-text"></i><span>Invoices</span></a></li>
-                        <li class="{{ Request::is('sales-returns') ? 'active' : '' }}"><a
+                                    data-feather="file-text"></i><span>Finalizados</span></a></li>
+                       {{-- <li class="{{ Request::is('sales-returns') ? 'active' : '' }}"><a
                                 href="{{ url('sales-returns') }}"><i data-feather="copy"></i><span>Sales
                                     Return</span></a></li>
                         <li class="{{ Request::is('quotation-list') ? 'active' : '' }}"><a
@@ -142,18 +140,24 @@
                                     data-feather="save"></i><span>Quotation</span></a>
                         </li>
                         <li class="{{ Request::is('pos') ? 'active' : '' }}"><a href="{{ url('pos') }}"><i
-                                    data-feather="hard-drive"></i><span>POS</span></a></li>
+                                    data-feather="hard-drive"></i><span>POS</span></a></li>--}}
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Promo</h6>
+                    <h6 class="submenu-hdr">Suporte</h6>
                     <ul>
                         <li class="{{ Request::is('coupons') ? 'active' : '' }}"><a href="{{ url('coupons') }}"><i
-                                    data-feather="shopping-cart"></i><span>Coupons</span></a>
+                                    data-feather="users"></i><span>Chat</span></a>
+                        </li>
+                        <li class="{{ Request::is('coupons') ? 'active' : '' }}"><a href="{{ url('coupons') }}"><i
+                                    data-feather="book-open"></i><span>Perguntas frequentes</span></a>
+                        </li>
+                        <li class="{{ Request::is('coupons') ? 'active' : '' }}"><a href="{{ url('coupons') }}"><i
+                                    data-feather="file"></i><span>Artigos educativos</span></a>
                         </li>
                     </ul>
                 </li>
-                <li class="submenu-open">
+                {{--<li class="submenu-open">
                     <h6 class="submenu-hdr">Purchases</h6>
                     <ul>
                         <li class="{{ Request::is('purchase-list') ? 'active' : '' }}"><a
@@ -206,10 +210,11 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">HRM</h6>
                     <ul>
-                        <li class="{{ Request::is('employees-grid','employees-list','edit-employee','add-employee') ? 'active' : '' }}"><a
-                                href="{{ url('employees-grid') }}"><i
+                        <li
+                            class="{{ Request::is('employees-grid', 'employees-list', 'edit-employee', 'add-employee') ? 'active' : '' }}">
+                            <a href="{{ url('employees-grid') }}"><i
                                     data-feather="user"></i><span>Employees</span></a></li>
-                        <li class="{{ Request::is('department-grid','department-list') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('department-grid', 'department-list') ? 'active' : '' }}"><a
                                 href="{{ url('department-grid') }}"><i
                                     data-feather="users"></i><span>Departments</span></a></li>
                         <li class="{{ Request::is('designation') ? 'active' : '' }}"><a
@@ -306,7 +311,7 @@
                         <li class="{{ Request::is('users') ? 'active' : '' }}"><a href="{{ url('users') }}"><i
                                     data-feather="user-check"></i><span>Users</span></a>
                         </li>
-                        <li class="{{ Request::is('roles-permissions','permissions') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('roles-permissions', 'permissions') ? 'active' : '' }}"><a
                                 href="{{ url('roles-permissions') }}"><i data-feather="shield"></i><span>Roles &
                                     Permissions</span></a></li>
                         <li class="{{ Request::is('delete-account') ? 'active' : '' }}"><a
@@ -434,7 +439,7 @@
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"
-                                class="{{ Request::is('system-settings', 'company-settings', 'localization-settings', 'prefixes', 'preference', 'appearance', 'social-authentication', 'language-settings','language-settings-web') ? 'active subdrop' : '' }}"><i
+                                class="{{ Request::is('system-settings', 'company-settings', 'localization-settings', 'prefixes', 'preference', 'appearance', 'social-authentication', 'language-settings', 'language-settings-web') ? 'active subdrop' : '' }}"><i
                                     data-feather="globe"></i><span>Website
                                     Settings</span><span class="menu-arrow"></span></a>
                             <ul>
@@ -457,7 +462,7 @@
                                         class="{{ Request::is('social-authentication') ? 'active' : '' }}">Social
                                         Authentication</a></li>
                                 <li><a href="{{ url('language-settings') }}"
-                                        class="{{ Request::is('language-settings','language-settings-web') ? 'active' : '' }}">Language</a>
+                                        class="{{ Request::is('language-settings', 'language-settings-web') ? 'active' : '' }}">Language</a>
                                 </li>
                             </ul>
                         </li>
@@ -502,7 +507,7 @@
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"
-                                class="{{ Request::is('payment-gateway-settings', 'bank-settings-grid', 'bank-settings-list','tax-rates', 'currency-settings') ? 'active subdrop' : '' }}"><i
+                                class="{{ Request::is('payment-gateway-settings', 'bank-settings-grid', 'bank-settings-list', 'tax-rates', 'currency-settings') ? 'active subdrop' : '' }}"><i
                                     data-feather="dollar-sign"></i>
                                 <span>Settings</span><span class="menu-arrow"></span>
                             </a>
@@ -511,7 +516,7 @@
                                         class="{{ Request::is('payment-gateway-settings') ? 'active' : '' }}">Payment
                                         Gateway</a></li>
                                 <li><a href="{{ url('bank-settings-grid') }}"
-                                        class="{{ Request::is('bank-settings-grid','bank-settings-list') ? 'active' : '' }}">Bank
+                                        class="{{ Request::is('bank-settings-grid', 'bank-settings-list') ? 'active' : '' }}">Bank
                                         Accounts</a></li>
                                 <li><a href="{{ url('tax-rates') }}"
                                         class="{{ Request::is('tax-rates') ? 'active' : '' }}">Tax Rates</a></li>
@@ -808,7 +813,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
             </ul>
         </div>
     </div>

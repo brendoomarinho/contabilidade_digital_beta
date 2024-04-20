@@ -38,43 +38,52 @@
                 <form action="#" class="dropdown">
                     <div class="searchinputs dropdown-toggle" id="dropdownMenuClickable" data-bs-toggle="dropdown"
                         data-bs-auto-close="false">
-                        <input type="text" placeholder="Search">
+                        <input type="text" placeholder="Procurar">
                         <div class="search-addon">
                             <span><i data-feather="x-circle" class="feather-14"></i></span>
                         </div>
                     </div>
                     <div class="dropdown-menu search-dropdown" aria-labelledby="dropdownMenuClickable">
-                        <div class="search-info">
-                            <h6><span><i data-feather="search" class="feather-16"></i></span>Recent Searches
+                        {{-- <div class="search-info">
+                            <h6><span><i data-feather="search" class="feather-16"></i></span>Mais procurados
                             </h6>
                             <ul class="search-tags">
-                                <li><a href="javascript:void(0);">Products</a></li>
-                                <li><a href="javascript:void(0);">Sales</a></li>
-                                <li><a href="javascript:void(0);">Applications</a></li>
+                                <li><a href="javascript:void(0);">Contratar</a></li>
+                                <li><a href="javascript:void(0);">Demitir</a></li>
+                                <li><a href="javascript:void(0);">Férias</a></li>
                             </ul>
+                        </div> --}}
+                        <div class="search-info">
+                            <h6><span><i data-feather="help-circle" class="feather-16"></i></span>Ajuda</h6>
+                            <p>Procure suporte digitando palavras-chave acerca do tema que gostaria de ajuda. </p>
+                            <p>Fale com nossos especialistas.</p>
                         </div>
                         <div class="search-info">
-                            <h6><span><i data-feather="help-circle" class="feather-16"></i></span>Help</h6>
-                            <p>How to Change Product Volume from 0 to 200 on Inventory management</p>
-                            <p>Change Product Name</p>
-                        </div>
-                        <div class="search-info">
-                            <h6><span><i data-feather="user" class="feather-16"></i></span>Customers</h6>
+                            <h6><span><i data-feather="user" class="feather-16"></i></span>Fale com o suporte</h6>
                             <ul class="customers">
                                 <li>
-                                    <a href="javascript:void(0);">Aron Varu<img
-                                            src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
-                                            class="img-fluid"></a>
+                                    <a href="javascript:void(0);" class="d-flex justify-content-start">
+                                        <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
+                                            class="img-fluid">
+                                        <h5>Fiscal</h5>
+                                        <p>retenções, tributação, alíquotas...
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">Jonita<img
-                                            src="{{ URL::asset('/build/img/profiles/avatar-01.jpg') }}" alt=""
-                                            class="img-fluid"></a>
+                                    <a href="javascript:void(0);" class="d-flex justify-content-start">
+                                        <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
+                                            class="img-fluid">
+                                        <h5>Trabalhista<br></h5>
+                                        <p>folha, rescisão, férias...
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">Aaron<img
-                                            src="{{ URL::asset('/build/img/profiles/avatar-10.jpg') }}" alt=""
-                                            class="img-fluid"></a>
+                                    <a href="javascript:void(0);" class="d-flex justify-content-start">
+                                        <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
+                                            class="img-fluid">
+                                        <h5>Contábil<br></h5>
+                                        <p>balanços, DRE, licitação...
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -85,7 +94,7 @@
         <!-- /Search -->
 
 
-     {{-- <!-- Select Filial -->
+        {{-- <!-- Select Filial -->
         <li class="nav-item dropdown has-arrow main-drop select-store-dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link select-store" data-bs-toggle="dropdown">
                 <span class="user-info">
@@ -124,12 +133,12 @@
                 <i data-feather="maximize"></i>
             </a>
         </li>
-        <li class="nav-item nav-item-box">
+        {{--<li class="nav-item nav-item-box">
             <a href="{{ url('email') }}">
                 <i data-feather="mail"></i>
                 <span class="badge rounded-pill">1</span>
             </a>
-        </li>
+        </li>--}}
         <!-- Notifications -->
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
@@ -137,8 +146,8 @@
             </a>
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
-                    <span class="notification-title">Notifications</span>
-                    <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                    <span class="notification-title">Notificações</span>
+                    <a href="javascript:void(0)" class="clear-noti"> Limpar tudo </a>
                 </div>
                 <div class="noti-content">
                     <ul class="notification-list">
@@ -150,10 +159,47 @@
                                             src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
                                     </span>
                                     <div class="media-body flex-grow-1">
-                                        <p class="noti-details"><span class="noti-title">John Doe</span> added
-                                            new task <span class="noti-title">Patient appointment booking</span>
+                                        <p class="noti-details"><span class="noti-title">Guilherme - fiscal</span>
+                                            enviou uma
+                                            nova guia <span class="noti-title">Simples Nacional</span>
                                         </p>
                                         <p class="noti-time"><span class="notification-time">4 mins ago</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="notification-message">
+                            <a href="{{ url('activities') }}">
+                                <div class="media d-flex">
+                                    <span class="avatar flex-shrink-0">
+                                        <img alt=""
+                                            src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
+                                    </span>
+                                    <div class="media-body flex-grow-1">
+                                        <p class="noti-details"><span class="noti-title">Brendo - pessoal</span>
+                                            enviou um
+                                            novo arquivo <span class="noti-title">Folha de pagamento</span>
+                                        </p>
+                                        <p class="noti-time"><span class="notification-time">15 mins ago</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="notification-message">
+                            <a href="{{ url('activities') }}">
+                                <div class="media d-flex">
+                                    <span class="avatar flex-shrink-0">
+                                        <img alt=""
+                                            src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
+                                    </span>
+                                    <div class="media-body flex-grow-1">
+                                        <p class="noti-details"><span class="noti-title">Juliana - contábil</span>
+                                            enviou uma
+                                            nova mensagem <span class="noti-title">Imposto de renda</span>
+                                        </p>
+                                        <p class="noti-time"><span class="notification-time">45 mins ago</span>
                                         </p>
                                     </div>
                                 </div>
@@ -162,7 +208,7 @@
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer">
-                    <a href="{{ url('activities') }}">View all Notifications</a>
+                    <a href="{{ url('activities') }}">Ver todas as notificações</a>
                 </div>
             </div>
         </li>
@@ -188,8 +234,8 @@
                                 alt="">
                             <span class="status online"></span></span>
                         <div class="profilesets">
-                            <h6>John Smilga</h6>
-                            <h5>Super Admin</h5>
+                            <h6>Brendo Marinho</h6>
+                            <h5>Fiscal</h5>
                         </div>
                     </div>
                     <hr class="m-0">
@@ -200,7 +246,7 @@
                     <hr class="m-0">
                     <a class="dropdown-item logout pb-0" href="{{ route('signout') }}"><img
                             src="{{ URL::asset('/build/img/icons/log-out.svg') }}" class="me-2"
-                            alt="img">Sair</a>
+                            alt="img">Encerrar</a>
                 </div>
             </div>
         </li>

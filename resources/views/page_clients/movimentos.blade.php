@@ -253,5 +253,5 @@
     </script>
 
 
-    <p> http://127.0.0.1:8000/warranty tem um modal de estilo legal pra usar no envio de movimento </p>
+    {{--warranty tem um modal de estilo legal pra usar no envio de movimento </p>--}}
 @endsection
