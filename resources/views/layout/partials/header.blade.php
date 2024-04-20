@@ -65,7 +65,7 @@
                                     <a href="javascript:void(0);" class="d-flex justify-content-start">
                                         <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
                                             class="img-fluid">
-                                        <h5>Fiscal</h5>
+                                        <h6>Fiscal</h6>
                                         <p>retenções, tributação, alíquotas...
                                     </a>
                                 </li>
@@ -73,7 +73,7 @@
                                     <a href="javascript:void(0);" class="d-flex justify-content-start">
                                         <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
                                             class="img-fluid">
-                                        <h5>Trabalhista<br></h5>
+                                        <h6>Trabalhista<br></h6>
                                         <p>folha, rescisão, férias...
                                     </a>
                                 </li>
@@ -81,7 +81,7 @@
                                     <a href="javascript:void(0);" class="d-flex justify-content-start">
                                         <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
                                             class="img-fluid">
-                                        <h5>Contábil<br></h5>
+                                        <h6>Contábil<br></h6>
                                         <p>balanços, DRE, licitação...
                                     </a>
                                 </li>
