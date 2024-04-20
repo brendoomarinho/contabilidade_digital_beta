@@ -5,23 +5,18 @@
         <div class="content container-fluid">
             @component('components.breadcrumb')
                 @slot('title')
-                    Data Tables
+                    Guias Pagamento
                 @endslot
                 @slot('li_1')
-                    Dashboard
+                    Menu principal
                 @endslot
                 @slot('li_2')
-                    Data Tables
+                    Guias pagamento
                 @endslot
             @endcomponent
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">
-                                Movimento competências
-                            </div>
-                        </div>
                         <div class="card-body">
                             @if ($registros->isEmpty())
                                 <p>Nenhum registro encontrado!</p>

@@ -11,7 +11,7 @@
                     Menu principal
                 @endslot
                 @slot('li_2')
-                    alvarás e licenças
+                    Alvarás e Licenças
                 @endslot
             @endcomponent
             <div class="row">

@@ -8,10 +8,10 @@
                     Meu movimento
                 @endslot
                 @slot('li_1')
-                    principal
+                    Menu principal
                 @endslot
                 @slot('li_2')
-                    meu movimento
+                    Movimento
                 @endslot
             @endcomponent
 

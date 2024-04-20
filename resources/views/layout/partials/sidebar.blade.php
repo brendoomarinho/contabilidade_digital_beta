@@ -12,9 +12,9 @@
                                     data-feather="grid"></i><span>Empresas</span><span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ url('index') }}"
-                                        class="{{ Request::is('index', '/') ? 'active' : '' }}">Admin Dashboard</a></li>
+                                        class="{{ Request::is('index', '/') ? 'active' : '' }}">Gráficos</a></li>
                                 <li><a href="{{ url('sales-dashboard') }}"
-                                        class="{{ Request::is('sales-dashboard') ? 'active' : '' }}">Sales Dashboard</a>
+                                        class="{{ Request::is('sales-dashboard') ? 'active' : '' }}">Relatórios</a>
                                 </li>
                             </ul>
                         </li>

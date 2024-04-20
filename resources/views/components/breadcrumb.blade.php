@@ -1,4 +1,4 @@
-@if (Route::is(['add-product']))
+{{--@if (Route::is(['add-product']))
     <div class="page-header">
         <div class="add-item d-flex">
             <div class="page-title">
@@ -373,7 +373,7 @@
         </div>
     </div>
     <!-- /Page Header -->
-@endif
+@endif --}}
 
 
 {{--Meu projeto--}}
