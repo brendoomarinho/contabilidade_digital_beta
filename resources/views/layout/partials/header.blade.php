@@ -133,12 +133,12 @@
                 <i data-feather="maximize"></i>
             </a>
         </li>
-        {{--<li class="nav-item nav-item-box">
+        {{-- <li class="nav-item nav-item-box">
             <a href="{{ url('email') }}">
                 <i data-feather="mail"></i>
                 <span class="badge rounded-pill">1</span>
             </a>
-        </li>--}}
+        </li> --}}
         <!-- Notifications -->
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
