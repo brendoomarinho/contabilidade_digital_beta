@@ -7,7 +7,8 @@ use App\Notifications\ResetPasswordNotification;
 use App\Http\Controllers\Clients;
 use App\Http\Controllers\ClientMovimentoController;
 use App\Http\Controllers\ClientGuiapagController;
-use App\Http\Controllers\ClientCertidaoController;
+use App\Http\Controllers\CertidaoController;
+use App\Http\Controllers\DocRegulatorioController;
 
 require __DIR__ . '/auth.php';
 
@@ -32,7 +33,9 @@ Route::resource('guia-pagamento', ClientGuiapagController::class, [
 
 
 
-Route::get('certidoes', [ClientCertidaoController::class, 'index'])->name('certidao.index');
+Route::get('certidoes', [CertidaoController::class, 'index'])->name('certidao.index');
+
+Route::get('alvaras-licencas', [DocRegulatorioController::class, 'index'])->name('docRegulatorio.index');
 
 
 

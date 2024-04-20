@@ -96,7 +96,7 @@
                                 href="{{ route('certidao.index') }}"><i data-feather="speaker"></i><span>Certidões
                                     </span></a></li>
                         <li class="{{ Request::is('brand-list') ? 'active' : '' }}"><a
-                                href="{{ url('brand-list') }}"><i data-feather="tag"></i><span>Alvarás e Licenças</span></a></li>
+                                href="{{ route('docRegulatorio.index') }}"><i data-feather="tag"></i><span>Alvarás e Licenças</span></a></li>
                         <li class="{{ Request::is('units') ? 'active' : '' }}"><a href="{{ url('units') }}"><i
                                     data-feather="speaker"></i><span>Contratos</span></a></li>
                         <li class="{{ Request::is('varriant-attributes') ? 'active' : '' }}"><a

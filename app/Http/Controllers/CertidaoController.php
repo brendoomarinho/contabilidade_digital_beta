@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\CertidaoEnvio;
 use App\Services\ContagemDiasService;
 
-class ClientCertidaoController extends Controller
+class CertidaoController extends Controller
 {
     public function index(ContagemDiasService $contagemDiasService)
     {

@@ -12,6 +12,6 @@ class ContagemDiasService
         $dataVencimento = Carbon::parse($dataVencimento)->startOfDay();
         $diferencaDias = $dataAtual->diffInDays($dataVencimento, false);
         
-        return $diferencaDias + 1;
+        return $diferencaDias;
     }
 }

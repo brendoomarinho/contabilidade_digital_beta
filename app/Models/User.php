@@ -50,5 +50,10 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->hasMany(CertidaoEnvio::class);
     }
+
+    public function docRegulaEnvio()
+    {
+        return $this->hasMany(DocRegulaEnvio::class);
+    }
 }
 
