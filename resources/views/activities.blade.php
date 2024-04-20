@@ -23,8 +23,8 @@
                             </div>
                             <div class="activity-content">
                                 <div class="timeline-content">
-                                    <a href="{{ url('profile') }}" class="name">Elwis Mathew </a> added a new product <a
-                                        href="javascript:void(0);">Redmi Pro 7 Mobile</a>
+                                    <a href="{{ url('profile') }}" class="name">Brendo Marinho </a> adicionou nova guia <a
+                                        href="javascript:void(0);">INSS</a>
                                     <span class="time">4 mins ago</span>
                                 </div>
                             </div>
@@ -39,8 +39,8 @@
                             </div>
                             <div class="activity-content">
                                 <div class="timeline-content">
-                                    <a href="{{ url('profile') }}" class="name">Elizabeth Olsen</a> added a new product
-                                    category <a href="javascript:void(0);">Desktop Computers</a>
+                                    <a href="{{ url('profile') }}" class="name">Elizabeth Olsen</a> enviou nova mensagem
+                                    <a href="javascript:void(0);">Processo em andamento</a>
                                     <span class="time">6 mins ago</span>
                                 </div>
                             </div>
@@ -56,8 +56,8 @@
                             <div class="activity-content">
                                 <div class="timeline-content">
                                     <div class="timeline-content">
-                                        <a href="{{ url('profile') }}" class="name">William Smith</a> added a new sales
-                                        list for<a href="javascript:void(0);">January Month</a>
+                                        <a href="{{ url('profile') }}" class="name">William </a> confirmou recebimento
+                                        <a href="javascript:void(0);">Movimento do mês</a>
                                         <span class="time">12 mins ago</span>
                                     </div>
                                 </div>
@@ -73,8 +73,8 @@
                             </div>
                             <div class="activity-content">
                                 <div class="timeline-content">
-                                    <a href="{{ url('profile') }}" class="name">Lesley Grauer</a> has updated invoice <a
-                                        href="javascript:void(0);">#987654</a>
+                                    <a href="{{ url('profile') }}" class="name">Lesley Silva</a> atualizou o <a
+                                        href="javascript:void(0);">Balanço</a>
                                     <span class="time">4 mins ago</span>
                                 </div>
                             </div>
@@ -89,43 +89,9 @@
                             </div>
                             <div class="activity-content">
                                 <div class="timeline-content">
-                                    <a href="{{ url('profile') }}" class="name">Elwis Mathew </a> added a new product <a
-                                        href="javascript:void(0);">Redmi Pro 7 Mobile</a>
+                                    <a href="{{ url('profile') }}" class="name">Daniel Silva </a> enviou documento <a
+                                        href="javascript:void(0);">Contrato para assinatura</a>
                                     <span class="time">4 mins ago</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="activity-user">
-                                <a href="{{ url('profile') }}" title="" data-toggle="tooltip"
-                                    data-original-title="Lesley Grauer">
-                                    <img alt="Lesley Grauer" src="{{ URL::asset('/build/img/customer/profile4.jpg') }}"
-                                        class=" img-fluid">
-                                </a>
-                            </div>
-                            <div class="activity-content">
-                                <div class="timeline-content">
-                                    <a href="{{ url('profile') }}" class="name">Elizabeth Olsen</a> added a new product
-                                    category <a href="javascript:void(0);">Desktop Computers</a>
-                                    <span class="time">6 mins ago</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="activity-user">
-                                <a href="{{ url('profile') }}" title="" data-toggle="tooltip"
-                                    data-original-title="Lesley Grauer">
-                                    <img alt="Lesley Grauer" src="{{ URL::asset('/build/img/customer/profile5.jpg') }}"
-                                        class=" img-fluid">
-                                </a>
-                            </div>
-                            <div class="activity-content">
-                                <div class="timeline-content">
-                                    <div class="timeline-content">
-                                        <a href="{{ url('profile') }}" class="name">William Smith</a> added a new sales
-                                        list for<a href="javascript:void(0);">January Month</a>
-                                        <span class="time">12 mins ago</span>
-                                    </div>
                                 </div>
                             </div>
                         </li>

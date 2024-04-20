@@ -213,16 +213,16 @@
             </div>
         </li>
         <!-- /Notifications -->
-
+         <!-- user -->
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                 <span class="user-info">
                     <span class="user-letter">
-                        <img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}" alt=""
+                        <img src="{{ URL::asset('/build/img/profiles/profile-01.png') }}" alt=""
                             class="img-fluid">
                     </span>
                     <span class="user-detail">
-                        <span class="user-name">Brendo Marinho</span>
+                        <span class="user-name">Guilherme</span>
                         <span class="user-role">34.391.002/0001-70</span>
                     </span>
                 </span>
@@ -230,11 +230,11 @@
             <div class="dropdown-menu menu-drop-user">
                 <div class="profilename">
                     <div class="profileset">
-                        <span class="user-img"><img src="{{ URL::asset('/build/img/profiles/avator1.jpg') }}"
+                        <span class="user-img"><img src="{{ URL::asset('/build/img/profiles/profile-01.png') }}"
                                 alt="">
                             <span class="status online"></span></span>
                         <div class="profilesets">
-                            <h6>Brendo Marinho</h6>
+                            <h6>Guilherme</h6>
                             <h5>Fiscal</h5>
                         </div>
                     </div>
@@ -251,6 +251,7 @@
             </div>
         </li>
     </ul>
+
     <!-- /Header Menu -->
 
     <!-- Mobile Menu -->

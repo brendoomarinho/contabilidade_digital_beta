@@ -33,8 +33,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="mb-2">Orgão: {{ $registro->docRegulaTitle->orgao }}</span>
-                                                <span class="mb-2">Válido até:
+                                                <span class="mb-2"><b>Orgão:</b> {{ $registro->docRegulaTitle->orgao }}</span>
+                                                <span class="mb-2"><b>Válido até:</b>
                                                     {{ $registro->dt_venc ? \Carbon\Carbon::parse($registro->dt_venc)->format('d/m/Y') : 'sem validade' }}
                                                 </span>
                                                 @if ($registro->dt_venc)

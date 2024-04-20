@@ -1,4 +1,4 @@
-e Amount<?php $page = 'index'; ?>
+<?php $page = 'index'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="page-wrapper">
