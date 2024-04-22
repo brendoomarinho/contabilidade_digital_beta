@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Setting;
 
 class SettingController extends Controller
-{
+{ 
     function UpdatePusherSetting(Request $request) : RedirectResponse {
         $validateData = $request->validate([
             'pusher_app_id' => ['required'],
@@ -21,10 +23,8 @@ class SettingController extends Controller
                 ['value' => $value]
             );
         }
-            $settingsService = app(SettingsService::class);
-            $settingsService->clearCachedSettings();
         
-        return redirect()->back;
+        return redirect()->back()->with('success');
 
         }
 }

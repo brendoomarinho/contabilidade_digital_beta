@@ -5,7 +5,7 @@ use App\Http\Controllers\CatchFileController;
 use App\Notifications\ResetPasswordNotification;
 
 
-use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Clients;
 use App\Http\Controllers\ClientMovimentoController;
 use App\Http\Controllers\ClientGuiapagController;
@@ -44,7 +44,7 @@ Route::get('/pusher', function() {
 });
 
 
-Route::put('pusher', [App\Http\Controllers\Admin\SettingController::class, 'UpdatePusherSetting'])->name('push.update');
+Route::put('pusher', [SettingController::class, 'UpdatePusherSetting'])->name('push.update');
 
 
 
