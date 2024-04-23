@@ -54,7 +54,7 @@ Route::get('alvaras-licencas', [DocRegulatorioController::class, 'index'])->name
 
     
 Route::get('guiapag-event', function(){
-    GuiapagNotificationEvent::dispatch();
+    GuiapagNotificationEvent::dispatch("hello there!");
 });
 
 

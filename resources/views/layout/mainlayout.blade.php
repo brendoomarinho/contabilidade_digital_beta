@@ -17,6 +17,11 @@
     <!-- Biblioteca jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
+    <script>
+         var pusherKey = "{{ config('settings.pusher_key') }}";
+         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
+    </script>
+
     @vite(['resources/js/app.js'])
     
     @include('layout.partials.head')

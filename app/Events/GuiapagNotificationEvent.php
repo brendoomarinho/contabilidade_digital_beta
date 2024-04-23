@@ -14,14 +14,16 @@ class GuiapagNotificationEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    
+    public $guiapag;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($guiapag)
     {
         $this->setConfig();
+
+        $this->guiapag = $guiapag;
     }
 
     function setConfig() {
@@ -40,7 +42,7 @@ class GuiapagNotificationEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('guiapag'),
         ];
     }
 }
