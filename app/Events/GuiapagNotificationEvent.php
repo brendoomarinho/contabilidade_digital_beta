@@ -31,7 +31,6 @@ class GuiapagNotificationEvent implements ShouldBroadcast
         config(['broadcasting.connections.pusher.secret' => config('settings.pusher_secret')]);
         config(['broadcasting.connections.pusher.app_id' => config('settings.pusher_app_id')]);
         config(['broadcasting.connections.pusher.options.cluster' => config('settings.pusher_cluster')]);
-        dd(config('broadcasting'));
     }
 
     /**
