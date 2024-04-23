@@ -53,12 +53,11 @@
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"
-                                class="{{ Request::is('invoice-settings', 'printer-settings', 'pos-settings', 'custom-fields') ? 'active subdrop' : '' }} "><i
-                                    data-feather="archive"></i><span>App
-                                    Settings</span><span class="menu-arrow"></span></a>
+                                class="{{ Request::is('pusher-settings', 'printer-settings', 'pos-settings', 'custom-fields') ? 'active subdrop' : '' }} "><i
+                                    data-feather="archive"></i><span>Aplicativo</span><span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="{{ url('invoice-settings') }}"
-                                        class="{{ Request::is('invoice-settings') ? 'active' : '' }}">Invoice</a></li>
+                                <li><a href="{{ route('pusher.index') }}"
+                                        class="{{ Request::is('pusher-settings') ? 'active' : '' }}">Pusher</a></li>
                                 <li><a href="{{ url('printer-settings') }}"
                                         class="{{ Request::is('printer-settings') ? 'active' : '' }}">Printer </a></li>
                                 <li><a href="{{ url('pos-settings') }}"

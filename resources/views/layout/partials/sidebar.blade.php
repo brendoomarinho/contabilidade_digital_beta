@@ -18,7 +18,7 @@
                                 </li>
                             </ul>
                         </li>
-                        {{--<li class="submenu">
+                        <li class="submenu">
                             <a href="javascript:void(0);"
                                 class="{{ Request::is('chat', 'file-manager', 'file-archived', 'file-document', 'file-favourites', 'file-manager-seleted', 'file-recent', 'file-shared', 'notes', 'todo', 'email', 'calendar', 'call-history', 'audio-call', 'video-call', 'file-manager-deleted') ? 'active subdrop' : '' }} "><i
                                     data-feather="smartphone"></i><span>Aplicações</span><span
@@ -49,7 +49,7 @@
                                 <li><a class="{{ Request::is('file-manager', 'file-archived', 'file-document', 'file-favourites', 'file-manager-seleted', 'file-recent', 'file-shared', 'file-manager-deleted') ? 'active' : '' }}"
                                         href="{{ url('file-manager') }}">File Manager</a></li>
                             </ul>
-                        </li>--}}
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -112,7 +112,7 @@
                                     data-feather="align-justify"></i><span>Certificado digital</span></a></li>
                         <li class="{{ Request::is('qrcode') ? 'active' : '' }}"><a href="{{ url('qrcode') }}"><i
                                     data-feather="clipboard"></i><span>Imposto de renda</span></a></li>
-                        {{--<li class="{{ Request::is('manage-stocks') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('manage-stocks') ? 'active' : '' }}"><a
                                 href="{{ url('manage-stocks') }}"><i data-feather="package"></i><span>Manage
                                     Stock</span></a></li>
                         <li class="{{ Request::is('stock-adjustment') ? 'active' : '' }}"><a
@@ -120,7 +120,7 @@
                                     Adjustment</span></a></li>
                         <li class="{{ Request::is('stock-transfer') ? 'active' : '' }}"><a
                                 href="{{ url('stock-transfer') }}"><i data-feather="truck"></i><span>Stock
-                                    Transfer</span></a></li>--}}
+                                    Transfer</span></a></li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -132,7 +132,7 @@
                         <li class="{{ Request::is('invoice-report') ? 'active' : '' }}"><a
                                 href="{{ url('invoice-report') }}"><i
                                     data-feather="file-text"></i><span>Finalizados</span></a></li>
-                       {{-- <li class="{{ Request::is('sales-returns') ? 'active' : '' }}"><a
+                        <li class="{{ Request::is('sales-returns') ? 'active' : '' }}"><a
                                 href="{{ url('sales-returns') }}"><i data-feather="copy"></i><span>Sales
                                     Return</span></a></li>
                         <li class="{{ Request::is('quotation-list') ? 'active' : '' }}"><a
@@ -140,7 +140,7 @@
                                     data-feather="save"></i><span>Quotation</span></a>
                         </li>
                         <li class="{{ Request::is('pos') ? 'active' : '' }}"><a href="{{ url('pos') }}"><i
-                                    data-feather="hard-drive"></i><span>POS</span></a></li>--}}
+                                    data-feather="hard-drive"></i><span>POS</span></a></li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -157,7 +157,7 @@
                         </li>
                     </ul>
                 </li>
-                {{--<li class="submenu-open">
+               <li class="submenu-open">
                     <h6 class="submenu-hdr">Purchases</h6>
                     <ul>
                         <li class="{{ Request::is('purchase-list') ? 'active' : '' }}"><a
@@ -415,7 +415,7 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Settings</h6>
+                    <h6 class="submenu-hdr">Configurações</h6>
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);"
@@ -468,13 +468,13 @@
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"
-                                class="{{ Request::is('invoice-settings', 'printer-settings', 'pos-settings', 'custom-fields') ? 'active subdrop' : '' }}"><i
+                                class="{{ Request::is('pusher-settings', 'printer-settings', 'pos-settings', 'custom-fields') ? 'active subdrop' : '' }}"><i
                                     data-feather="smartphone"></i>
-                                <span>App Settings</span><span class="menu-arrow"></span>
+                                <span>Aplicativo</span><span class="menu-arrow"></span>
                             </a>
                             <ul>
-                                <li><a href="{{ url('invoice-settings') }}"
-                                        class="{{ Request::is('invoice-settings') ? 'active' : '' }}">Invoice</a>
+                                <li><a href="{{ route('pusher.index') }}"
+                                        class="{{ Request::is('pusher-settings') ? 'active' : '' }}">Pusher</a>
                                 </li>
                                 <li><a href="{{ url('printer-settings') }}"
                                         class="{{ Request::is('printer-settings') ? 'active' : '' }}">Printer</a>
@@ -813,7 +813,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>--}}
+                </li>
             </ul>
         </div>
     </div>

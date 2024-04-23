@@ -1,6 +1,5 @@
 <!-- Header -->
 <div class="header">
-
     <!-- Logo -->
     <div class="header-left active">
         <a href="{{ url('index') }}" class="logo logo-normal">

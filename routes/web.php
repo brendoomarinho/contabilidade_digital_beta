@@ -3,18 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatchFileController;
 use App\Notifications\ResetPasswordNotification;
-
-
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Clients;
 use App\Http\Controllers\ClientMovimentoController;
 use App\Http\Controllers\ClientGuiapagController;
 use App\Http\Controllers\CertidaoController;
 use App\Http\Controllers\DocRegulatorioController;
+use App\Events\GuiapagNotificationEvent;
+
 
 require __DIR__ . '/auth.php';
 
-// protected routes
+/** Rotas Protegidas */
 Route::middleware('auth')->group(function () {
     Route::resource('meu-movimento', ClientMovimentoController::class, [
         'names' => [
@@ -25,31 +25,13 @@ Route::middleware('auth')->group(function () {
     ]);
 });
 
+/** Rotas Settings */
+Route::get('pusher-settings', function() { return view('page_admin.pusher-settings'); })->name('pusher.index');
+
+Route::put('pusher-setting', [SettingController::class, 'UpdatePusherSetting'])->name('pusher.update');
 
 
-Route::resource('guia-pagamento', ClientGuiapagController::class, [
-    'names' => [
-        'index' => 'guiapag.index',
-    ],
-]);
-
-
-
-Route::get('certidoes', [CertidaoController::class, 'index'])->name('certidao.index');
-
-Route::get('alvaras-licencas', [DocRegulatorioController::class, 'index'])->name('docRegulatorio.index');
-
-Route::get('/pusher', function() {
-    return view('page_admin.setting');
-});
-
-
-Route::put('pusher', [SettingController::class, 'UpdatePusherSetting'])->name('push.update');
-
-
-
-
-// action view & download
+/** Rotas Download */
 Route::get('/file/{directory}/{action}/{file}', [CatchFileController::class, 'handleFile'])
     ->where('action', 'download|view')
     ->name('fileAction');
@@ -58,11 +40,41 @@ Route::get('/file/{directory}/{action}/{file}', [CatchFileController::class, 'ha
 
 
 
+/** Rotas Organizar */
+Route::resource('guia-pagamento', ClientGuiapagController::class, [
+    'names' => [
+        'index' => 'guiapag.index',
+    ],
+]);
 
 
+Route::get('certidoes', [CertidaoController::class, 'index'])->name('certidao.index');
 
+Route::get('alvaras-licencas', [DocRegulatorioController::class, 'index'])->name('docRegulatorio.index');
 
     
+Route::get('guiapag-event', function(){
+    GuiapagNotificationEvent::dispatch();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
