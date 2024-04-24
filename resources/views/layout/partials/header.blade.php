@@ -141,7 +141,7 @@
         <!-- Notifications -->
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                <i data-feather="bell"></i><span class="badge rounded-pill">6</span>
+                <i data-feather="bell"></i>{{--<span class="badge rounded-pill">6</span>--}}
             </a>
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
@@ -167,43 +167,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
-                        <li class="notification-message">
-                            <a href="{{ url('activities') }}">
-                                <div class="media d-flex">
-                                    <span class="avatar flex-shrink-0">
-                                        <img alt=""
-                                            src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
-                                    </span>
-                                    <div class="media-body flex-grow-1">
-                                        <p class="noti-details"><span class="noti-title">Brendo - pessoal</span>
-                                            enviou um
-                                            novo arquivo <span class="noti-title">Folha de pagamento</span>
-                                        </p>
-                                        <p class="noti-time"><span class="notification-time">15 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="notification-message">
-                            <a href="{{ url('activities') }}">
-                                <div class="media d-flex">
-                                    <span class="avatar flex-shrink-0">
-                                        <img alt=""
-                                            src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
-                                    </span>
-                                    <div class="media-body flex-grow-1">
-                                        <p class="noti-details"><span class="noti-title">Juliana - contábil</span>
-                                            enviou uma
-                                            nova mensagem <span class="noti-title">Imposto de renda</span>
-                                        </p>
-                                        <p class="noti-time"><span class="notification-time">45 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        </li>   
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer">

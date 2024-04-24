@@ -10,6 +10,7 @@ use App\Http\Controllers\ClientGuiapagController;
 use App\Http\Controllers\CertidaoController;
 use App\Http\Controllers\DocRegulatorioController;
 use App\Events\GuiapagNotificationEvent;
+use App\Models\GuiapagEnvio;
 
 
 require __DIR__ . '/auth.php';
@@ -54,7 +55,8 @@ Route::get('alvaras-licencas', [DocRegulatorioController::class, 'index'])->name
 
     
 Route::get('guiapag-event', function(){
-    GuiapagNotificationEvent::dispatch("hello there!");
+    $guiapagEnvio = GuiapagEnvio::first();
+    GuiapagNotificationEvent::dispatch($guiapagEnvio);
 });
 
 

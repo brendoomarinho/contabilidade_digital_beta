@@ -9,26 +9,21 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\GuiapagEnvio;
 
 class GuiapagNotificationEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $guiapag;
+    public $message;
+    public $guiaId;
 
-    /**
-     * Create a new event instance.
-     */
-    public function __construct($guiapag)
+    public function __construct(GuiapagEnvio $guiapagEnvio)
     {
-        $this->guiapag = $guiapag;
+        $this->message = 'Guia recebida no valor de'.$guiapagEnvio->valor;
+        $this->guiaId = $guiapagEnvio->id;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
-     */
     public function broadcastOn(): array
     {
         return [
