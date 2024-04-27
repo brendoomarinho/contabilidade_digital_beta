@@ -139,35 +139,43 @@
             </a>
         </li> --}}
         <!-- Notifications -->
+        @php
+            $notifications = \App\Models\Notification::where('seen', 0)->latest()->take(10)->get();
+        @endphp
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                <i data-feather="bell"></i>{{--<span class="badge rounded-pill">6</span>--}}
+                <i data-feather="bell"></i>
+                <span
+                    class="notification_beep {{ count($notifications) > 0 ? 'badge rounded-pill' : '' }}"><span>{{ count($notifications) > 0 ? count($notifications) : '' }}</span>
             </a>
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
                     <span class="notification-title">Notificações</span>
-                    <a href="javascript:void(0)" class="clear-noti"> Limpar tudo </a>
+                    <a href="{{ route('clear-notification') }}" class="clear-noti"> Limpar tudo </a>
                 </div>
                 <div class="noti-content">
                     <ul class="notification-list guia_notification">
-                        <li class="notification-message">
-                            <a href="{{ url('activities') }}">
-                                <div class="media d-flex">
-                                    <span class="avatar flex-shrink-0">
-                                        <img alt=""
-                                            src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
-                                    </span>
-                                    <div class="media-body flex-grow-1">
-                                        <p class="noti-details"><span class="noti-title">Guilherme - fiscal</span>
-                                            enviou uma
-                                            nova guia <span class="noti-title">Simples Nacional</span>
-                                        </p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span>
-                                        </p>
+                        @foreach ($notifications as $notification)
+                            <li class="notification-message">
+                                <a href="{{ url('activities') }}">
+                                    <div class="media d-flex">
+                                        <span class="avatar flex-shrink-0">
+                                            <img alt=""
+                                                src="{{ URL::asset('/build/img/profiles/avatar-02.jpg') }}">
+                                        </span>
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details"><span class="noti-title">Guilherme - fiscal</span>
+                                                {{ $notification->message }} <span class="noti-title">Simples
+                                                    Nacional</span>
+                                            </p>
+                                            <p class="noti-time"><span
+                                                    class="notification-time">{{ date('H:i | d-m-Y', strtotime($notification->created_at)) }}</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>   
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer">
@@ -176,7 +184,7 @@
             </div>
         </li>
         <!-- /Notifications -->
-         <!-- user -->
+        <!-- user -->
         <li class="nav-item dropdown has-arrow main-drop">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                 <span class="user-info">

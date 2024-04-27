@@ -16,12 +16,13 @@ class GuiapagNotificationEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-    public $guiaId;
+    public $date;
+
 
     public function __construct(GuiapagEnvio $guiapagEnvio)
     {
         $this->message = 'Guia recebida no valor de'.$guiapagEnvio->valor;
-        $this->guiaId = $guiapagEnvio->id;
+        $this->date = date('H:i | d-m-Y');
     }
 
     public function broadcastOn(): array

@@ -5,6 +5,7 @@ use App\Http\Controllers\CatchFileController;
 use App\Notifications\ResetPasswordNotification;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Clients;
+use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\ClientMovimentoController;
 use App\Http\Controllers\ClientGuiapagController;
 use App\Http\Controllers\CertidaoController;
@@ -37,7 +38,8 @@ Route::get('/file/{directory}/{action}/{file}', [CatchFileController::class, 'ha
     ->where('action', 'download|view')
     ->name('fileAction');
 
-
+/** Notifications clear */
+Route::get('clear-notification', [ClientDashboardController::class, 'clearNotification'])->name('clear-notification');
 
 
 

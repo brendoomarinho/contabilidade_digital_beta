@@ -45,7 +45,7 @@ window.Echo.channel('guiapag')
                     <p class="noti-details"><span class="noti-title">Guilherme - fiscal
                     </span>${e.message}</span>
                     </p>
-                    <p class="noti-time"><span class="notification-time">4 mins ago</span>
+                    <p class="noti-time"><span class="notification-time">${e.date}</span>
                     </p>
                 </div>
             </div>
@@ -53,6 +53,7 @@ window.Echo.channel('guiapag')
     </li>`;
 
         $('.guia_notification').prepend(html);
+        $('.notification_beep').addClass('badge rounded-pill').text($('.guia_notification').children().length);
     });
 
 
