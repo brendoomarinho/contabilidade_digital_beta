@@ -149,7 +149,7 @@
                     <a href="javascript:void(0)" class="clear-noti"> Limpar tudo </a>
                 </div>
                 <div class="noti-content">
-                    <ul class="notification-list">
+                    <ul class="notification-list guia_notification">
                         <li class="notification-message">
                             <a href="{{ url('activities') }}">
                                 <div class="media d-flex">
