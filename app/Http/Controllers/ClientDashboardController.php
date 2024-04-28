@@ -13,4 +13,11 @@ class ClientDashboardController extends Controller
 
         return redirect()->back();
     }
+
+    public function viewAllNotification(){
+        
+        $notification = Notification::query()->update(['seen' => 1]);
+
+        return view('page_clients.notifications');
+    }
 }

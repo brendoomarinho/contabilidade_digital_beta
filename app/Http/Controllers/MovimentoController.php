@@ -9,7 +9,7 @@ use App\Models\Competencia;
 use App\Models\MovimentoTitle;
 use App\Models\MovimentoEnvio;
 
-class ClientMovimentoController extends Controller
+class MovimentoController extends Controller
 {
     public function index()
     {

@@ -179,7 +179,7 @@
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer">
-                    <a href="{{ url('activities') }}">Ver todas as notificações</a>
+                    <a href="{{ route('view-all-notification') }}">Ver todas as notificações</a>
                 </div>
             </div>
         </li>

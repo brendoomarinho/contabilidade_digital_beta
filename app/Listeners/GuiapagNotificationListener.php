@@ -17,6 +17,7 @@ class GuiapagNotificationListener
     public function handle(GuiapagNotificationEvent $event): void
     {
         $notification = new Notification();
+        
         $notification->message = $event->message;
         $notification->save();
     }

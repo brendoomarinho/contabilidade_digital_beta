@@ -18,7 +18,6 @@ class GuiapagNotificationEvent implements ShouldBroadcast
     public $message;
     public $date;
 
-
     public function __construct(GuiapagEnvio $guiapagEnvio)
     {
         $this->message = 'Guia recebida no valor de'.$guiapagEnvio->valor;

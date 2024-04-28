@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClientGuiapagController extends Controller
+class GuiapagController extends Controller
 {
     public function index()
     {
