@@ -21,53 +21,88 @@
                                      <div class="col-md-6">
                                          <div class="mb-3">
                                              <label class="form-label">Nome completo</label>
-                                             <input type="text" name="nome" class="form-control">
+                                             <input type="text" name="nome" class="form-control"
+                                                 value="{{ old('nome') }}">
+                                             @error('nome')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                          <div class="mb-3">
                                              <label class="form-label">Data admissão</label>
-                                             <input type="date" name="dt_admissao" class="form-control">
+                                             <input type="date" name="dt_admissao" class="form-control"
+                                                 value="{{ old('dt_admissao') }}">
+                                             @error('dt_admissao')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                          <div class="mb-3">
                                              <label class="form-label">Jornada</label>
                                              <select class="select" name="jornada">
-                                                 <option>Selecione</option>
-                                                 <option value="1">A+</option>
-                                                 <option value="2">O+</option>
-                                                 <option value="3">B+</option>
-                                                 <option value="4">AB+</option>
+                                                 <option value="">Selecione</option>
+                                                 <option value="1"
+                                                     @if (old('jornada') == '1') selected @endif>A+</option>
+                                                 <option value="2"
+                                                     @if (old('jornada') == '2') selected @endif>O+</option>
+                                                 <option value="3"
+                                                     @if (old('jornada') == '3') selected @endif>B+</option>
+                                                 <option value="4"
+                                                     @if (old('jornada') == '4') selected @endif>AB+</option>
                                              </select>
+                                             @error('jornada')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                          <div class="mb-3">
                                              <label class="form-label">Telefone</label>
-                                             <input type="text" name="telefone" class="form-control">
+                                             <input type="text" name="telefone" class="form-control"
+                                                 value="{{ old('telefone') }}">
+                                             @error('telefone')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                      </div>
                                      <div class="col-md-6">
                                          <div class="mb-3">
                                              <label class="form-label">CPF</label>
-                                             <input type="text" name="cpf" class="form-control">
+                                             <input type="text" name="cpf" class="form-control"
+                                                 value="{{ old('cpf') }}">
+                                             @error('cpf')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                          <div class="mb-3">
                                              <label class="form-label">Cargo/Função</label>
-                                             <input type="text" name="cargo" class="form-control">
+                                             <input type="text" name="cargo" class="form-control"
+                                                 value="{{ old('cargo') }}">
+                                             @error('cargo')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
-
                                          <div class="mb-3">
                                              <label class="form-label">Salário</label>
-                                             <input type="text" name="salario" class="form-control">
+                                             <input type="text" name="salario" class="form-control"
+                                                 value="{{ old('salario') }}">
+                                             @error('salario')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                          <div class="mb-3">
                                              <label class="d-block">Modalidade:</label>
                                              <div class="form-check form-check-inline">
                                                  <input class="form-check-input" type="radio" name="modalidade"
-                                                     id="gender_male" value="contrato">
+                                                     id="gender_male" value="contrato"
+                                                     @if (old('modalidade') == 'contrato') checked @endif>
                                                  <label class="form-check-label" for="gender_male">Contrato</label>
                                              </div>
                                              <div class="form-check form-check-inline">
                                                  <input class="form-check-input" type="radio" name="modalidade"
-                                                     id="gender_female" value="estágio">
+                                                     id="gender_female" value="estágio"
+                                                     @if (old('modalidade') == 'estágio') checked @endif>
                                                  <label class="form-check-label" for="gender_female">Estágio</label>
                                              </div>
+                                             @error('modalidade')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                          </div>
                                      </div>
                                  </div>
@@ -85,6 +120,7 @@
                              <button type="submit" class="btn btn-submit">Enviar</button>
                          </div>
                      </form>
+
                  </div>
              </div>
          </div>

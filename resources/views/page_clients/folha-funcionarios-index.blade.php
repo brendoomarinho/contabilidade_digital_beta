@@ -64,46 +64,47 @@
                                     <th>CPF</th>
                                     <th>Telefone</th>
                                     <th>Salário</th>
+                                    <th>Modalidade</th>
                                     <th>Status</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="userimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="{{ URL::asset('/build/img/users/user-01.jpg') }}" alt="product">
-                                            </a>
-                                            <div class="emp-name ">
-                                                <span>BRENDO OLIVEIRA MARINHO</span>
-                                                <p class="role">Programador</p>
+                                @foreach ($funcionarios as $funcionario)
+                                    <tr>
+                                        <td>
+                                            <div class="userimgname">
+                                                <a href="javascript:void(0);" class="product-img">
+                                                    <img src="{{ URL::asset('/build/img/users/user-01.jpg') }}"
+                                                        alt="product">
+                                                </a>
+                                                <div class="emp-name ">
+                                                    <div class="mb-1">{{ $funcionario->nome }}</div>
+                                                    <p class="role">{{ $funcionario->cargo }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>058.433.223-86</td>
-                                    <td>(62) 98164-4362</td>
-                                    <td>R$ 2.200,00</td>
-                                    <td><span class="badge badge-linesuccess">Contratado</span></td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action data-view">
-                                            <a class="me-2" href="javascript:void(0);">
-                                                <i data-feather="eye" class="action-eye"></i>
-                                            </a>
-                                            <a class="me-2" href="javascript:void(0);">
-                                                <i data-feather="download" class="action-download"></i>
-                                            </a>
-                                            <a class="me-2"
-                                                href="{{ route('funcionarios.admissao', ['funcionario' => 1]) }}">
-                                                <i data-feather="folder" class="action-edit"></i>
-                                            </a>
-                                            <a class="confirm-text" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>{{ $funcionario->cpf }}</td>
+                                        <td>{{ $funcionario->telefone }}</td>
+                                        <td>{{ $funcionario->salario }}</td>
+                                        <td>{{ $funcionario->modalidade }}</td>
+                                        <td><span class="badge badge-linesuccess">Contratado</span></td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action data-view">
+                                                <a class="me-2" href="javascript:void(0);">
+                                                    <i data-feather="eye" class="action-eye"></i>
+                                                </a>
+                                                <a class="me-2"
+                                                    href="{{ route('funcionarios.contratos', ['funcionario' => $funcionario->id]) }}">
+                                                    <i data-feather="folder" class="action-edit"></i>
+                                                </a>
+                                                <a class="confirm-text" href="javascript:void(0);">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

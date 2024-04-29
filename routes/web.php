@@ -27,6 +27,7 @@
         /** Folha Pagamento */
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionarios'])->name('funcionarios.index');
         Route::post('funcionarios', [FolhaController::class, 'admissaoFuncionarios'])->name('funcionarios.admissao');
+        Route::get('funcionarios/contratos/{funcionario}', [FolhaController::class, 'contratosFuncionarios'])->name('funcionarios.contratos');
     });
 
     /** Rotas Settings */
