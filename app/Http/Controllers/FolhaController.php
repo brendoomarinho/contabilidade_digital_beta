@@ -10,6 +10,11 @@ use App\Models\FolhaFuncionario;
 
 class FolhaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); //garante que se chegou nessa no método então está autenticado
+    }
+    
     public function indexFuncionarios(){
         return view('page_clients.folha-funcionarios-index');
     }
@@ -26,13 +31,13 @@ class FolhaController extends Controller
             'salario' => 'required|numeric',
             'modalidade' => 'required',
             'doc_anexo' => 'required|array',
-            'doc_anexo.*' => 'file|mimes:pdf,doc,png,jpg,rar',
+            'doc_anexo.*' => 'file|mimes:pdf,doc,png,jpg,rar,zip',
         ]);
     
         $validatedData['user_id'] = auth()->id();
     
         $funcionario = FolhaFuncionario::create($validatedData);
-    
+
         $fileNames = [];
 
         foreach ($request->file('doc_anexo') as $file) {
