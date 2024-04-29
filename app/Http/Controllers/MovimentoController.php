@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Movimento;
 use Illuminate\Http\Request;
 use App\Models\Competencia;
@@ -31,18 +33,13 @@ class MovimentoController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
-        //dd($request->all());
         $validatedData = $request->validate([
             'competencia_id' => 'required',
             'title_id' => 'required',
-            'doc_anexo' => 'required|file|max:51200|mimes:pdf,zip,7z',
+            'doc_anexo' => 'required|array',
+            
         ], [
             'competencia_id.required' => 'Competência é obrigatório.',
             'title_id.required' => 'Descrição é obrigatório.',
@@ -70,25 +67,15 @@ class MovimentoController extends Controller
             'doc_anexo' => $originalName,
         ]);
         
-        $successMessage = 'Em breve seu contador(a) confirmará o recebimento.';
-        
-        return redirect()->back()->with('successMessage', $successMessage);        
+        $successMessageTitle = 'Movimento enviado com sucesso!';
+        $successMessageSubTitle = 'Em breve o contador(a) confirmará o recebimento.';
+
+        return redirect()->back()->with([
+            'successMessageTitle' => $successMessageTitle,
+            'successMessageSub' => $successMessageSubTitle
+        ]);    
     }
 
-    public function show(Movimento $movimento)
-    {
-        //
-    }
-
-    public function edit(Movimento $movimento)
-    {
-        //
-    }
-
-    public function update(Request $request, Movimento $movimento)
-    {
-        //
-    }
 
     public function destroy($id)
     {

@@ -20,7 +20,7 @@ class DocRegulatorioController extends Controller
             $registro->dias_restantes = $contagemDiasService->calcularDiasRestantes($registro->dt_venc);
         }
 
-        return view('page_clients.doc_regulatorios', ['registros' => $registros]);
+        return view('page_clients.doc-regulatorios', ['registros' => $registros]);
     }
 }
 

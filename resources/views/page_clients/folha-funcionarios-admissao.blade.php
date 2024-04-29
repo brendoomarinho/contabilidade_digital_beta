@@ -1,4 +1,4 @@
-<?php $page = 'ui-timeline'; ?>
+<?php $page = 'folha-funcionarios-admissao'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="page-wrapper cardhead">
@@ -7,18 +7,17 @@
 
             @component('components.breadcrumb')
                 @slot('title')
-                    Timeline
+                    Nova admissão
                 @endslot
                 @slot('li_1')
                     Menu principal
                 @endslot
                 @slot('li_2')
-                    Processo de admissão
+                    Funcionários
                 @endslot
             @endcomponent
 
             <div class="row">
-
                 <!-- Ribbon -->
                 <div class="col-md-12">
                     <div class="card">
@@ -30,14 +29,14 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Documentos</h4>
+                                            <h4 class="timeline-title">Envio de documentos</h4>
                                         </div>
                                         <div class="timeline-body">
                                             <p>
                                             <ul>
-                                            <li>
-                                            RG
-                                            </li>
+                                                <li>
+                                                    RG, Comprovante de residencia
+                                                </li>
                                             </ul>
                                             </p>
                                         </div>

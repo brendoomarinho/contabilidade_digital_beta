@@ -1,4 +1,4 @@
-<?php $page = 'doc_regulatorios'; ?>
+<?php $page = 'doc-regulatorios'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="page-wrapper">

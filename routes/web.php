@@ -10,6 +10,7 @@
     use App\Http\Controllers\GuiapagController;
     use App\Http\Controllers\CertidaoController;
     use App\Http\Controllers\DocRegulatorioController;
+    use App\Http\Controllers\FolhaController;
     use App\Events\GuiapagNotificationEvent;
     use App\Models\GuiapagEnvio;
 
@@ -18,9 +19,14 @@
 
     /** Rotas Protegidas */
     Route::middleware('auth')->group(function () {
+         /** Movimento */
         Route::get('meu-movimento', [MovimentoController::class, 'index'])->name('movimento.index');
         Route::post('meu-movimento', [MovimentoController::class, 'store'])->name('movimento.store');
         Route::delete('meu-movimento/{id}', [MovimentoController::class, 'destroy'])->name('movimento.destroy');
+
+        /** Folha Pagamento */
+        Route::get('funcionarios', [FolhaController::class, 'indexFuncionarios'])->name('funcionarios.index');
+        Route::post('funcionarios', [FolhaController::class, 'admissaoFuncionarios'])->name('funcionarios.admissao');
     });
 
     /** Rotas Settings */

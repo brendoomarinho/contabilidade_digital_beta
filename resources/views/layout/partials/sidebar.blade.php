@@ -72,12 +72,8 @@
                                 <li><a href="{{ url('#') }}"
                                         class="{{ Request::is('payroll-list') ? 'active' : '' }}">Folha mensal</a>
                                 </li>
-                                <li><a href="{{ url('#') }}"
+                                <li><a href="{{ route('funcionarios.index') }}"
                                         class="{{ Request::is('payslip') ? 'active' : '' }}">Funcionários</a></li>
-                                <li><a href="{{ url('#') }}"
-                                        class="{{ Request::is('payslip') ? 'active' : '' }}">Admissão</a></li>
-                                <li><a href="{{ url('#') }}"
-                                        class="{{ Request::is('payslip') ? 'active' : '' }}">Demissão</a></li>
                                 <li><a href="{{ url('#') }}"
                                         class="{{ Request::is('payslip') ? 'active' : '' }}">Férias</a></li>
                                 <li><a href="{{ url('#') }}"

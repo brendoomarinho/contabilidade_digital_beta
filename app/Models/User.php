@@ -55,5 +55,10 @@ class User extends Authenticatable implements CanResetPassword
     {
         return $this->hasMany(DocRegulaEnvio::class);
     }
+
+    public function folhaFuncionario()
+    {
+        return $this->hasMany(FolhaFuncionario::class);
+    }
 }
 

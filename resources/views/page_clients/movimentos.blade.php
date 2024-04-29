@@ -16,13 +16,14 @@
             @endcomponent
 
             @include('components.success-message')
-            @if (session('successMessage'))
+            @if (session('successMessageTitle') && session('successMessageSubTitle'))
                 <script>
                     $(document).ready(function() {
                         $('#successModal').modal('show');
                     });
                 </script>
             @endif
+            
             <!-- Always responsive -->
             <div class="row">
                 <div class="col-xl-12">
@@ -122,13 +123,13 @@
                                 @csrf
                                 <input class="d-none" name="atendimento" type="number" value="0" />
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-5">
                                         <div class="mb-3">
-                                            <label class="form-label">Selecione a competência</label>
-                                            <select class="form-select @error('competencia_id') is-invalid @enderror"
+                                            <label class="form-label">Competência</label>
+                                            <select class="select @error('competencia_id') is-invalid @enderror"
                                                 id="competencia_id" name="competencia_id"
                                                 value="{{ old('competencia_id') }}">
-                                                <option></option>
+                                                <option>Selecione</option>
                                                 @foreach ($competencias->reverse() as $competencia)
                                                     <option value="{{ $competencia->id }}">
                                                         {{ $competencia->mes->mes }}
@@ -141,11 +142,13 @@
                                                     {{ $message }}</div>
                                             @enderror
                                         </div>
+                                    </div>
+                                    <div class="col-lg-7">
                                         <div class="mb-3">
-                                            <label class="form-label">Selecione o descrição</label>
-                                            <select class="form-select @error('title_id') is-invalid @enderror"
-                                                id="title_id" name="title_id">
-                                                <option></option>
+                                            <label class="form-label">Descrição</label>
+                                            <select class="select @error('title_id') is-invalid @enderror" id="title_id"
+                                                name="title_id">
+                                                <option>Selecione</option>
                                                 @foreach ($movimentoTitles->reverse() as $movimentoTitle)
                                                     <option value="{{ $movimentoTitle->id }}">
                                                         {{ $movimentoTitle->title }}
@@ -160,19 +163,9 @@
                                     </div>
                                 </div>
                                 <!-- anexo -->
-                                <div class="mb-3">
-                                    <label for="doc_anexo" class="btn btn-success w-100" style="cursor: pointer">
-                                        <i class="fa-solid fa-upload"></i> Anexo
-                                    </label><br>
-                                    <input type="file"
-                                        class="form-control d-none @error('doc_anexo') is-invalid @enderror" id="doc_anexo"
-                                        name="doc_anexo">
-                                    <small class="text-muted" id="anexo-nome">Nenhum arquivo selecionado</small>
-                                    @error('doc_anexo')
-                                        <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
-                                            {{ $message }}</div>
-                                    @enderror
-                                </div>
+                                @component('components.upload-file')
+                                @endcomponent
+                                <script src="{{ asset('build/js/upload-file.js') }}"></script>
                                 <div class="modal-footer-btn">
                                     <button type="button" class="btn btn-cancel me-2"
                                         data-bs-dismiss="modal">Cancelar</button>
@@ -202,8 +195,7 @@
                                 <p>Tem certeza que deseja excluir este registro?</p>
                             </div>
                             <div class="modal-footer-btn delete-footer">
-                                <button type="button" class="btn btn-cancel me-2"
-                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-submit confirm-delete">Sim</button>
                             </div>
                         </div>
@@ -243,15 +235,4 @@
             });
         });
     </script>
-
-    <!-- Atualiza o nome do arquivo exibido ao selecionar um arquivo -->
-    <script>
-        document.getElementById('doc_anexo').addEventListener('change', function() {
-            document.getElementById('anexo-nome').textContent = this.files.length > 0 ? this.files[0].name :
-                'Nenhum arquivo selecionado';
-        });
-    </script>
-
-
-    {{--warranty tem um modal de estilo legal pra usar no envio de movimento </p>--}}
 @endsection
