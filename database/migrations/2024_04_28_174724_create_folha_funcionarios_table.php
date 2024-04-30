@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedDecimal('salario', 10, 2);
             $table->string('telefone');
             $table->string('modalidade');
-            $table->json('doc_anexo');
+            $table->string('doc_anexo');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

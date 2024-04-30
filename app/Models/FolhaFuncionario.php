@@ -23,10 +23,6 @@ class FolhaFuncionario extends Model
         'doc_anexo',
     ];
 
-    protected $casts = [
-        'doc_anexo' => 'array',
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

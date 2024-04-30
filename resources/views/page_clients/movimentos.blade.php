@@ -61,11 +61,11 @@
                                                         <td>{{ $registro->movimentoTitle->title }}</td>
                                                         <td>
                                                             <div class="hstack gap-2 fs-15">
-                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos_mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
+                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
                                                                     class="btn btn-icon btn-sm btn-info" target="_blank"><i
                                                                         class="feather-download"></i></a>
 
-                                                                @if ($registro->atendimento == 0)
+                                                                @if ($registro->atd == 0)
                                                                     <a href="#"
                                                                         class="btn btn-icon btn-sm btn-info delete-btn"
                                                                         data-bs-toggle="modal"
@@ -126,10 +126,10 @@
                                     <div class="col-lg-5">
                                         <div class="mb-3">
                                             <label class="form-label">Competência</label>
-                                            <select class="select @error('competencia_id') is-invalid @enderror"
+                                            <select class="select"
                                                 id="competencia_id" name="competencia_id"
                                                 value="{{ old('competencia_id') }}">
-                                                <option>Selecione</option>
+                                                <option value="">Selecione</option>
                                                 @foreach ($competencias->reverse() as $competencia)
                                                     <option value="{{ $competencia->id }}">
                                                         {{ $competencia->mes->mes }}
@@ -137,18 +137,17 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('competencia_id')
-                                                <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
-                                                    {{ $message }}</div>
-                                            @enderror
+                                              @error('competencia_id')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="mb-3">
                                             <label class="form-label">Descrição</label>
-                                            <select class="select @error('title_id') is-invalid @enderror" id="title_id"
+                                            <select class="select id="title_id"
                                                 name="title_id">
-                                                <option>Selecione</option>
+                                                <option value="">Selecione</option>
                                                 @foreach ($movimentoTitles->reverse() as $movimentoTitle)
                                                     <option value="{{ $movimentoTitle->id }}">
                                                         {{ $movimentoTitle->title }}
@@ -156,9 +155,8 @@
                                                 @endforeach
                                             </select>
                                             @error('title_id')
-                                                <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
-                                                    {{ $message }}</div>
-                                            @enderror
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                         </div>
                                     </div>
                                 </div>

@@ -35,7 +35,7 @@
     Route::put('pusher-setting', [SettingController::class, 'UpdatePusherSetting'])->name('pusher.update');
 
     /** Rotas Download */
-    Route::get('/file/{directory}/{action}/{file}', [CatchFileController::class, 'handleFile'])
+    Route::get('/repositorio/{directory}/{action}/{file}', [CatchFileController::class, 'handleFile'])
         ->where('action', 'download|view')
         ->name('fileAction');
 

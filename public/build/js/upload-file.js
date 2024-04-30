@@ -1,6 +1,6 @@
 function handleFileUpload(input) {
-    var label = document.getElementById('anexo-label-multiple');
-    var nome = document.getElementById('anexo-size-multiple');
+    var label = document.getElementById('anexo-label');
+    var nome = document.getElementById('anexo-size');
 
     if (input.files && input.files[0]) {
         // Arquivo(s) selecionado(s)
@@ -16,12 +16,12 @@ function handleFileUpload(input) {
         totalSizeMB = totalSizeMB.toFixed(2); // Arredondar para 2 casas decimais
 
         // Atualizar o texto com a quantidade de megabytes
-        nome.innerText = "Total de " + totalSizeMB + " MB selecionados.";
+        nome.innerHTML = '<i data-feather="server" style="width:15px"></i> Total de ' + totalSizeMB + ' MB selecionados.';
 
         // Atualizar o rótulo para indicar sucesso
-        label.innerHTML = '<i data-feather="check-circle" class="m-2"></i> Documentos anexados com sucesso!';
+        label.innerHTML = '<i data-feather="package" class="m-1"></i> Documentos anexados com sucesso!';
         label.classList.remove('border-container');
-        label.classList.add('border-success', 'border', 'border-2', 'border-opacity-25');
+        label.classList.add('border-success', 'border', 'border-2', 'border-opacity-50');
     } else {
         // Nenhum arquivo selecionado
         nome.innerText = 'Nenhum arquivo selecionado.';

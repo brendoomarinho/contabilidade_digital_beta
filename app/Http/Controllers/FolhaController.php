@@ -13,17 +13,15 @@ class FolhaController extends Controller {
     public function indexFuncionarios() {
 
         $user = auth()->user();
+        $funcionarios = FolhaFuncionario::where( 'user_id', $user->id )->get();
 
-        // Recupera os registros da Folha de Funcionários pertencentes ao usuário logado, com apenas os campos desejados
-        $funcionarios = FolhaFuncionario::where( 'user_id', $user->id )
-        ->select( 'nome', 'cpf', 'dt_admissao', 'salario', 'cargo', 'telefone', 'modalidade', 'id' )
-        ->get();
-
-        // Passa os dados para a view 'page_clients.folha-funcionarios-index'
         return view( 'page_clients.folha-funcionarios-index', compact( 'funcionarios' ) );
     }
 
     public function admissaoFuncionarios( Request $request ) {
+
+        $user_id = auth()->id();
+
         $validatedData = $request->validate( [
             'nome' => 'required',
             'dt_admissao' => 'required|date',
@@ -33,37 +31,34 @@ class FolhaController extends Controller {
             'cargo' => 'required',
             'salario' => 'required',
             'modalidade' => 'required',
-            'doc_anexo' => 'required|array',
-            'doc_anexo.*' => 'file|mimes:pdf,doc,png,jpg,rar,zip|max:20000', // Limite de 50 MB
+            'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000', 
         ], [
-            'doc_anexo.*.max' => 'O tamanho máximo de cada arquivo é 20 MB.',
+            'nome.required' => 'Campo obrigatório.',
+            'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
         ] );
 
-        $validatedData[ 'user_id' ] = auth()->id();
+        if ($validatedData['doc_anexo']->isValid()) {
+        
+            $date = now()->format('d-m-Y'); 
+            $filename = $user_id . '_' . $date . '_' . uniqid() . '.' . $validatedData['doc_anexo']->getClientOriginalExtension();
+      
+            $validatedData['doc_anexo']->storeAs('public/funcionarios-admissao', $filename);
 
-        $anexos = [];
-        if ( $request->hasFile( 'doc_anexo' ) ) {
-            foreach ( $request->file( 'doc_anexo' ) as $file ) {
-                if ( $file->isValid() ) {
-                    $path = $file->store( 'anexos' );
-                    $anexos[] = $path;
-                } else {
-                    return redirect()->back()->withError( 'Falha ao processar o upload dos arquivos.' );
-                }
-            }
+            $validatedData['doc_anexo'] = $filename;
+            
+            FolhaFuncionario::create(array_merge($validatedData, ['user_id' => $user_id]));
+
+            $successMessageTitle = 'Processo de admissão iniciado!';
+            $successMessageSubTitle = 'O contador(a) está preparando o contrato.';
+
+            return redirect()->back()->with([
+                'successMessageTitle' => $successMessageTitle,
+                'successMessageSubTitle' => $successMessageSubTitle
+            ]);
+            
+        } else {
+            return redirect()->back()->withError('Falha ao processar o upload do arquivo.');
         }
-
-        $validatedData[ 'doc_anexo' ] = json_encode( $anexos );
-
-        $funcionario = FolhaFuncionario::create( $validatedData );
-
-        $successMessageTitle = 'Solicitação aberta com sucesso!';
-        $successMessageSubTitle = 'O processo de admissão foi iniciado.';
-
-        return redirect()->back()->with( [
-            'successMessageTitle' => $successMessageTitle,
-            'successMessageSubTitle' => $successMessageSubTitle
-        ] );
     }
 
     public function contratosFuncionarios($funcionario){

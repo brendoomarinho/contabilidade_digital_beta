@@ -13,7 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('competencia_id');
             $table->unsignedBigInteger('title_id');
-            $table->integer('atendimento');
+            $table->boolean('atd')->default(0);
             $table->string('doc_anexo');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

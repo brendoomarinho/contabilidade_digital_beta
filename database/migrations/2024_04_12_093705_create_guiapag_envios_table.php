@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('competencia_id');
             $table->decimal('valor', 10, 2);
             $table->date('dt_venc');
-            $table->integer('rtf');
+            $table->boolean('rtf')->default(0);
             $table->string('doc_anexo');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
