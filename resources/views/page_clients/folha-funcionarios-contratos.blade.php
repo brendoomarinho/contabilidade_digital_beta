@@ -1,13 +1,11 @@
-<?php $page = 'folha-funcionarios-admissao'; ?>
+<?php $page = 'folha-funcionarios-contratos'; ?>
 @extends('layout.mainlayout')
 @section('content')
-    <div class="page-wrapper cardhead">
-
+    <div class="page-wrapper">
         <div class="content">
-
             @component('components.breadcrumb')
                 @slot('title')
-                    Nova admissão
+                    Funcionários
                 @endslot
                 @slot('li_1')
                     Menu principal
@@ -16,115 +14,97 @@
                     Funcionários
                 @endslot
             @endcomponent
+            <!-- /Success message -->
+            @include('components.success-message')
 
-            <div class="row">
-                <!-- Ribbon -->
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge success">
-                                        <i class="fas fa-user"></i>
+            @if (session('successMessageTitle') && session('successMessageSubTitle'))
+                <script>
+                    $(document).ready(function() {
+                        $('#successModal').modal('show');
+                    });
+                </script>
+            @endif
+
+            <!-- Lista Funcionários -->
+            <div class="card table-list-card">
+                <div class="card-body">
+                    <div class="table-top">
+                        BRENDO OLIVEIRA MARINHO
+                        <p>CPF: 058.433.223-86</p>
+                    </div>
+                    <div class="table-responsive">
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-badge success">
+                                    <i class="fas fa-file"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">Contrato de experiência</h4>
                                     </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Envio de documentos</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>
-                                            <ul>
-                                                <li>
-                                                    RG, Comprovante de residencia
-                                                </li>
-                                            </ul>
-                                            </p>
-                                        </div>
-                                        <button class="btn btn-success mt-3">enviar</button>
+                                    <div class="timeline-body mt-3">
+                                        <p>
+
+                                            <i class="fa-solid fa-spinner fa-spin-pulse"></i> Seu contador(a) está
+                                            preparando o contrato.
+
+                                        </p>
                                     </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning">
-                                        <i class="fas fa-users"></i>
+                                    <button class="btn btn-success mt-3" disabled><i
+                                            class="fa-solid fa-file-arrow-down"></i> Baixar contrato</button>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge info">
+                                    <i class="fas fa-file"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">Anexar contrato assinado </h4>
                                     </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Contrato </h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores
-                                                odit qui est tempora eos, nostrum provident explicabo dignissimos debitis
-                                                vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                                        </div>
+                                    <div class="timeline-body">
+                                        <p>Solicite ao funcionario a assinatura e depois anexe o contrato assinado aqui.</p>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger">
-                                        <i class="fas fa-gift"></i>
+                                    <button class="btn btn-success mt-3" disabled><i
+                                            class="fa-solid fa-file-arrow-down"></i> Anexar contrato assinado</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-badge info">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">Tudo certo!</h4>
                                     </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam
-                                                facilis enim eaque, tenetur nam id qui vel velit similique nihil iure
-                                                molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                                        </div>
+                                    <div class="timeline-body">
+                                        <p>BRENDO OLIVEIRA MARINHO está efetivado na sua empresa por período de experiência.
+                                        Após o vencimento do período, caso não seja solicitado a rescisão o funcionário iniciará
+                                        estará em regime de contrato definitivo</p>
                                     </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est
-                                                quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente
-                                                rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!
-                                            </p>
-                                        </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge success">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">Lorem ipsum dolor</h4>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge info">
-                                        <i class="fa fa-save"></i>
+                                    <div class="timeline-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati,
+                                            quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus
+                                            dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque
+                                            eaque.
+                                        </p>
                                     </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi
-                                                quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati,
-                                                quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus
-                                                dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque
-                                                eaque.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- /Ribbon -->
-
             </div>
         </div>
-
     </div>
 @endsection
