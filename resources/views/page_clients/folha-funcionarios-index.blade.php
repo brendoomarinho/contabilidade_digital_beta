@@ -95,7 +95,7 @@
                                                     <i data-feather="eye" class="action-eye"></i>
                                                 </a>
                                                 <a class="me-2"
-                                                    href="{{ route('funcionarios.contratos', ['funcionario' => $funcionario->id]) }}">
+                                                    href="{{ route('recrutamento.show', ['id' => $funcionario->id]) }}">
                                                     <i data-feather="folder" class="action-edit"></i>
                                                 </a>
                                                 <a class="confirm-text" href="javascript:void(0);">

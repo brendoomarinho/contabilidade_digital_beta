@@ -383,7 +383,7 @@
 
 @if (
     !Route::is([
-        '',
+        'recrutamento.show',
     ]))
     <div class="page-header">
         <div class="add-item d-flex">
@@ -392,6 +392,38 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('index') }}">{{ $li_1 }}</a></li>
                     <li class="breadcrumb-item active">{{ $li_2 }}</li>
+                </ul>
+            </div>
+        </div>
+        <ul class="table-top-head">
+            <li>
+                <a onclick="location.reload();" data-bs-toggle="tooltip" data-bs-placement="top" title="Atualizar"><i data-feather="rotate-ccw"
+                        class="feather-rotate-ccw"></i></a>
+            </li>
+        </ul>
+         @if (Route::is(['movimento.index']))
+            <div class="page-btn">
+                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-movimento"><i
+                        data-feather="plus-circle" class="me-2"></i>Novo</a>
+            </div>
+        @endif
+    </div>
+@endif
+
+
+
+@if (
+    Route::is([
+        'recrutamento.show',
+    ]))
+    <div class="page-header">
+        <div class="add-item d-flex">
+            <div class="page-title">
+                <h4>{{ $title }}</h4>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('index') }}">{{ $li_1 }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('funcionarios.index') }}">{{ $li_2 }}</a></li>
+                    <li class="breadcrumb-item active">{{ $li_3 }}</li>
                 </ul>
             </div>
         </div>

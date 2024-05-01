@@ -23,7 +23,6 @@
                     });
                 </script>
             @endif
-            
             <!-- Always responsive -->
             <div class="row">
                 <div class="col-xl-12">
@@ -104,7 +103,6 @@
         </script>
     @endif
     <!-- Modal Movimento -->
-    <!-- modal adicionar Movimento -->
     <div class="modal fade" id="add-movimento">
         <div class="modal-dialog modal-dialog-centered custom-modal-two">
             <div class="modal-content">
@@ -176,7 +174,6 @@
             </div>
         </div>
     </div>
-    <!-- /Add Department -->
     <!-- Delete Note -->
     <div class="modal fade" id="delete-movimento">
         <div class="modal-dialog modal-dialog-centered">

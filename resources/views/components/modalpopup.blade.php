@@ -57,6 +57,87 @@
 @endif
 
 
+@if (Route::is(['recrutamento.show']))
+<!-- Modal Rescisão -->
+ <div class="modal fade" id="add-rescisao">
+     <div class="modal-dialog modal-dialog-centered custom-modal-two">
+         <div class="modal-content">
+             <div class="page-wrapper-new p-0">
+                 <div class="modal-header border-0 custom-modal-header">
+                     <div class="page-title">
+                         <h4>Pedido de rescisão</h4>
+                     </div>
+                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body custom-modal-body">
+                     <form method="post" action="#" enctype="multipart/form-data">
+                         @csrf
+                         <input class="d-none" name="atendimento" type="number" value="0" />
+                         <div class="row">
+                             <div class="mb-3">
+                                 <label class="form-label">Motivo</label>
+                                 <select class="select" id="motivo" name="motivo">
+                                     <option value="0">Selecione</option>
+                                     <option value="1">Demitido COM justa causa</option>
+                                     <option value="2">Demitido SEM justa causa</option>
+                                     <option value="3">Pedido de demissão SEM justa causa</option>
+                                     <option value="4">Morte</option>
+                                 </select>
+                                 @error('motivo')
+                                     <div class="alert alert-danger">{{ $message }}</div>
+                                 @enderror
+                             </div>
+                             <div class="col-lg-7">
+                                 <div class="mb-3">
+                                     <label class="form-label">Data aviso</label>
+                                     <input type="date" name="dt_aviso" class="form-control"
+                                         value="{{ old('dt_aviso') }}">
+                                     @error('dt_aviso')
+                                         <div class="alert alert-danger">{{ $message }}</div>
+                                     @enderror
+                                 </div>
+                             </div>
+                             <div class="col-lg-5">
+                                 <div class="mb-3">
+                                     <label class="form-label">Redução jornada</label>
+                                     <select class="select id="reducao_jornada" name="reducao_jornada">
+                                         <option value="0">Selecione</option>
+                                         <option value="1">2h por dia</option>
+                                         <option value="2">7 dias corridos</option>
+                                     </select>
+                                     @error('reducao_jornada')
+                                         <div class="alert alert-danger">{{ $message }}</div>
+                                     @enderror
+                                 </div>
+                             </div>
+                             <div class="mb-3">
+                                 <label class="form-label">Breve relato:</label>
+                                 <textarea rows="5" cols="5" class="form-control" placeholder="Digitar mensagem..."></textarea>
+                             </div>
+                         </div>
+                         <div class="modal-footer-btn">
+                             <button type="button" class="btn btn-cancel me-2"
+                                 data-bs-dismiss="modal">Cancelar</button>
+                             <button type="submit" class="btn btn-submit">Enviar</button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+@endif
+
+
+
+
+
+
+
+
 @if (Route::is(['product-list']))
     <!-- Add Payroll -->
     <div class="offcanvas offcanvas-end em-payrol-add" tabindex="-1" id="offcanvasRight-add">

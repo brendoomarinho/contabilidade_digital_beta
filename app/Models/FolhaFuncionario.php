@@ -12,6 +12,7 @@ class FolhaFuncionario extends Model
     protected $fillable = [
         'user_id',
         'atd',
+        'codigo',
         'nome',
         'cpf',
         'dt_admissao',
@@ -26,6 +27,11 @@ class FolhaFuncionario extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function recrutamento()
+    {
+        return $this->hasOne(FolhaRecrutamento::class, 'funcionario_id');
     }
 }
 

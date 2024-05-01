@@ -11,6 +11,7 @@
     use App\Http\Controllers\CertidaoController;
     use App\Http\Controllers\DocRegulatorioController;
     use App\Http\Controllers\FolhaController;
+    use App\Http\Controllers\FolhaRecrutamentoController;
     use App\Events\GuiapagNotificationEvent;
     use App\Models\GuiapagEnvio;
 
@@ -25,9 +26,10 @@
         Route::delete('meu-movimento/{id}', [MovimentoController::class, 'destroy'])->name('movimento.destroy');
 
         /** Folha Pagamento */
-        Route::get('funcionarios', [FolhaController::class, 'indexFuncionarios'])->name('funcionarios.index');
-        Route::post('funcionarios', [FolhaController::class, 'admissaoFuncionarios'])->name('funcionarios.admissao');
-        Route::get('funcionarios/contratos/{funcionario}', [FolhaController::class, 'contratosFuncionarios'])->name('funcionarios.contratos');
+        Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');
+        Route::post('funcionarios', [FolhaController::class, 'storeFuncionario'])->name('funcionarios.store');
+        Route::get('funcionarios/recrutamento/{id}', [FolhaController::class, 'showRecrutamento'])->name('recrutamento.show');
+        Route::post('funcionarios/recrutamento/etapas/{funcionario}', [FolhaRecrutamentoController::class, 'etapa1'])->name('recrutamento.etapas');
     });
 
     /** Rotas Settings */

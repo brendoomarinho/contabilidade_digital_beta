@@ -12,7 +12,7 @@
                      </button>
                  </div>
                  <div class="modal-body custom-modal-body">
-                     <form method="post" action="{{ route('funcionarios.admissao') }}" enctype="multipart/form-data">
+                     <form method="post" action="{{ route('funcionarios.store') }}" enctype="multipart/form-data">
                          @csrf
                          <div class="row">
                              <div class="col-lg-12">
@@ -126,3 +126,7 @@
          </div>
      </div>
  </div>
+
+
+
+ 
