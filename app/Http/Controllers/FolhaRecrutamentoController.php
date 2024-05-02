@@ -12,8 +12,6 @@ use App\Models\FolhaRecrutamento;
 class FolhaRecrutamentoController extends Controller {
 
     public function etapa1( Request $request, $funcionario ) {
-        
-        $user_id = auth()->id();
 
         $validatedData = $request->validate( [
 
@@ -23,28 +21,26 @@ class FolhaRecrutamentoController extends Controller {
         ] );
 
         if ( $validatedData[ 'doc_anexo' ]->isValid() ) {
+            $filename = $request->file( 'doc_anexo' )->store( 'public/funcionarios_recrutamento_documentos' );
 
-            $filename = $user_id . '_' . now()->format( 'd-m-Y' ) . '_' . uniqid() . '.' . $validatedData[ 'doc_anexo' ]->getClientOriginalExtension();
+            FolhaRecrutamento::where( 'funcionario_id', $funcionario )
+                ->update([
+                    'exame_admissao' => $filename,
+                    'etapa' => 1,
+                ]);
 
-            $validatedData[ 'doc_anexo' ]->storeAs( 'public/funcionarios_recrutamento_documentos', $filename );
-
-            $funcionario = FolhaRecrutamento::create( [
-                'user_id' => $user_id,
-                'exame_admissao' => $filename,
-                'funcionario_id' => $funcionario, 
-                'etapa' => 1,
-            ] );
-
-            $successMessageTitle = 'Processo de admissão iniciado!';
-            $successMessageSubTitle = 'O contador(a) está preparando o contrato.';
-
-            return redirect()->back()->with( [
-                'successMessageTitle' => $successMessageTitle,
-                'successMessageSubTitle' => $successMessageSubTitle
-            ] );
         } else {
             return redirect()->back()->withError( 'Falha ao processar o upload do arquivo.' );
         }
+
+        $successMessageTitle = 'Enviado com sucesso!';
+        $successMessageSubTitle = 'Aguarde a aprovação do documento.';
+
+        return redirect()->back()->with( [
+            'successMessageTitle' => $successMessageTitle,
+            'successMessageSubTitle' => $successMessageSubTitle
+        ] );
     }
 
+    
 }

@@ -29,7 +29,7 @@
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');
         Route::post('funcionarios', [FolhaController::class, 'storeFuncionario'])->name('funcionarios.store');
         Route::get('funcionarios/recrutamento/{id}', [FolhaController::class, 'showRecrutamento'])->name('recrutamento.show');
-        Route::post('funcionarios/recrutamento/etapas/{funcionario}', [FolhaRecrutamentoController::class, 'etapa1'])->name('recrutamento.etapas');
+        Route::patch('funcionarios/recrutamento/etapas/{funcionario}', [FolhaRecrutamentoController::class, 'etapa1'])->name('recrutamento.etapas');
     });
 
     /** Rotas Settings */

@@ -66,7 +66,7 @@ class FolhaController extends Controller {
     
             // Criação do registro em FolhaRecrutamento
             $funcionario->recrutamento()->create([
-                'etapa' => 1,
+                'etapa' => 0,
                 // Outros campos que você precisa definir aqui
             ]);
     
