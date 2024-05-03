@@ -11,7 +11,8 @@ return new class extends Migration
         Schema::create('folha_funcionarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->boolean('atd')->default(0);
+            $table->enum('atd', [0, 1])->default(0);
+            $table->enum('status', [0, 1, 2])->default(0);
             $table->string('nome');
             $table->string('cpf');
             $table->date('dt_admissao');

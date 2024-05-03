@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('funcionario_id');
             $table->integer('etapa');
-            $table->boolean('atd')->default(0);
+            $table->enum('atd', [0, 1])->default(0);
             $table->string('exame_admissao')->nullable();
             $table->string('contrato_original')->nullable();
             $table->string('contrato_assinado')->nullable();

@@ -88,7 +88,17 @@
                                         <td>{{ $funcionario->telefone }}</td>
                                         <td>{{ $funcionario->salario }}</td>
                                         <td>{{ $funcionario->modalidade }}</td>
-                                        <td><span class="badge badge-linesuccess">Contratado</span></td>
+
+                                        <td>
+                                        @if($funcionario->status == 0)
+                                        <span class="badge badge-warning">Pendente</span>
+                                        @elseif($funcionario->status == 1)
+                                         <span class="badge badge-success">Contratado</span>
+                                        @elseif($funcionario->status == 2)
+                                         <span class="badge badge-linesuccess">Demitido</span>
+                                         @endif
+                                        </td>
+
                                         <td class="action-table-data">
                                             <div class="edit-delete-action data-view">
                                                 <a class="me-2" href="javascript:void(0);">
