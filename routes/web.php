@@ -31,6 +31,7 @@
         Route::get('funcionarios/recrutamento/{id}', [FolhaController::class, 'showRecrutamento'])->name('recrutamento.show');
         Route::patch('funcionarios/recrutamento/etapas/{funcionario}/exame-admissional', [FolhaRecrutamentoController::class, 'exameAdmissioanal'])->name('recrutamento.exameAdmissional');
         Route::patch('funcionarios/recrutamento/etapas/{funcionario}/contrato-assinado', [FolhaRecrutamentoController::class, 'contratoAssinado'])->name('recrutamento.contratoAssinado');
+        Route::patch('funcionarios/recrutamento/etapas/{funcionario}/pedido-rescisão', [FolhaRecrutamentoController::class, 'pedidoRescisao'])->name('recrutamento.pedidoRescisao');
         Route::patch('funcionarios/recrutamento/etapas/{funcionario}/aviso-assinado', [FolhaRecrutamentoController::class, 'avisoAssinado'])->name('recrutamento.avisoAssinado');
         Route::patch('funcionarios/recrutamento/etapas/{funcionario}/exame-demissional', [FolhaRecrutamentoController::class, 'exameDemissional'])->name('recrutamento.exameDemissional');
         Route::patch('funcionarios/recrutamento/etapas/{funcionario}/rescisao-assinada', [FolhaRecrutamentoController::class, 'rescisaoAssinada'])->name('recrutamento.rescisaoAssinada');

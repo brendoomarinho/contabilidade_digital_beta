@@ -26,6 +26,15 @@
                     });
                 </script>
             @endif
+             <!-- reexibição do modal com erros de validação -->
+            @if ($errors->any())
+                <script>
+                    $(document).ready(function() {
+                        $('#add-rescisao').modal('show');
+                    });
+                </script>
+            @endif
+            @include('components.modalpopup', ['funcionario' => $funcionario])
             <!-- Lista Funcionários -->
             <div class="card table-list-card">
                 <div class="card-body">
@@ -87,10 +96,15 @@
                                             <p>O exame admissional foi validado e registrado com sucesso.</p>
                                         </div>
                                         <!-- Upload existis -->
-                                        <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'download', 'file' => $funcionario->recrutamento->exame_admissao]) }}"
-                                            class="btn btn-success mt-3" target="_blank">
-                                            <i class="feather-download"></i> Exame admissional
-                                        </a>
+                                        @if ($funcionario->recrutamento->exame_admissao)
+                                            <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'download', 'file' => $funcionario->recrutamento->exame_admissao]) }}"
+                                                class="btn btn-success mt-3" target="_blank">
+                                                <i class="feather-download"></i> Exame admissional
+                                            </a>
+                                        @else
+                                            <div class="text-muted mt-3"><i class="fa-solid fa-circle-exclamation"></i>
+                                                Arquivo não encontrado</div>
+                                        @endif
                                     @endif
                                 </div>
                             </li>
@@ -174,10 +188,15 @@
                                                 <p>Contrato verificado com sucesso.</p>
                                             </div>
                                             <!-- Upload existis -->
-                                            <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->contrato_assinado]) }}"
-                                                class="btn btn-success mt-3" target="_blank">
-                                                <i class="feather-download"></i> Contrato assinado.pdf
-                                            </a>
+                                            @if ($funcionario->recrutamento->contrato_assinado)
+                                                <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->contrato_assinado]) }}"
+                                                    class="btn btn-success mt-3" target="_blank">
+                                                    <i class="feather-download"></i> Contrato assinado.pdf
+                                                </a>
+                                            @else
+                                                <div class="text-muted mt-3"><i class="fa-solid fa-circle-exclamation"></i>
+                                                    Arquivo não encontrado</div>
+                                            @endif
                                         @endif
                                     </div>
                                 </li>
@@ -235,7 +254,7 @@
                                         @elseif($funcionario->recrutamento->etapa > 5)
                                             <div class="timeline-body mt-3">
                                                 <p>
-                                                    Rescisão solicitada em 10/05/2024.
+                                                    Rescisão solicitada em {{ \Carbon\Carbon::parse($funcionario->recrutamento->pedido_rescisao)->format('d/m/Y') }}.
                                                 </p>
                                             </div>
                                         @endif
@@ -260,7 +279,7 @@
                                                     preparando o aviso prévio.
                                                 </p>
                                             </div>
-                                            <button class="btn btn-info mt-3" disabled>Baixar aviso prévio .pdf</button>
+                                            <button class="btn btn-info mt-3" disabled>Baixar aviso prévio.pdf</button>
                                         @elseif($funcionario->recrutamento->etapa > 6)
                                             <div class="timeline-body mt-3">
                                                 <p>
@@ -320,10 +339,16 @@
                                                 <p>O Aviso prévio foi validado com sucesso.</p>
                                             </div>
                                             <!-- Upload existis -->
-                                            <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->aviso_assinado]) }}"
-                                                class="btn btn-success mt-3" target="_blank">
-                                                <i class="feather-download"></i> Aviso prévio assinado.pdf
-                                            </a>
+                                            @if ($funcionario->recrutamento->aviso_assinado)
+                                                <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->aviso_assinado]) }}"
+                                                    class="btn btn-success mt-3" target="_blank">
+                                                    <i class="feather-download"></i> Aviso prévio assinado.pdf
+                                                </a>
+                                            @else
+                                                <div class="text-muted mt-3"><i
+                                                        class="fa-solid fa-circle-exclamation"></i>
+                                                    Arquivo não encontrado</div>
+                                            @endif
                                         @endif
                                     </div>
                                 </li>
@@ -382,10 +407,16 @@
                                                 <p>O exame demissional foi validado e registrado com sucesso.</p>
                                             </div>
                                             <!-- Upload existis -->
-                                            <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'download', 'file' => $funcionario->recrutamento->exame_demissao]) }}"
-                                                class="btn btn-success mt-3" target="_blank">
-                                                <i class="feather-download"></i> Exame demissional
-                                            </a>
+                                            @if ($funcionario->recrutamento->exame_demissao)
+                                                <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'download', 'file' => $funcionario->recrutamento->exame_demissao]) }}"
+                                                    class="btn btn-success mt-3" target="_blank">
+                                                    <i class="feather-download"></i> Exame demissional
+                                                </a>
+                                            @else
+                                                <div class="text-muted mt-3"><i
+                                                        class="fa-solid fa-circle-exclamation"></i>
+                                                    Arquivo não encontrado</div>
+                                            @endif
                                         @endif
                                     </div>
                                 </li>
@@ -473,10 +504,16 @@
                                                 </p>
                                             </div>
                                             <!-- Upload existis -->
-                                            <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->termo_rescisao_assinado]) }}"
-                                                class="btn btn-success mt-3" target="_blank">
-                                                <i class="feather-download"></i> Termo de rescisão assinado.pdf
-                                            </a>
+                                            @if ($funcionario->recrutamento->termo_rescisao_assinado)
+                                                <a href="{{ route('fileAction', ['directory' => 'funcionarios_recrutamento_documentos', 'action' => 'view', 'file' => $funcionario->recrutamento->termo_rescisao_assinado]) }}"
+                                                    class="btn btn-success mt-3" target="_blank">
+                                                    <i class="feather-download"></i> Termo de rescisão assinado.pdf
+                                                </a>
+                                            @else
+                                                <div class="text-muted mt-3"><i
+                                                        class="fa-solid fa-circle-exclamation"></i> Arquivo não encontrado
+                                                </div>
+                                            @endif
                                         @endif
                                     </div>
                                 </li>

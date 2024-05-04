@@ -11,8 +11,8 @@ use App\Models\FolhaFuncionario;
 
 class FolhaController extends Controller {
 
-    public function indexFuncionario()  {
-        
+    public function indexFuncionario() {
+
         $user = auth()->user();
 
         $funcionarios = FolhaFuncionario::where( 'user_id', $user->id )->get();
@@ -20,38 +20,52 @@ class FolhaController extends Controller {
         return view( 'page_clients.folha-funcionarios-index', compact( 'funcionarios' ) );
     }
 
-    public function storeFuncionario(Request $request) {
-    
+    public function storeFuncionario( Request $request ) {
+
         $user_id = auth()->id();
-    
+
         $validatedData = $request->validate([
             'nome' => 'required',
             'dt_admissao' => 'required|date',
             'jornada' => 'required',
-            'telefone' => 'required',
-            'cpf' => 'required',
+            'telefone' => 'required|min:15|max:15', // Definindo tamanho mínimo e máximo para o telefone
+            'cpf' => 'required|min:14|max:14',
             'cargo' => 'required',
-            'salario' => 'required',
+            'salario' => 'required|min:6|max:10',
             'modalidade' => 'required',
-            'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
+            'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:250000',
         ], [
             'nome.required' => 'Campo obrigatório.',
-            'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
+            'dt_admissao.required' => 'Campo obrigatório.',
+            'jornada.required' => 'Campo obrigatório.',
+            'telefone.required' => 'Campo obrigatório.',
+            'telefone.min' => 'Telefone inválido.',
+            'telefone.max' => 'Telefone inválido.',
+            'cpf.required' => 'Campo obrigatório.',
+            'cpf.min' => 'CPF inválido.',
+            'cpf.max' => 'CPF inválido.',
+            'cargo.required' => 'Campo obrigatório.',
+            'salario.required' => 'Campo obrigatório.',
+            'salario.max' => 'Salário inválido.',
+            'salario.min' => 'Salário inválido.',
+            'modalidade.required' => 'Campo obrigatório.',
+            'doc_anexo.required' => 'Documento(s) não anexado(s).',
+            'doc_anexo.mimes' => 'O formato do arquivo deve ser pdf, doc, png, jpg, rar, zip.',
+            'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior do que o permitido.',
         ]);
-    
+        
         try {
-            // Inicia uma transação de banco de dados
+
             DB::beginTransaction();
-    
-            // Upload de arquivos
-            if ($validatedData['doc_anexo']->isValid()) {
-                $filename = $request->file('doc_anexo')->store('public/funcionarios-admissao');
-            } else {
-                throw new \Exception('Falha ao processar o upload do arquivo.');
-            }
-    
-            // Criação do registro em FolhaFuncionario
-            $funcionario = FolhaFuncionario::create([
+
+            $filename = $request->file( 'doc_anexo' )->hashName();
+            $request->file( 'doc_anexo' )->storeAs( 'public/funcionarios_recrutamento_documentos', $filename );
+
+            $valorSalario = str_replace( [ '.', ',' ], [ '', '.' ], $request->salario );
+
+            $salarioDecimal = ( float ) $valorSalario;
+
+            $funcionario = FolhaFuncionario::create( [
                 'user_id' => $user_id,
                 'nome' => $request->nome,
                 'dt_admissao' => $request->dt_admissao,
@@ -59,43 +73,34 @@ class FolhaController extends Controller {
                 'telefone' => $request->telefone,
                 'cpf' => $request->cpf,
                 'cargo' => $request->cargo,
-                'salario' => $request->salario,
+                'salario' => $salarioDecimal, 
                 'modalidade' => $request->modalidade,
                 'doc_anexo' => $filename,
-            ]);
-    
+            ] );
+
             // Criação do registro em FolhaRecrutamento
-            $funcionario->recrutamento()->create([
+            $funcionario->recrutamento()->create( [
                 'etapa' => 0,
-                // Outros campos que você precisa definir aqui
-            ]);
-    
-            // Confirma a transação se todas as operações forem bem-sucedidas
+            ] );
+
             DB::commit();
-    
-            // Resposta de sucesso
-            return redirect()->back()->with([
+
+            return redirect()->back()->with( [
                 'successMessageTitle' => 'Processo de admissão iniciado!',
                 'successMessageSubTitle' => 'O contador(a) está preparando o contrato.'
-            ]);
-            
-        } catch (\Exception $e) {
-            // Desfaz a transação em caso de falha
+            ] );
+
+        } catch ( \Exception $e ) {
             DB::rollback();
-    
-            // Retorna para a página anterior com uma mensagem de erro
-            return redirect()->back()->withError($e->getMessage());
+
+            return redirect()->back()->withError( $e->getMessage() );
         }
     }
-    
-    
 
-    public function showRecrutamento($id)
-    {
-        // Encontrar o funcionário pelo ID
-        $funcionario = FolhaFuncionario::with('recrutamento')->findOrFail($id);
-        
-        // Passar o funcionário para a view e retornar a view
-        return view('page_clients.folha-recrutamento', compact('funcionario'));
+    public function showRecrutamento( $id ) {
+
+        $funcionario = FolhaFuncionario::with( 'recrutamento' )->findOrFail( $id );
+
+        return view( 'page_clients.folha-recrutamento', compact( 'funcionario' ) );
     }
 }

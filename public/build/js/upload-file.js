@@ -19,6 +19,7 @@ function handleFileUpload(input) {
         nome.innerHTML = '<i data-feather="server" style="width:15px"></i> Total de ' + totalSizeMB + ' MB selecionados.';
 
         // Atualizar o rótulo para indicar sucesso
+        label.style.background = 'rgb(249 255 250)'; 
         label.innerHTML = '<i data-feather="package" class="m-1"></i> Documentos anexados com sucesso!';
         label.classList.remove('border-container');
         label.classList.add('border-success', 'border', 'border-2', 'border-opacity-50');

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('contrato_original')->nullable();
             $table->string('contrato_assinado')->nullable();
             $table->string('ficha_cadastral')->nullable();
+            $table->date('pedido_rescisao')->nullable();
             $table->string('rescisao_motivo')->nullable();
             $table->date('dt_aviso')->nullable();
             $table->string('reducao_jornada')->nullable();

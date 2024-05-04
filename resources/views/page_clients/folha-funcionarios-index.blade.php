@@ -24,7 +24,6 @@
                     });
                 </script>
             @endif
-
             <!-- reexibição do modal com erros de validação -->
             @if ($errors->any())
                 <script>
@@ -34,8 +33,7 @@
                 </script>
             @endif
             <!-- /Modal Admissão -->
-            @component('components.modal-forms')
-            @endcomponent
+            @include('components.modalpopup')
             <!-- Lista Funcionários -->
             <div class="card table-list-card">
                 <div class="card-body">
@@ -86,7 +84,7 @@
                                         </td>
                                         <td>{{ $funcionario->cpf }}</td>
                                         <td>{{ $funcionario->telefone }}</td>
-                                        <td>{{ $funcionario->salario }}</td>
+                                        <td>R$ {{ number_format($funcionario->salario, 2, ',', '.') }}</td>
                                         <td>{{ $funcionario->modalidade }}</td>
 
                                         <td>

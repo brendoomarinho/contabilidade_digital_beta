@@ -16,16 +16,17 @@
 
     <!-- Biblioteca jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
+
+
     <script>
-         var pusherKey = "{{ config('settings.pusher_key') }}";
-         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
+        var pusherKey = "{{ config('settings.pusher_key') }}";
+        var pusherCluster = "{{ config('settings.pusher_cluster') }}";
     </script>
 
     @vite(['resources/js/app.js'])
-    
+
     @include('layout.partials.head')
-    
+
 </head>
 
 @if (Route::is(['chat']))
@@ -167,6 +168,10 @@
 @component('components.modalpopup')
 @endcomponent
 @include('layout.partials.footer-scripts')
-</body>
 
+<!-- Mask JS -->
+<script src="{{ asset('build/js/jquery.mask.min.js') }}"></script>
+<script src="{{ asset('build/js/mask.js') }}"></script>
+
+</body>
 </html>

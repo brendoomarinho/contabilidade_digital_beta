@@ -1,30 +1,6 @@
-(function ($) {
-  'use strict';
-
-  $.mask.definitions['~'] = '[+-]';
-  $('#date').mask('99/99/9999');
-  $('#phone').mask('(99) 999-9999');
-  $('#phoneExt').mask('(99) 999-9999? x99999');
-  $('#iphone').mask('+33 999 999 999');
-  $('#tin').mask('99-9999999');
-  $('#ccn').mask('9999 9999 9999 9999');
-  $('#ssn').mask('999-99-9999');
-  $('#currency').mask('999,999,999.99');
-  $('#product').mask('a*-999-a999', {
-    placeholder: ' '
-  });
-  $('#eyescript').mask('~9.99 ~9.99 999');
-  $('#po').mask('PO: aaa-999-***');
-  $('#pct').mask('99%');
-  $('#phoneAutoclearFalse').mask('(999) 999-9999', {
-    autoclear: false
-  });
-  $('#phoneExtAutoclearFalse').mask('(999) 999-9999? x99999', {
-    autoclear: false
-  });
-  $('input').blur(function () {
-    $('#info').html('Unmasked value: ' + $(this).mask());
-  }).dblclick(function () {
-    $(this).unmask();
-  });
-})(jQuery);
+$(document).ready(function(){
+  $('#cpf').mask('000.000.000-00');
+  $('#telefone').mask('(00) 00000-0000');
+  $('#cnpj').mask('00.000.000/0000-00'); // Adiciona a máscara para CNPJ
+  $('#valor').mask('000.000,00', { reverse: true }); // Corrige a máscara para valor em dinheiro
+});

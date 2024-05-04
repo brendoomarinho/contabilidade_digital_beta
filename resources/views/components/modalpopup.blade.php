@@ -1,26 +1,26 @@
 {{-- Meu projeto --}}
-@if(Route::is(['movimento.index']))
-		<!-- Adicionar Movimento -->
-		<div class="modal fade" id="add-movimento">
-			<div class="modal-dialog modal-dialog-centered custom-modal-two">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Enviar movimento</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="designation">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="mb-3">
-												<label class="form-label">Selecione a competência</label>
-												{{-- <select class="form-select @error('competencia_id') is-invalid @enderror" id="competencia_id" name="competencia_id">
+@if (Route::is(['movimento.index']))
+    <!-- Adicionar Movimento -->
+    <div class="modal fade" id="add-movimento">
+        <div class="modal-dialog modal-dialog-centered custom-modal-two">
+            <div class="modal-content">
+                <div class="page-wrapper-new p-0">
+                    <div class="content">
+                        <div class="modal-header border-0 custom-modal-header">
+                            <div class="page-title">
+                                <h4>Enviar movimento</h4>
+                            </div>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body custom-modal-body">
+                            <form action="designation">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Selecione a competência</label>
+                                            {{-- <select class="form-select @error('competencia_id') is-invalid @enderror" id="competencia_id" name="competencia_id">
                                                     <option></option>
                                                     @foreach ($competencias->reverse() as $competencia)
                                                     <option value="{{ $competencia->id }}">
@@ -32,103 +32,247 @@
                                                     @error('competencia_id')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror --}}
-											</div>
-										</div>		
-										<div class="input-blocks m-0">
-											<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-												<span class="status-label">Status</span>
-												<input type="checkbox" id="user5" class="check" checked>
-												<label for="user5" class="checktoggle">	</label>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-submit">Enviar</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Add Department -->
+                                        </div>
+                                    </div>
+                                    <div class="input-blocks m-0">
+                                        <div
+                                            class="status-toggle modal-status d-flex justify-content-between align-items-center">
+                                            <span class="status-label">Status</span>
+                                            <input type="checkbox" id="user5" class="check" checked>
+                                            <label for="user5" class="checktoggle"> </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer-btn">
+                                    <button type="button" class="btn btn-cancel me-2"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-submit">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add Department -->
 @endif
 
+@if (Route::is(['funcionarios.index']))
+    <!-- Modal Admissão -->
+    <div class="modal fade" id="add-funcionario">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="page-wrapper-new p-0">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>Formulário de admissão</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form method="post" action="{{ route('funcionarios.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="card-title mb-2">Dados para admissão</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Nome completo</label>
+                                                <input type="text" name="nome" class="form-control"
+                                                    value="{{ old('nome') }}">
+                                                @error('nome')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Data admissão</label>
+                                                <input type="date" name="dt_admissao" class="form-control"
+                                                    value="{{ old('dt_admissao') }}">
+                                                @error('dt_admissao')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Jornada</label>
+                                                <select class="select" name="jornada">
+                                                    <option value="">Selecione</option>
+                                                    <option value="1"
+                                                        @if (old('jornada') == '1') selected @endif>?</option>
+                                                    <option value="2"
+                                                        @if (old('jornada') == '2') selected @endif>?</option>
+                                                    <option value="3"
+                                                        @if (old('jornada') == '3') selected @endif>?</option>
+                                                    <option value="4"
+                                                        @if (old('jornada') == '4') selected @endif>?</option>
+                                                </select>
+                                                @error('jornada')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Telefone</label>
+                                                <input type="text" name="telefone" id="telefone"
+                                                    class="form-control" value="{{ old('telefone') }}">
+                                                @error('telefone')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">CPF</label>
+                                                <input type="text" id="cpf" name="cpf" class="form-control"
+                                                    value="{{ old('cpf') }}">
+                                                @error('cpf')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Cargo/Função</label>
+                                                <input type="text" name="cargo" class="form-control"
+                                                    value="{{ old('cargo') }}">
+                                                @error('cargo')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Salário</label>
+                                                <input type="text" name="salario" class="form-control"
+                                                    id="valor" value="{{ old('salario') }}">
+                                                @error('salario')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="d-block">Modalidade:</label>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="modalidade"
+                                                        id="gender_male" value="contrato"
+                                                        @if (old('modalidade') == 'contrato') checked @endif>
+                                                    <label class="form-check-label" for="gender_male">Contrato</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="modalidade"
+                                                        id="gender_female" value="estágio"
+                                                        @if (old('modalidade') == 'estágio') checked @endif>
+                                                    <label class="form-check-label"
+                                                        for="gender_female">Estágio</label>
+                                                </div>
+                                                @error('modalidade')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title mb-2">Documentos anexos</h5>
+                                    <span>Por favor, anexar RG e Comprovante de residência do candidato.</span><br>
+                                    <span>Obs.: Caso o candidato tenha dependente(s), anexar documentação que contenha
+                                        CPF e Data de nascimento.</span>
+                                    <!-- Anexo Multiple -->
+                                    @component('components.upload-file')
+                                    @endcomponent
+                                    <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                </div>
+                            </div>
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 
 @if (Route::is(['recrutamento.show']))
-<!-- Modal Rescisão -->
- <div class="modal fade" id="add-rescisao">
-     <div class="modal-dialog modal-dialog-centered custom-modal-two">
-         <div class="modal-content">
-             <div class="page-wrapper-new p-0">
-                 <div class="modal-header border-0 custom-modal-header">
-                     <div class="page-title">
-                         <h4>Pedido de rescisão</h4>
-                     </div>
-                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>
-                 <div class="modal-body custom-modal-body">
-                     <form method="post" action="#" enctype="multipart/form-data">
-                         @csrf
-                         <input class="d-none" name="atendimento" type="number" value="0" />
-                         <div class="row">
-                             <div class="mb-3">
-                                 <label class="form-label">Motivo</label>
-                                 <select class="select" id="motivo" name="motivo">
-                                     <option value="0">Selecione</option>
-                                     <option value="1">Demitido COM justa causa</option>
-                                     <option value="2">Demitido SEM justa causa</option>
-                                     <option value="3">Pedido de demissão SEM justa causa</option>
-                                     <option value="4">Morte</option>
-                                 </select>
-                                 @error('motivo')
-                                     <div class="alert alert-danger">{{ $message }}</div>
-                                 @enderror
-                             </div>
-                             <div class="col-lg-7">
-                                 <div class="mb-3">
-                                     <label class="form-label">Data aviso</label>
-                                     <input type="date" name="dt_aviso" class="form-control"
-                                         value="{{ old('dt_aviso') }}">
-                                     @error('dt_aviso')
-                                         <div class="alert alert-danger">{{ $message }}</div>
-                                     @enderror
-                                 </div>
-                             </div>
-                             <div class="col-lg-5">
-                                 <div class="mb-3">
-                                     <label class="form-label">Redução jornada</label>
-                                     <select class="select id="reducao_jornada" name="reducao_jornada">
-                                         <option value="0">Selecione</option>
-                                         <option value="1">2h por dia</option>
-                                         <option value="2">7 dias corridos</option>
-                                     </select>
-                                     @error('reducao_jornada')
-                                         <div class="alert alert-danger">{{ $message }}</div>
-                                     @enderror
-                                 </div>
-                             </div>
-                             <div class="mb-3">
-                                 <label class="form-label">Breve relato:</label>
-                                 <textarea rows="5" cols="5" class="form-control" placeholder="Digitar mensagem..."></textarea>
-                             </div>
-                         </div>
-                         <div class="modal-footer-btn">
-                             <button type="button" class="btn btn-cancel me-2"
-                                 data-bs-dismiss="modal">Cancelar</button>
-                             <button type="submit" class="btn btn-submit">Enviar</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
-
+    @if (isset($funcionario))
+        <!-- Modal Rescisão -->
+        <div class="modal fade" id="add-rescisao">
+            <div class="modal-dialog modal-dialog-centered custom-modal-two">
+                <div class="modal-content">
+                    <div class="page-wrapper-new p-0">
+                        <div class="modal-header border-0 custom-modal-header">
+                            <div class="page-title">
+                                <h4>Pedido de rescisão </h4>
+                            </div>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body custom-modal-body">
+                            <form method="post"
+                                action="{{ route('recrutamento.pedidoRescisao', ['funcionario' => $funcionario->id]) }}">
+                                @csrf
+                                @method('PATCH')
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <label class="form-label">Motivo</label>
+                                        <select class="select" id="rescisao_motivo" name="rescisao_motivo">
+                                            <option value="">Selecione</option>
+                                            <option value="1" @if (old('rescisao_motivo') == '1') selected @endif>
+                                                Demitido com justa causa</option>
+                                            <option value="2" @if (old('rescisao_motivo') == '2') selected @endif>
+                                                Demitido sem justa causa</option>
+                                            <option value="3" @if (old('rescisao_motivo') == '3') selected @endif>
+                                                Pedido de demissão sem justa causa</option>
+                                            <option value="4" @if (old('rescisao_motivo') == '4') selected @endif>
+                                                Acordo</option>
+                                        </select>
+                                        @error('rescisao_motivo')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="mb-3">
+                                            <label class="form-label">Data aviso</label>
+                                            <input type="date" name="dt_aviso" class="form-control"
+                                                value="{{ old('dt_aviso') }}">
+                                            @error('dt_aviso')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Redução jornada</label>
+                                            <select class="select id="reducao_jornada" name="reducao_jornada">
+                                                <option value="">Selecione</option>
+                                                <option value="1"
+                                                    @if (old('reducao_jornada') == '1') selected @endif>
+                                                    2h por dia</option>
+                                                <option value="2"
+                                                    @if (old('reducao_jornada') == '2') selected @endif>
+                                                    7 dias corridos</option>
+                                            </select>
+                                            @error('reducao_jornada')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Breve relato (opcional)</label>
+                                        <textarea name="relato" rows="5" cols="5" class="form-control" placeholder="Digitar mensagem..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer-btn">
+                                    <button type="button" class="btn btn-cancel me-2"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-submit">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endif
 
 
@@ -138,7 +282,7 @@
 
 
 
-@if (Route::is(['product-list']))
+{{-- @if (Route::is(['product-list']))
     <!-- Add Payroll -->
     <div class="offcanvas offcanvas-end em-payrol-add" tabindex="-1" id="offcanvasRight-add">
         <div class="offcanvas-body p-0">
@@ -9281,7 +9425,7 @@
     </div>
 @endif
 
-@if(Route::is(['attendance-admin']))
+@if (Route::is(['attendance-admin']))
 		<!-- Add Attendance -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -9424,7 +9568,7 @@
 		<!-- /Add Attendance -->
 @endif
 
-@if(Route::is(['attendance-employee']))
+@if (Route::is(['attendance-employee']))
 		<!-- Add Attendance -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -9541,7 +9685,7 @@
 		<!-- /Edit Warehouse -->
 @endif
 
-@if(Route::is(['ban-ip-address']))
+@if (Route::is(['ban-ip-address']))
 		<!-- Add BanIp -->
 		<div class="modal fade" id="add-banip">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -9643,7 +9787,7 @@
 		<!-- /Edit BanIp -->
 @endif
 
-@if(Route::is(['bank-settings-grid']))
+@if (Route::is(['bank-settings-grid']))
 		<!-- Add Bank Account -->
 		<div class="modal fade" id="add-account">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -9803,7 +9947,7 @@
 		<!-- /Edit Bank Account -->
 @endif
 
-@if(Route::is(['bank-settings-list']))
+@if (Route::is(['bank-settings-list']))
 		<!-- Add Bank Account -->
 		<div class="modal fade" id="add-account">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -9963,7 +10107,7 @@
 		<!-- /Edit Bank Account -->
 @endif
 
-@if(Route::is(['calendar']))
+@if (Route::is(['calendar']))
             	<!-- Add Event Modal -->
 				<div id="add_event" class="modal custom-modal fade" role="dialog">
 					<div class="modal-dialog modal-dialog-centered" role="document">
@@ -10051,7 +10195,7 @@
                 <!-- /Add Category Modal -->
 @endif
 
-@if(Route::is(['countires']))
+@if (Route::is(['countires']))
 		<!-- Add Supplier -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10174,7 +10318,7 @@
 		<!-- /Edit Supplier -->
 @endif
 
-@if(Route::is(['currency-settings']))
+@if (Route::is(['currency-settings']))
 		<!-- Add Currency -->
 		<div class="modal fade" id="add-currency">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10300,7 +10444,7 @@
 		<!-- /Edit Currency -->
 @endif
 
-@if(Route::is(['custom-fields']))
+@if (Route::is(['custom-fields']))
 		<!-- Add Custom Field -->
 		<div class="modal fade" id="add-custom-field">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10472,7 +10616,7 @@
 		<!-- /Edit Custom Field -->
 @endif
 
-@if(Route::is(['department-grid','department-list']))
+@if (Route::is(['department-grid', 'department-list']))
 		<!-- Add Department -->
 		<div class="modal fade" id="add-department">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10593,7 +10737,7 @@
 		<!-- /Edit Department -->
 @endif
 
-@if(Route::is(['designation']))
+@if (Route::is(['designation']))
 		<!-- Add Department -->
 		<div class="modal fade" id="add-department">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10683,7 +10827,7 @@
 		<!-- /Edit Department -->
 @endif
 
-@if(Route::is(['email-settings']))
+@if (Route::is(['email-settings']))
 		<!-- Php Mail -->
 		<div class="modal fade" id="php-mail">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10838,7 +10982,7 @@
 		<!-- /Test Mail -->
 @endif
 
-@if(Route::is(['expense-category']))
+@if (Route::is(['expense-category']))
 			<!-- Add Expense Category-->
 			<div class="modal fade" id="add-units">
 				<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -10940,7 +11084,7 @@
 		<!-- /Edit Expense -->
 @endif
 
-@if(Route::is(['expense-list']))
+@if (Route::is(['expense-list']))
 			<!-- Add Expense -->
 			<div class="modal fade" id="add-units">
 				<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -11103,7 +11247,7 @@
 		<!-- /Edit Expense -->
 @endif
 
-@if(Route::is(['file-manager']))
+@if (Route::is(['file-manager']))
 	<!-- Files Toogle Slide -->
 	<div class="toggle-sidebar">
 		<div class="d-flex align-items-center justify-content-between head">
@@ -11470,7 +11614,7 @@
 	<!-- /Create Folder -->
 @endif
 
-@if(Route::is(['holidays']))
+@if (Route::is(['holidays']))
 		<!-- Add Department -->
 		<div class="modal fade" id="add-department">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -11602,7 +11746,7 @@
 		<!-- /Edit Department -->
 @endif
 
-@if(Route::is(['leave-types']))
+@if (Route::is(['leave-types']))
 		<!-- Add coupons -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -11706,7 +11850,7 @@
 		<!-- /Edit Warehouse -->
 @endif
 
-@if(Route::is(['leaves-employee']))
+@if (Route::is(['leaves-employee']))
 		<!-- Add Leave -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -11911,7 +12055,7 @@
 		<!-- /Rejected Reason -->
 @endif
 
-@if(Route::is(['manage-stocks']))
+@if (Route::is(['manage-stocks']))
 		<!-- Add Stock -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered stock-adjust-modal">
@@ -12100,7 +12244,7 @@
 		<!-- /Edit Stock -->
 @endif
 
-@if(Route::is(['payment-gateway-settings']))
+@if (Route::is(['payment-gateway-settings']))
 		<!-- Php Mail -->
 		<div class="modal fade" id="payment-connect">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -12155,7 +12299,7 @@
 		<!-- /Php Mail -->
 @endif
 
-@if(Route::is(['printer-settings']))
+@if (Route::is(['printer-settings']))
 		<!-- Add Printer -->
 		<div class="modal fade" id="add-printer">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -12272,7 +12416,7 @@
 		<!-- /Edit Printer -->
 @endif
 
-@if(Route::is(['purchase-list']))
+@if (Route::is(['purchase-list']))
 	<!-- Add Purchase -->
 	<div class="modal fade" id="add-units">
 		<div class="modal-dialog purchase modal-dialog-centered stock-adjust-modal">
@@ -12746,7 +12890,7 @@
 	<!-- /Import Purchase -->
 @endif
 
-@if(Route::is(['purchase-returns']))
+@if (Route::is(['purchase-returns']))
 			<!--add popup -->
 			<div class="modal fade" id="add-sales-new">
 				<div class="modal-dialog add-centered">
@@ -13110,7 +13254,7 @@
 			<!-- Edit popup -->
 @endif
 
-@if(Route::is(['roles-permissions']))
+@if (Route::is(['roles-permissions']))
 		<!-- Add Role -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -13178,7 +13322,7 @@
 		<!-- /Edit Role -->
 @endif
 
-@if(Route::is(['shift']))
+@if (Route::is(['shift']))
 		<!-- Add Shift -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -14165,7 +14309,7 @@
 			<!-- /Edit Shift -->
 @endif
 
-@if(Route::is(['sms-gateway']))
+@if (Route::is(['sms-gateway']))
 		<!-- nexmo Config -->
 		<div class="modal fade" id="nexmo-config">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -14326,7 +14470,7 @@
 		<!-- /Twilio Config -->
 @endif
 
-@if(Route::is(['social-authentication']))
+@if (Route::is(['social-authentication']))
 		<!-- Connect Facebook -->
 		<div class="modal fade" id="fb-connect">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -14515,7 +14659,7 @@
 		<!-- /Connect Linkedin -->
 @endif
 
-@if(Route::is(['states']))
+@if (Route::is(['states']))
 			<!-- Add State -->
 			<div class="modal fade" id="add-units">
 				<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -14639,7 +14783,7 @@
 		<!-- /Edit State -->
 @endif
 
-@if(Route::is(['stock-adjustment']))
+@if (Route::is(['stock-adjustment']))
 		<!-- Add Adjustment -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered stock-adjust-modal">
@@ -14916,7 +15060,7 @@
 		<!-- /View Notes -->
 @endif
 
-@if(Route::is(['stock-transfer']))
+@if (Route::is(['stock-transfer']))
 		<!-- Add Stock -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered stock-adjust-modal">
@@ -15206,7 +15350,7 @@
 		<!-- /Import Transfer -->
 @endif
 
-@if(Route::is(['storage-settings']))
+@if (Route::is(['storage-settings']))
 		<!-- Aws Config -->
 		<div class="modal fade" id="aws-config">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -15273,7 +15417,7 @@
 		<!-- /Aws Config -->
 @endif
 
-@if(Route::is(['system-settings']))
+@if (Route::is(['system-settings']))
 		<!-- Google Captcha -->
 		<div class="modal fade" id="google-captcha">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -15429,7 +15573,7 @@
 		<!-- /Google Adsense -->
 @endif
 
-@if(Route::is(['tax-rates']))
+@if (Route::is(['tax-rates']))
 		<!-- Add Tax Rates -->
 		<div class="modal fade" id="add-tax">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -15524,7 +15668,7 @@
 		</div>
 @endif
 
-@if(Route::is(['users']))
+@if (Route::is(['users']))
 <!-- Add User -->
 	<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -15737,7 +15881,7 @@
 		<!-- /Edit User -->
 @endif
 
-@if(Route::is(['countries']))
+@if (Route::is(['countries']))
 		<!-- Add Supplier -->
 		<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -15982,4 +16126,4 @@
         </div>
     </div>
     <!-- /Edit Store -->
-@endif
+@endif --}}

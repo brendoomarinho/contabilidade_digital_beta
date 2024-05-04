@@ -6654,7 +6654,7 @@ caption {
 }
 
 .dataTables_length label:before {
-  content: "Showing 10 of 40 Results";
+  content: "Monstrando 10 de 40 Resultados";
   margin-right: 5px;
 }
 
@@ -24385,7 +24385,7 @@ table .edit-delete-action.data {
 }
 
 .modal-footer-btn {
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: right;
 }
 .modal-footer-btn a {
@@ -27208,7 +27208,6 @@ table tbody td.action-table-data a .add-checkbox {
   align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  margin-bottom: 24px;
 }
 .profile-pic-upload .profile-pic {
   width: 120px;

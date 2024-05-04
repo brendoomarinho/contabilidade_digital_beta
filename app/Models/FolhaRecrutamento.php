@@ -16,6 +16,7 @@ class FolhaRecrutamento extends Model {
         'contrato_original',
         'contrato_assinado',
         'ficha_cadastral',
+        'pedido_rescisao',
         'rescisao_motivo',
         'dt_aviso',
         'reducao_jornada',
