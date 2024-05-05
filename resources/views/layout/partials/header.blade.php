@@ -3,7 +3,7 @@
     <!-- Logo -->
     <div class="header-left active">
         <a href="{{ url('index') }}" class="logo logo-normal">
-            <img src="{{ URL::asset('/build/img/logo.png') }}" alt="">
+            <img src="{{ URL::asset('/build/img/logo.svg') }}" alt="">
         </a>
         <a href="{{ url('index') }}" class="logo logo-white">
             <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
@@ -210,11 +210,11 @@
                         </div>
                     </div>
                     <hr class="m-0">
-                    <a class="dropdown-item" href="{{ url('profile') }}"> <i class="me-2"
+                  {{--  <a class="dropdown-item" href="{{ url('profile') }}" -->> <i class="me-2"
                             data-feather="user"></i> Meu cadastro</a>
                     <a class="dropdown-item" href="{{ url('general-settings') }}"><i class="me-2"
                             data-feather="settings"></i>Configurações</a>
-                    <hr class="m-0">
+                    <hr class="m-0">--}}
                     <a class="dropdown-item logout pb-0" href="{{ route('signout') }}"><img
                             src="{{ URL::asset('/build/img/icons/log-out.svg') }}" class="me-2"
                             alt="img">Encerrar</a>

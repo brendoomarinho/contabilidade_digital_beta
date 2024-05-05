@@ -83,7 +83,7 @@
                 </form>
             </div>
             <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                <p><i class="fa-solid fa-arrow-pointer"></i> Sistema | {{ config('app.name') }}</p>
+                <p><i class="fa-solid fa-arrow-pointer"></i> Digital | {{ config('app.name') }}</p>
             </div>
         </div>
     </div>

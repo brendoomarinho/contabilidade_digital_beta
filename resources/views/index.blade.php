@@ -4,7 +4,7 @@
     <div class="page-wrapper">
         <div class="content">
             <div class="row">
-                <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                {{-- <div class="col-xl-3 col-sm-6 col-12 d-flex">
                     <div class="dash-widget dash2 w-100">
                         <div class="dash-widgetimg">
                             <span><img src="{{ URL::asset('/build/img/icons/dash3.svg') }}" alt="img"></span>
@@ -47,7 +47,7 @@
                             <h6>Aplicações</h6>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-xl-3 col-sm-6 col-12 d-flex">
                     <div class="dash-count">
                         <div class="dash-counts">
@@ -96,7 +96,7 @@
             </div>
             <!-- Button trigger modal -->
 
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-xl-7 col-sm-12 col-12 d-flex">
                     <div class="card flex-fill">
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -134,9 +134,9 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xl-5 col-sm-12 col-12 d-flex">
+                <div class="col-xl-5 col-sm-12 col-12 d-flex">
                     <div class="card flex-fill default-cover mb-4">
-                       <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="card-header d-flex justify-content-between align-items-center">
                             <h4 class="card-title mb-0">Recent Products</h4>
                             <div class="view-all-link">
                                 <a href="javascript:void(0);" class="view-all d-flex align-items-center">
@@ -205,7 +205,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
             {{-- <div class="card">
                 <div class="card-header">

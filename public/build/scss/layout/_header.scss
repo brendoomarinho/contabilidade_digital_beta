@@ -50,11 +50,12 @@
         @include transition(all 0.5s ease);
       //border-right: 1px solid $border-color;
         border-bottom: 1px solid $border-color;
+        justify-content: center;
         .logo {
             display: inline-block;
             line-height: 0;
             img{
-                width: 140px;
+                width: 170px;
             }
             @include respond-below(custom991) {
                 text-align: center;
