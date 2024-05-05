@@ -83,7 +83,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Nome completo</label>
                                                 <input type="text" name="nome" class="form-control"
-                                                    value="{{ old('nome') }}">
+                                                    value="{{ old('nome') }}" oninput="UpperCase(this)">
                                                 @error('nome')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
@@ -134,7 +134,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Cargo/Função</label>
                                                 <input type="text" name="cargo" class="form-control"
-                                                    value="{{ old('cargo') }}">
+                                                    value="{{ old('cargo') }}" oninput="formatarText(this)">
                                                 @error('cargo')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
@@ -257,7 +257,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Breve relato (opcional)</label>
+                                        <label class="form-label">Breve relato (opcional).</label>
                                         <textarea name="relato" rows="5" cols="5" class="form-control" placeholder="Digitar mensagem..."></textarea>
                                     </div>
                                 </div>
@@ -974,7 +974,7 @@
                                                     <div class="searchinputs list dropdown-toggle"
                                                         id="dropdownMenuClickable2" data-bs-toggle="dropdown"
                                                         data-bs-auto-close="false">
-                                                        <input type="text" placeholder="Search">
+                                                        <input type="text" placeholder="Procurar">
                                                         <i data-feather="search" class="feather-16 icon"></i>
                                                         <div class="search-addon d-none">
                                                             <span><i data-feather="x-circle"
@@ -1399,7 +1399,7 @@
                                                     <div class="searchinputs list dropdown-toggle"
                                                         id="dropdownMenuClickable2" data-bs-toggle="dropdown"
                                                         data-bs-auto-close="false">
-                                                        <input type="text" placeholder="Search">
+                                                        <input type="text" placeholder="Procurar">
                                                         <i data-feather="search" class="feather-16 icon"></i>
                                                         <div class="search-addon d-none">
                                                             <span><i data-feather="x-circle"
@@ -2648,7 +2648,7 @@
                                                     <div class="searchinputs list dropdown-toggle"
                                                         id="dropdownMenuClickable2" data-bs-toggle="dropdown"
                                                         data-bs-auto-close="false">
-                                                        <input type="text" placeholder="Search">
+                                                        <input type="text" placeholder="Procurar">
                                                         <i data-feather="search" class="feather-16 icon"></i>
                                                         <div class="search-addon d-none">
                                                             <span><i data-feather="x-circle"

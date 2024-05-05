@@ -12015,7 +12015,7 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   border: 1px solid #353570;
 }
 [data-layout-mode=dark_mode] .search-set .search-input input[type=search]::placeholder {
-  color: red;
+  color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .input-blocks input[type=text], [data-layout-mode=dark_mode] .input-blocks input[type=password],
 [data-layout-mode=dark_mode] .select2-container--default .select2-selection--single,
@@ -32478,4 +32478,4 @@ label span {
   color: #5B6670;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.cssw.map */

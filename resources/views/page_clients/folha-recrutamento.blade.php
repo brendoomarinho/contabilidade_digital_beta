@@ -26,7 +26,7 @@
                     });
                 </script>
             @endif
-             <!-- reexibição do modal com erros de validação -->
+            <!-- reexibição do modal com erros de validação -->
             @if ($errors->any())
                 <script>
                     $(document).ready(function() {
@@ -39,7 +39,11 @@
             <div class="card table-list-card">
                 <div class="card-body">
                     <div class="table-top">
-                        <span><i class="fa-solid fa-user fs-3"></i> {{ $funcionario->nome }}</span>
+                        <div>
+                            <div class="avatar bg-info avatar-rounded me-2">
+                                <i class="fa-solid fa-user fs-6"></i>
+                            </div>{{ $funcionario->nome }}
+                        </div>
                         <p>CPF: {{ $funcionario->cpf }}</p>
                     </div>
                     <div class="table-responsive">
@@ -254,7 +258,8 @@
                                         @elseif($funcionario->recrutamento->etapa > 5)
                                             <div class="timeline-body mt-3">
                                                 <p>
-                                                    Rescisão solicitada em {{ \Carbon\Carbon::parse($funcionario->recrutamento->pedido_rescisao)->format('d/m/Y') }}.
+                                                    Rescisão solicitada em
+                                                    {{ \Carbon\Carbon::parse($funcionario->recrutamento->pedido_rescisao)->format('d/m/Y') }}.
                                                 </p>
                                             </div>
                                         @endif

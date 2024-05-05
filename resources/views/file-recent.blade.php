@@ -130,7 +130,7 @@
                                             <div class="dataTables_filter">
                                                 <label> <input type="search"
                                                         class="form-control form-control-sm width-auto"
-                                                        placeholder="Search"></label>
+                                                        placeholder="Procurar"></label>
                                             </div>
                                         </div>
                                     </div>

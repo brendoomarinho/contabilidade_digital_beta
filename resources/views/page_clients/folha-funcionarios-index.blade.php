@@ -72,10 +72,9 @@
                                     <tr>
                                         <td>
                                             <div class="userimgname">
-                                                <a href="javascript:void(0);" class="product-img">
-                                                    <img src="{{ URL::asset('/build/img/users/user-01.jpg') }}"
-                                                        alt="product">
-                                                </a>
+                                                <div class="avatar bg-info avatar-rounded me-2">
+                                                    <i class="fa-solid fa-user fs-6"></i>
+                                                </div>
                                                 <div class="emp-name ">
                                                     <div class="mb-1">{{ $funcionario->nome }}</div>
                                                     <p class="role">{{ $funcionario->cargo }}</p>
@@ -88,19 +87,19 @@
                                         <td>{{ $funcionario->modalidade }}</td>
 
                                         <td>
-                                        @if($funcionario->status == 0)
-                                        <span class="badge badge-warning">Pendente</span>
-                                        @elseif($funcionario->status == 1)
-                                         <span class="badge badge-success">Contratado</span>
-                                        @elseif($funcionario->status == 2)
-                                         <span class="badge badge-linesuccess">Demitido</span>
-                                         @endif
+                                            @if ($funcionario->status == 0)
+                                                <span class="badge badge-warning">Pendente</span>
+                                            @elseif($funcionario->status == 1)
+                                                <span class="badge badge-success">Contratado</span>
+                                            @elseif($funcionario->status == 2)
+                                                <span class="badge badge-linesuccess">Demitido</span>
+                                            @endif
                                         </td>
 
                                         <td class="action-table-data">
                                             <div class="edit-delete-action data-view">
                                                 <a class="me-2" href="javascript:void(0);">
-                                                    <i data-feather="eye" class="action-eye"></i>
+                                                    <i data-feather="user" class="action-eye"></i>
                                                 </a>
                                                 <a class="me-2"
                                                     href="{{ route('recrutamento.show', ['id' => $funcionario->id]) }}">

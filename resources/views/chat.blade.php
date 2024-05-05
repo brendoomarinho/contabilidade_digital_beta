@@ -44,7 +44,7 @@
                                 <div class="user-chat-search">
                                     <form>
                                         <span class="form-control-feedback"><i class="bx bx-search"></i></span>
-                                        <input type="text" name="chat-search" placeholder="Search" class="form-control">
+                                        <input type="text" name="chat-search" placeholder="Procurar" class="form-control">
                                         <div class="user-close-btn-chat"><span class="material-icons">close</span></div>
                                     </form>
                                 </div>
