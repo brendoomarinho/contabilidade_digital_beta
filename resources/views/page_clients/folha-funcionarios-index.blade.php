@@ -105,9 +105,6 @@
                                                     href="{{ route('recrutamento.show', ['id' => $funcionario->id]) }}">
                                                     <i data-feather="folder" class="action-edit"></i>
                                                 </a>
-                                                <a class="confirm-text" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>
