@@ -535,7 +535,7 @@
                                         </div>
                                         <div class="timeline-body mt-3">
                                             <p>
-                                                <b>BRENDO OLIVEIRA MARINHO</b> foi desligado da empresa.
+                                                <b>{{ $funcionario->nome }}</b> foi desligado da empresa.
                                             </p>
                                         </div>
                                     </div>
