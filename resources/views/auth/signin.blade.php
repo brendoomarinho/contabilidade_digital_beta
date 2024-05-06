@@ -23,7 +23,7 @@
                             <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
                         </a>
                         <div class="login-userheading text-center">
-                            <h4>A <b>contabilidade digital</b> do seu <b>negócio</b> de forma muito <br>mais prática e acessível.</h4>
+                            <h4>A <b>contabilidade </b> do seu <b>negócio</b> de forma muito <br>mais prática e acessível.</h4>
                         </div>
                         <div class="form-login mb-3">
                             <label class="form-label">Email</label>
