@@ -217,7 +217,7 @@
                                         </div>
                                         <div class="timeline-body mt-3">
                                             <p>
-                                                <b>BRENDO OLIVEIRA MARINHO</b> foi contratado em período de
+                                                <b>{{ $funcionario->nome }}</b> foi contratado em período de
                                                 experiência, com vigência até 05/04/2023, podendo ser prorrogado até
                                                 25/07/2023.
                                                 Caso não haja solicitação de rescisão até a data final da experiência, o
