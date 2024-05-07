@@ -23,7 +23,7 @@
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
     </script>
 
-    @vite(['public/build/js/app.js'])
+    @vite(['resources/js/app.js'])
 
     @include('layout.partials.head')
 
