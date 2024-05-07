@@ -40,7 +40,7 @@ class CustomAuthController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("signin")->withErrors('Email ou senha inválida.');
+        return redirect()->route('signin')->withErrors('Email ou senha inválida.');
     }
     
     public function registration()
@@ -99,6 +99,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
 
-        return Redirect('signin');
+        return Redirect()->route('signin');
     }
 }

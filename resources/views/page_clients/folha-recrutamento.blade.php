@@ -27,7 +27,7 @@
                 </script>
             @endif
             <!-- reexibição do modal com erros de validação -->
-            @if ($errors->any())
+            @if ($errors->has('rescisao_motivo') || $errors->has('dt_aviso') || $errors->has('reducao_jornada'))
                 <script>
                     $(document).ready(function() {
                         $('#add-rescisao').modal('show');
@@ -86,6 +86,10 @@
                                             @component('components.upload-file')
                                             @endcomponent
                                             <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                            @error('doc_anexo')
+                                                <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
+                                                    {{ $message }}</div>
+                                            @enderror
                                             <button type="submit" class="btn btn-success">Enviar</button>
                                         </form>
                                     @elseif($funcionario->recrutamento->etapa == 1)
@@ -178,6 +182,10 @@
                                                 @component('components.upload-file')
                                                 @endcomponent
                                                 <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                                @error('doc_anexo')
+                                                    <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
+                                                        {{ $message }}</div>
+                                                @enderror
                                                 <button class="btn btn-success">Enviar</button>
                                             </form>
                                         @elseif ($funcionario->recrutamento->etapa == 4)
@@ -330,6 +338,10 @@
                                                 @component('components.upload-file')
                                                 @endcomponent
                                                 <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                                @error('doc_anexo')
+                                                    <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
+                                                        {{ $message }}</div>
+                                                @enderror
                                                 <button class="btn btn-success">Enviar</button>
                                             </form>
                                         @elseif ($funcionario->recrutamento->etapa == 8)
@@ -398,6 +410,10 @@
                                                 @component('components.upload-file')
                                                 @endcomponent
                                                 <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                                @error('doc_anexo')
+                                                    <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
+                                                        {{ $message }}</div>
+                                                @enderror
                                                 <button class="btn btn-success">Enviar</button>
                                             </form>
                                         @elseif ($funcionario->recrutamento->etapa == 10)
@@ -493,6 +509,10 @@
                                                 @component('components.upload-file')
                                                 @endcomponent
                                                 <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                                @error('doc_anexo')
+                                                    <div class="invalid-feedback"><i class="fa fa-exclamation-circle"></i>
+                                                        {{ $message }}</div>
+                                                @enderror
                                                 <button class="btn btn-success">Enviar</button>
                                             </form>
                                         @elseif ($funcionario->recrutamento->etapa == 13)

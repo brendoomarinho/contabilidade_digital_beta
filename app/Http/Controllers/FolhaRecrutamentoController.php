@@ -18,6 +18,8 @@ class FolhaRecrutamentoController extends Controller {
             
             'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
         ], [
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.mimes' => 'Formato inválido.',
             'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
         ] );
 
@@ -52,6 +54,8 @@ class FolhaRecrutamentoController extends Controller {
             
             'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
         ], [
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.mimes' => 'Formato inválido.',
             'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
         ] );
 
@@ -127,6 +131,7 @@ class FolhaRecrutamentoController extends Controller {
         $validatedData = $request->validate( [
             'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
         ], [
+            'doc_anexo.required' => 'Anexo obrigatório.',
             'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
             'doc_anexo.mimes' => 'O formato do arquivo deve ser pdf,doc,png,jpg,rar,zip.',
         ] );
@@ -160,6 +165,8 @@ class FolhaRecrutamentoController extends Controller {
         $validatedData = $request->validate( [
             'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
         ], [
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.mimes' => 'Formato inválido.',
             'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
         ] );
 
@@ -192,6 +199,8 @@ class FolhaRecrutamentoController extends Controller {
         $validatedData = $request->validate( [
             'doc_anexo' => 'required|file|mimes:pdf,doc,png,jpg,rar,zip|max:50000',
         ], [
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.mimes' => 'Formato inválido.',
             'doc_anexo.max' => 'O tamanho máximo de cada arquivo é maior que o permitido.',
         ] );
 

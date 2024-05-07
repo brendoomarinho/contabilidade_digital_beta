@@ -101,13 +101,9 @@
                                                 <select class="select" name="jornada">
                                                     <option value="">Selecione</option>
                                                     <option value="1"
-                                                        @if (old('jornada') == '1') selected @endif>?</option>
+                                                        @if (old('jornada') == '1') selected @endif>Jornada de trabalho regular</option>
                                                     <option value="2"
-                                                        @if (old('jornada') == '2') selected @endif>?</option>
-                                                    <option value="3"
-                                                        @if (old('jornada') == '3') selected @endif>?</option>
-                                                    <option value="4"
-                                                        @if (old('jornada') == '4') selected @endif>?</option>
+                                                        @if (old('jornada') == '2') selected @endif>Escala de trabalho</option>
                                                 </select>
                                                 @error('jornada')
                                                     <div class="alert alert-danger">{{ $message }}</div>
