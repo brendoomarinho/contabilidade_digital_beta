@@ -92,7 +92,7 @@
                                             @elseif($funcionario->status == 1)
                                                 <span class="badge badge-success">Contratado</span>
                                             @elseif($funcionario->status == 2)
-                                                <span class="badge badge-linesuccess">Demitido</span>
+                                                <span class="badge badge-danger">Desligado</span>
                                             @endif
                                         </td>
 

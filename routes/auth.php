@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/signin');
+Route::redirect('/', '/entrar');
 
 // protected routes
 Route::middleware('auth')->group(function () {
     Route::get('index', [CustomAuthController::class, 'dashboard']);
 });
 
-Route::get('signin', [CustomAuthController::class, 'index'])->name('signin');
+Route::get('entrar', [CustomAuthController::class, 'index'])->name('signin');
 Route::post('custom-login', [CustomAuthController::class, 'customSignin'])->name('signin.custom');
 Route::get('register', [CustomAuthController::class, 'registration'])->name('register');
 Route::post('custom-register', [CustomAuthController::class, 'customRegister'])->name('register.custom');
