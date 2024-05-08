@@ -57,6 +57,10 @@ export default defineConfig({
                     src: 'resources/scss',
                     dest: ''
                 },
+                {
+                    src: 'resources/icons',
+                    dest: ''
+                },
             ]
         }),
     ],
