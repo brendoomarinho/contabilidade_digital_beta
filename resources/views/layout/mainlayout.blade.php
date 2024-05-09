@@ -23,7 +23,7 @@
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
     </script>
 
-    @vite(['resources/js/app.js'])
+    
 
     @include('layout.partials.head')
 
@@ -172,6 +172,10 @@
 <!-- Mask JS -->
 <script src="{{ asset('build/js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('build/js/mask.js') }}"></script>
+
+
+<script src="{{ asset('build/js/app.js') }}"></script>
+
 
 </body>
 </html>
