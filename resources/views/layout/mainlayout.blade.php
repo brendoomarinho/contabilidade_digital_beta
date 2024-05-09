@@ -24,7 +24,7 @@
     </script>
 
     
-    {{-- @vite(['resources/js/app.js']) --}}
+    @vite(['resources/js/app.js'])
 
 
     @include('layout.partials.head')
@@ -169,7 +169,7 @@
 
 
 
-<script type="module" src="{{ asset('build/js/app.js') }}"></script>
+{{-- <script type="module" src="{{ asset('build/js/app.js') }}"></script> --}}
 
 
 {{-- @include('layout.partials.theme-settings') --}}
