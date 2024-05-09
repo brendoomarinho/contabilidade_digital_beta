@@ -23,7 +23,7 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/css/style.css', 'resources/js/script.js', 'resources/js/app.js', 'resources/js/bootstrap.js'],
+            input: ['resources/css/style.css', 'resources/js/app.js'],
             refresh: true,
         }),
         
@@ -57,18 +57,9 @@ export default defineConfig({
                     src: 'resources/scss',
                     dest: ''
                 },
-                {
-                    src: 'resources/icons',
-                    dest: ''
-                },
             ]
         }),
     ],
-    resolve:{
-        alias:{
-            "@": "/resources/js",
-        },
-    }
 
 });
 
