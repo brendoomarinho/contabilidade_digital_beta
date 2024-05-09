@@ -23,7 +23,7 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/css/style.css', , 'resources/js/app.js', 'resources/js/script.js'],
+            input: ['resources/css/style.css', 'resources/js/app.js'],
             refresh: true,
         }),
 
