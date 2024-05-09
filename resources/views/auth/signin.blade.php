@@ -23,8 +23,8 @@
                             <img src="{{ URL::asset('/build/img/logo-white.png') }}" alt="">
                         </a>
                         <div class="login-userheading text-center">
-                            <h4>A <b>contabilidade digital</b> do seu <b>negócio</b> de forma muito <br>mais prática e acessível.</h4>
-                        </div>
+                            <div>A <b>contabilidade</b> do seu <b>negócio</b> de forma muito mais prática.</div>
+                          </div>
                         <div class="form-login mb-3">
                             <label class="form-label">Email</label>
                             <div class="form-addons">
@@ -83,7 +83,7 @@
                 </form>
             </div>
             <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                <p><i class="fa-solid fa-arrow-pointer"></i> Digital | {{ config('app.name') }}</p>
+                <p><i class="fa-solid fa-arrow-pointer"></i> {{ config('app.name') }} | V.01.01</p>
             </div>
         </div>
     </div>

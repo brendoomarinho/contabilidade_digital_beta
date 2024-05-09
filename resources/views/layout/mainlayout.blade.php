@@ -24,7 +24,7 @@
         </script>
 
         
-        {{-- @vite(['resources/js/app.js']) --}}
+        @vite(['resources/js/app.js'])
 
 
         @include('layout.partials.head')
@@ -177,8 +177,8 @@
     <script src="{{ asset('build/js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('build/js/mask.js') }}"></script>
 
-    <!-- VITES -->
-    <script src="{{ asset('build/js/app.js') }}"></script>
+    <!-- Vite copilado -->
+    {{-- <script src="{{ asset('build/js/app-dev.js') }}"></script> --}}
 
 
     </body>

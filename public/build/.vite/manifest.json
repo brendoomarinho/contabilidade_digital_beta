@@ -41,7 +41,7 @@
     "src": "resources/img/icons/dropdown.svg"
   },
   "resources/js/app.js": {
-    "file": "js/app.js",
+    "file": "js/app-dev.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
