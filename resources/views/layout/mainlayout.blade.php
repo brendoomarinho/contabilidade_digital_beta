@@ -23,6 +23,8 @@
         var pusherCluster = "{{ config('settings.pusher_cluster') }}";
     </script>
 
+    @vite(['resources/js/app.js'])
+    
     @include('layout.partials.head')
 
 </head>
@@ -162,7 +164,7 @@
 @yield('content')
 </div>
 <!-- /Main Wrapper -->
-{{--@include('layout.partials.theme-settings')--}}
+{{-- @include('layout.partials.theme-settings') --}}
 @component('components.modalpopup')
 @endcomponent
 @include('layout.partials.footer-scripts')
@@ -171,8 +173,6 @@
 <script src="{{ asset('build/js/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('build/js/mask.js') }}"></script>
 
-
-<script type="module" src="/public/build/app.js"></script>
-
 </body>
+
 </html>
