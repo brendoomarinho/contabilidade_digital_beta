@@ -24,7 +24,7 @@
     </script>
 
     @vite(['resources/js/app.js'])
-    
+
     @include('layout.partials.head')
 
 </head>
