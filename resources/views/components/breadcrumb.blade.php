@@ -401,12 +401,6 @@
                         class="feather-rotate-ccw"></i></a>
             </li>
         </ul>
-         @if (Route::is(['movimento.index']))
-            <div class="page-btn">
-                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-movimento"><i
-                        data-feather="plus-circle" class="me-2"></i>Novo</a>
-            </div>
-        @endif
     </div>
 @endif
 

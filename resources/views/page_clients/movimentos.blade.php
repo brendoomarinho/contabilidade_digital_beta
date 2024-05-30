@@ -26,11 +26,24 @@
             <!-- Always responsive -->
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="card">
+                    <div class="card table-list-card">
                         <div class="card-body">
                             @if ($registros->isEmpty())
                                 <p>Nenhum registro encontrado!</p>
                             @else
+                                <div class="table-top">
+                                    <div class="search-set">
+                                        <i class="fa fa-archive"></i> MOVIMENTO
+                                    </div>
+                                    <div class="search-path">
+                                        <div class="d-flex align-items-center">
+                                            <a href="#" class="btn btn-light rounded-pill" data-bs-toggle="modal"
+                                                data-bs-target="#add-movimento">
+                                                Adicionar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     @foreach ($registros->groupBy('competencia_id') as $competenciaId => $registrosCompetencia)
                                         <table class="table table-hover text-nowrap">
@@ -61,12 +74,14 @@
                                                         <td>
                                                             <div class="hstack gap-2 fs-15">
                                                                 <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
-                                                                    class="btn btn-icon btn-sm btn-info" target="_blank"><i
-                                                                        class="feather-download"></i></a>
+                                                                    class="me-2" target="_blank">
+                                                                   <i data-feather="folder" class="action-edit"></i>
+                                                                    </a>
+
+                                                                        
 
                                                                 @if ($registro->atd == 0)
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-sm btn-info delete-btn"
+                                                                    <a href="#" class="btn btn-light rounded-pill"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#delete-movimento"
                                                                         data-id="{{ $registro->id }}">
@@ -124,8 +139,7 @@
                                     <div class="col-lg-5">
                                         <div class="mb-3">
                                             <label class="form-label">Competência</label>
-                                            <select class="select"
-                                                id="competencia_id" name="competencia_id"
+                                            <select class="select" id="competencia_id" name="competencia_id"
                                                 value="{{ old('competencia_id') }}">
                                                 <option value="">Selecione</option>
                                                 @foreach ($competencias->reverse() as $competencia)
@@ -135,16 +149,15 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                              @error('competencia_id')
-                                                 <div class="alert alert-danger">{{ $message }}</div>
-                                             @enderror
+                                            @error('competencia_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="mb-3">
                                             <label class="form-label">Descrição</label>
-                                            <select class="select id="title_id"
-                                                name="title_id">
+                                            <select class="select id="title_id" name="title_id">
                                                 <option value="">Selecione</option>
                                                 @foreach ($movimentoTitles->reverse() as $movimentoTitle)
                                                     <option value="{{ $movimentoTitle->id }}">
@@ -153,8 +166,8 @@
                                                 @endforeach
                                             </select>
                                             @error('title_id')
-                                                 <div class="alert alert-danger">{{ $message }}</div>
-                                             @enderror
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
