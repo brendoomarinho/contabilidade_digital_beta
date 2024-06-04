@@ -64,12 +64,12 @@
                                     mensais
                                 </span></a></li>
                         <li class="submenu">
-                            <a href="{{ url('#') }}"
+                            <a href="{{ route('funcionarios.index') }}"
                                 class="{{ Request::is('payroll-list', 'payslip') ? 'active subdrop' : '' }}"><i
                                     data-feather="codesandbox"></i><span>Folha Pagamento </span><span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="{{ url('#') }}"
+                                <li><a href="{{ route('pagamento.index') }}"
                                         class="{{ Request::is('payroll-list') ? 'active' : '' }}">Folha mensal</a>
                                 </li>
                                 <li><a href="{{ route('funcionarios.index') }}"

@@ -8,8 +8,33 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\FolhaFuncionario;
+use App\Models\FolhaPagamento;
+use App\Models\CompetenciaAno;
+use App\Models\CompetenciaMes;
+use App\Models\Competencia;
 
 class FolhaController extends Controller {
+
+
+    public function indexPagamento() {
+
+        $user = auth()->user();
+
+        $registros = $user->folhaPagamento()->with('anoCompetencia', 'mesCompetencia')
+        ->orderBy('ano_id', 'desc')
+        ->orderBy('mes_id', 'desc')
+        ->paginate(12);
+
+        $anosCompetencia = CompetenciaAno::all();
+    
+        $mesesCompetencia = CompetenciaMes::all();
+
+        return view('page_clients.folha-pagamento', [
+            'registros' => $registros,
+            'anosCompetencia' => $anosCompetencia,
+            'mesesCompetencia' => $mesesCompetencia,
+        ]);
+    }
 
     public function indexFuncionario() {
 

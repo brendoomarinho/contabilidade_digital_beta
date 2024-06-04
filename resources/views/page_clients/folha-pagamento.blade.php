@@ -1,17 +1,17 @@
-<?php $page = 'movimento'; ?>
+<?php $page = 'folha_pagamento'; ?>
 @extends('layout.mainlayout')
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
             @component('components.breadcrumb')
                 @slot('title')
-                    Meu movimento
+                    Folha Pagamento
                 @endslot
                 @slot('li_1')
                     Menu principal
                 @endslot
                 @slot('li_2')
-                    Movimento
+                    Folha pagamento
                 @endslot
             @endcomponent
 
@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="table-top">
                                 <div class="search-set">
-                                    Movimento
+                                    Folha Pagamento
                                 </div>
                                 <div class="search-path">
                                     <div class="d-flex align-items-center">
@@ -45,35 +45,34 @@
                                 @if ($registros->isEmpty())
                                     <p>Nenhum registro encontrado!</p>
                                 @else
-                                    @foreach ($registros->groupBy('competencia_id') as $competenciaId => $registrosCompetencia)
+                                     @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
                                         <table class="table table-hover text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">
-                                                        {{ $registrosCompetencia->first()->competencia->mes->mes }} de
-                                                        {{ $registrosCompetencia->first()->competencia->ano->ano }}</th>
+                                                        {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
                                                     </th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Descrição</th>
+                                                    <th scope="col">Mês</th>
+                                                    <th scope="col">Cálculo</th>
                                                     <th scope="col">Ações</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($registrosCompetencia as $registro)
+                                                @foreach ($registros as $registro)
                                                     <tr>
                                                         <td>
                                                             {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i:s') }}
                                                         </td>
+                                                        <td>{{ $registro->MesCompetencia->mes }}</td>
                                                         <td>
                                                             <span
-                                                                class="badge rounded-pill bg-outline-{{ $registro->atendimento == 0 ? 'warning' : 'success' }}">
-                                                                {{ $registro->atendimento == 0 ? 'em análise' : 'recebido' }}
+                                                                class="badge rounded-pill bg-outline-{{ $registro->atd == 0 ? 'warning' : 'success' }}">
+                                                                {{ $registro->atd == 0 ? 'Original' : 'Retificado' }}
                                                             </span>
-                                                        </td>
-                                                        <td>{{ $registro->movimentoTitle->title }}</td>
+                                                        </td>             
                                                         <td>
                                                             <div class="hstack gap-2 fs-15">
-                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
+                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
                                                                     class="me-2" target="_blank">
                                                                     <i data-feather="folder" class="action-edit"></i>
                                                                 </a>
@@ -100,7 +99,7 @@
                                 @endif
                             </div>
                         </div>
-                        @include('components.pagination', ['registros' => $registros])
+                        
                     </div>
                 </div>
             </div>
@@ -122,7 +121,7 @@
                     <div class="content">
                         <div class="modal-header border-0 custom-modal-header">
                             <div class="page-title">
-                                <h4>Enviar movimento</h4>
+                                <h4>Enviar resumo da folha</h4>
                             </div>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -133,36 +132,15 @@
                                 @csrf
                                 <input class="d-none" name="atendimento" type="number" value="0" />
                                 <div class="row">
-                                    <div class="col-lg-5">
+                                    <div>
                                         <div class="mb-3">
                                             <label class="form-label">Competência</label>
                                             <select class="select" id="competencia_id" name="competencia_id"
                                                 value="{{ old('competencia_id') }}">
                                                 <option value="">Selecione</option>
-                                                @foreach ($competencias->reverse() as $competencia)
-                                                    <option value="{{ $competencia->id }}">
-                                                        {{ $competencia->mes->mes }}
-                                                        {{ $competencia->ano->ano }}
-                                                    </option>
-                                                @endforeach
+                                                
                                             </select>
                                             @error('competencia_id')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="mb-3">
-                                            <label class="form-label">Descrição</label>
-                                            <select class="select id="title_id" name="title_id">
-                                                <option value="">Selecione</option>
-                                                @foreach ($movimentoTitles->reverse() as $movimentoTitle)
-                                                    <option value="{{ $movimentoTitle->id }}">
-                                                        {{ $movimentoTitle->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('title_id')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
