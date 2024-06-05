@@ -45,15 +45,17 @@
                                 @if ($registros->isEmpty())
                                     <p>Nenhum registro encontrado!</p>
                                 @else
-                                     @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
-                                        <table class="table table-hover text-nowrap">
+                                    @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
+                                        <table class="table text-nowrap">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">
-                                                        {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
+                                                        Ano: {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
                                                     </th>
-                                                    <th scope="col">Mês</th>
                                                     <th scope="col">Cálculo</th>
+                                                    <th scope="col">Mês</th>
+                                                    <th scope="col">Valor</th>
+                                                    <th scope="col">Resumo</th>
                                                     <th scope="col">Ações</th>
                                                 </tr>
                                             </thead>
@@ -61,32 +63,47 @@
                                                 @foreach ($registros as $registro)
                                                     <tr>
                                                         <td>
-                                                            {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i:s') }}
+                                                            {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i') }}
                                                         </td>
-                                                        <td>{{ $registro->MesCompetencia->mes }}</td>
                                                         <td>
                                                             <span
-                                                                class="badge rounded-pill bg-outline-{{ $registro->atd == 0 ? 'warning' : 'success' }}">
+                                                                class="badge rounded-pill bg-outline-{{ $registro->atd == 0 ? 'success' : 'warning' }}">
                                                                 {{ $registro->atd == 0 ? 'Original' : 'Retificado' }}
                                                             </span>
-                                                        </td>             
+                                                        </td>
+                                                        <td>{{ $registro->MesCompetencia->mes }} /
+                                                            {{ $registrosPorAno->first()->anoCompetencia->ano }}</td>
+                                                        <td>
+                                                            @if ($registro->valor)
+                                                                R$ {{ number_format($registro->valor, 2, ',', '.') }}
+                                                            @else
+                                                                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="me-2 delete-btn" disabled>
+                                                                <i data-feather="list" class="action-edit"></i>
+                                                            </a>
+                                                        </td>
                                                         <td>
                                                             <div class="hstack gap-2 fs-15">
                                                                 <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
                                                                     class="me-2" target="_blank">
-                                                                    <i data-feather="folder" class="action-edit"></i>
+                                                                    <i data-feather="file-text" class="action-edit"></i>
+                                                                </a>
+                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
+                                                                    class="me-2" target="_blank">
+                                                                    <i data-feather="layers" class="action-edit"></i>
                                                                 </a>
                                                                 @if ($registro->atd == 0)
-                                                                    <a href="#" class="btn btn-light rounded-pill"
-                                                                        data-bs-toggle="modal"
+                                                                    <a href="#" class="me-e" data-bs-toggle="modal"
                                                                         data-bs-target="#delete-movimento"
                                                                         data-id="{{ $registro->id }}">
-                                                                        <i class="feather-trash-2"></i>
+                                                                        <i data-feather="trash-2" class="action-edit"></i>
                                                                     </a>
                                                                 @else
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-sm btn-info delete-btn disabled">
-                                                                        <i class="feather-trash-2"></i>
+                                                                    <a href="#" class="me-2 delete-btn" disabled>
+                                                                        <i data-feather="trash" class="action-edit"></i>
                                                                     </a>
                                                                 @endif
                                                             </div>
@@ -99,7 +116,7 @@
                                 @endif
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -131,14 +148,34 @@
                             <form method="post" action="{{ route('movimento.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <input class="d-none" name="atendimento" type="number" value="0" />
-                                <div class="row">
-                                    <div>
+                                 <div class="row">
+                                 <div class="col-lg-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Competência</label>
+                                            <label class="form-label">Mês</label>
+                                            <select class="select id="title_id" name="title_id">
+                                                <option value="">Selecione</option>
+                                                @foreach ($mesesCompetencia as $mes)
+                                                    <option value="{{ $mes->id }}">
+                                                        {{ $mes->mes }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('title_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Ano</label>
                                             <select class="select" id="competencia_id" name="competencia_id"
                                                 value="{{ old('competencia_id') }}">
                                                 <option value="">Selecione</option>
-                                                
+                                                @foreach ($anosCompetencia as $ano)
+                                                    <option value="{{ $ano->id }}">
+                                                        {{ $ano->ano }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             @error('competencia_id')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -178,7 +215,8 @@
                                 <p>Tem certeza que deseja excluir este registro?</p>
                             </div>
                             <div class="modal-footer-btn delete-footer">
-                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-cancel me-2"
+                                    data-bs-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-submit confirm-delete">Sim</button>
                             </div>
                         </div>
