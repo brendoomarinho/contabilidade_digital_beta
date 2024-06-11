@@ -4,9 +4,6 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
             @component('components.breadcrumb')
-                @slot('title')
-                    Meu movimento
-                @endslot
                 @slot('li_1')
                     Menu principal
                 @endslot
@@ -30,7 +27,7 @@
                         <div class="card-body">
                             <div class="table-top">
                                 <div class="search-set">
-                                    Movimento
+                                    <i data-feather="package" class="me-2"></i> <h4 class="mt-1">Meus movimentos</h4>
                                 </div>
                                 <div class="search-path">
                                     <div class="d-flex align-items-center">

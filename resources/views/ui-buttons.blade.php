@@ -9,7 +9,6 @@
                 </div>
             </div>
             <div class="row">
-
                 <!-- Default Buttons -->
                 <div class="col-xl-6">
                     <div class="card">

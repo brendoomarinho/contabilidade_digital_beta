@@ -56,7 +56,7 @@
                     <h6 class="submenu-hdr">Menu principal</h6>
                     <ul>
                         <li class="{{ Request::is('meu-movimento') ? 'active' : '' }}"><a
-                                href="{{ route('movimento.index') }}"><i data-feather="box"></i><span>Meu
+                                href="{{ route('movimento.index') }}"><i data-feather="package"></i><span>Meu
                                     movimento</span></a>
                         </li>
                         <li class="{{ Request::is('add-product', 'edit-product') ? 'active' : '' }}"><a
@@ -65,12 +65,12 @@
                                 </span></a></li>
                         <li class="submenu">
                             <a href="{{ route('funcionarios.index') }}"
-                                class="{{ Request::is('payroll-list', 'payslip') ? 'active subdrop' : '' }}"><i
-                                    data-feather="codesandbox"></i><span>Folha Pagamento </span><span
+                                class="{{ Request::is('folha-pagamento') ? 'active subdrop' : '' }}">
+                                <i data-feather="users"></i><span>Folha Pagamento </span><span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="{{ route('pagamento.index') }}"
-                                        class="{{ Request::is('payroll-list') ? 'active' : '' }}">Folha mensal</a>
+                                        class="{{ Request::is('folha-pagamento') ? 'active' : '' }}">Folha mensal</a>
                                 </li>
                                 <li><a href="{{ route('funcionarios.index') }}"
                                         class="{{ Request::is('payslip') ? 'active' : '' }}">Funcionários</a></li>

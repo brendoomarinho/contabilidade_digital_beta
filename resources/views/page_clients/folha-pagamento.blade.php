@@ -4,9 +4,6 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
             @component('components.breadcrumb')
-                @slot('title')
-                    Folha Pagamento
-                @endslot
                 @slot('li_1')
                     Menu principal
                 @endslot
@@ -14,7 +11,6 @@
                     Folha pagamento
                 @endslot
             @endcomponent
-
             @include('components.success-message')
             @if (session('successMessageTitle') && session('successMessageSubTitle'))
                 <script>
@@ -30,14 +26,14 @@
                         <div class="card-body">
                             <div class="table-top">
                                 <div class="search-set">
-                                    Folha Pagamento
+                                    <i data-feather="users" class="me-2"></i> <h4 class="mt-1">Folha Pagamento</h4>
                                 </div>
-                                <div class="search-path">
+                                <div>
                                     <div class="d-flex align-items-center">
-                                        <a href="#" class="btn btn-light rounded-pill" data-bs-toggle="modal"
-                                            data-bs-target="#add-movimento">
-                                            Adicionar
-                                        </a>
+                                        <button class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#add-folha">
+                                            <h6><i class="fa-solid fa-plus"></i> Enviar resumo</h6>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +56,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($registros as $registro)
+                                                @foreach ($registrosPorAno as $registro)
                                                     <tr>
                                                         <td>
                                                             {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i') }}
@@ -71,8 +67,9 @@
                                                                 {{ $registro->atd == 0 ? 'Original' : 'Retificado' }}
                                                             </span>
                                                         </td>
-                                                        <td>{{ $registro->MesCompetencia->mes }} /
-                                                            {{ $registrosPorAno->first()->anoCompetencia->ano }}</td>
+                                                        <td>
+                                                            {{ $registro->mesCompetencia->mes }}
+                                                        </td>
                                                         <td>
                                                             @if ($registro->valor)
                                                                 R$ {{ number_format($registro->valor, 2, ',', '.') }}
@@ -101,6 +98,10 @@
                                                                         data-id="{{ $registro->id }}">
                                                                         <i data-feather="trash-2" class="action-edit"></i>
                                                                     </a>
+                                                                    <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
+                                                                    class="me-2" target="_blank">
+                                                                    <i data-feather="message-circle" class="action-edit"></i>
+                                                                </a>
                                                                 @else
                                                                     <a href="#" class="me-2 delete-btn" disabled>
                                                                         <i data-feather="trash" class="action-edit"></i>
@@ -126,12 +127,12 @@
     @if ($errors->any())
         <script>
             $(document).ready(function() {
-                $('#add-movimento').modal('show');
+                $('#add-folha').modal('show');
             });
         </script>
     @endif
-    <!-- Modal Movimento -->
-    <div class="modal fade" id="add-movimento">
+    <!-- Modal Folha -->
+    <div class="modal fade" id="add-folha">
         <div class="modal-dialog modal-dialog-centered custom-modal-two">
             <div class="modal-content">
                 <div class="page-wrapper-new p-0">
@@ -145,14 +146,13 @@
                             </button>
                         </div>
                         <div class="modal-body custom-modal-body">
-                            <form method="post" action="{{ route('movimento.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('pagamento.store') }}" enctype="multipart/form-data">
                                 @csrf
-                                <input class="d-none" name="atendimento" type="number" value="0" />
-                                 <div class="row">
-                                 <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Mês</label>
-                                            <select class="select id="title_id" name="title_id">
+                                            <select class="select" id="mes" name="mes">
                                                 <option value="">Selecione</option>
                                                 @foreach ($mesesCompetencia as $mes)
                                                     <option value="{{ $mes->id }}">
@@ -160,7 +160,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('title_id')
+                                            @error('mes')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -168,8 +168,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Ano</label>
-                                            <select class="select" id="competencia_id" name="competencia_id"
-                                                value="{{ old('competencia_id') }}">
+                                            <select class="select" id="ano" name="ano">
                                                 <option value="">Selecione</option>
                                                 @foreach ($anosCompetencia as $ano)
                                                     <option value="{{ $ano->id }}">
@@ -177,7 +176,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('competencia_id')
+                                            @error('ano')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>

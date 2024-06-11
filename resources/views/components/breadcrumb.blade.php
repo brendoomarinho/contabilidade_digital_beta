@@ -388,9 +388,8 @@
     <div class="page-header">
         <div class="add-item d-flex">
             <div class="page-title">
-                <h4>{{ $title }}</h4>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('index') }}">{{ $li_1 }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('index') }}"><i class="fa-solid fa-house"></i> {{ $li_1 }}</a></li>
                     <li class="breadcrumb-item active">{{ $li_2 }}</li>
                 </ul>
             </div>
