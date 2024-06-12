@@ -44,16 +44,16 @@
                                 @else
                                     @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
                                         <table class="table text-nowrap">
-                                            <thead>
+                                            <thead class="thead-light">
                                                 <tr>
-                                                    <th scope="col">
-                                                        Ano: {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
+                                                    <th scope="col" style="width: 253.3px">
+                                                       <i class="fa-regular fa-calendar-check"></i> {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
                                                     </th>
-                                                    <th scope="col">Cálculo</th>
-                                                    <th scope="col">Mês</th>
-                                                    <th scope="col">Valor</th>
-                                                    <th scope="col">Resumo</th>
-                                                    <th scope="col">Ações</th>
+                                                    <th scope="col" style="width: 213.3px">Cálculo</th>
+                                                    <th scope="col" style="width: 206.3px">Mês</th>
+                                                    <th scope="col" style="width: 226.65px">Valor</th>
+                                                    <th scope="col" class="text-center">Resumo</th>
+                                                    <th scope="col" class="text-center">Ações</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -78,12 +78,16 @@
                                                                 <i class="fa-solid fa-spinner fa-spin-pulse"></i>
                                                             @endif
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <a href="#" class="me-2 delete-btn" disabled>
-                                                                <i class="fa-solid fa-receipt btn-ico"></i>
+                                                                <i class="fa-solid fa-receipt btn-ico"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-custom-class="tooltip-dark"
+                                                                    data-bs-placement="top"
+                                                                    data-bs-original-title="Resumo da folha"></i>
                                                             </a>
                                                         </td>
-                                                        <td>
+                                                        <td class="d-flex justify-content-center">
                                                             <div class="hstack gap-2">
                                                                 <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
                                                                     target="_blank">

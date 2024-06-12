@@ -44,10 +44,10 @@
                                 @else
                                     @foreach ($registros->groupBy('competencia_id') as $competenciaId => $registrosCompetencia)
                                         <table class="table table-hover text-nowrap">
-                                            <thead>
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">
-                                                        {{ $registrosCompetencia->first()->competencia->mes->mes }} de
+                                                       <i class="fa-solid fa-calendar-check"></i> {{ $registrosCompetencia->first()->competencia->mes->mes }} de
                                                         {{ $registrosCompetencia->first()->competencia->ano->ano }}</th>
                                                     </th>
                                                     <th scope="col">Status</th>

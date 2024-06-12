@@ -95,7 +95,6 @@
                                                 <span class="badge badge-danger">Desligado</span>
                                             @endif
                                         </td>
-
                                         <td class="action-table-data">
                                             <div class="edit-delete-action data-view">
                                                 <a class="me-2" href="javascript:void(0);">
