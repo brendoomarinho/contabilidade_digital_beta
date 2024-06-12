@@ -1031,6 +1031,38 @@ ul .btn-primary:not(:disabled):not(.disabled):active:focus, ul .btn-primary:not(
   border-bottom: 1px solid #e8ebed;
 }
 
+.btn-menu {
+  background: #f3f6f9;
+  color: #000000;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  -webkit-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.btn-menu:hover {
+  background: #e8ebed;
+  color: #000000;
+}
+@media (max-width: 991.98px) {
+  .btn-menu {
+    min-width: auto;
+  }
+}
+
+.btn-ico {
+  color: #adb5bd;
+  font-size: 18px;
+  padding: 3px 3px;
+  -webkit-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.btn-ico:hover {
+  color: #FF9F43;
+}
+
 .btn-submit {
   background: #FF9F43;
   color: #ffffff;

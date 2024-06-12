@@ -31,9 +31,9 @@
                                 </div>
                                 <div class="search-path">
                                     <div class="d-flex align-items-center">
-                                        <a href="#" class="btn btn-light rounded-pill" data-bs-toggle="modal"
+                                        <a href="#" class="btn-menu" data-bs-toggle="modal"
                                             data-bs-target="#add-movimento">
-                                            Adicionar
+                                             <i class="fa-solid fa-arrow-up-from-bracket me-2"></i>Enviar movimento
                                         </a>
                                     </div>
                                 </div>

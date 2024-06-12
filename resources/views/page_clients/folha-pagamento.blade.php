@@ -26,14 +26,15 @@
                         <div class="card-body">
                             <div class="table-top">
                                 <div class="search-set">
-                                    <i data-feather="users" class="me-2"></i> <h4 class="mt-1">Folha Pagamento</h4>
+                                    <i data-feather="users" class="me-2"></i>
+                                    <h4 class="mt-1"> Folha Pagamento</h4>
                                 </div>
                                 <div>
                                     <div class="d-flex align-items-center">
-                                        <button class="btn btn-light" data-bs-toggle="modal"
+                                        <a href="#" class="btn-menu" data-bs-toggle="modal"
                                             data-bs-target="#add-folha">
-                                            <h6><i class="fa-solid fa-plus"></i> Enviar resumo</h6>
-                                        </button>
+                                            <i class="fa-solid fa-arrow-up-from-bracket me-2"></i>Enviar resumo
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -79,32 +80,48 @@
                                                         </td>
                                                         <td>
                                                             <a href="#" class="me-2 delete-btn" disabled>
-                                                                <i data-feather="list" class="action-edit"></i>
+                                                                <i class="fa-solid fa-receipt btn-ico"></i>
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <div class="hstack gap-2 fs-15">
+                                                            <div class="hstack gap-2">
                                                                 <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
-                                                                    class="me-2" target="_blank">
-                                                                    <i data-feather="file-text" class="action-edit"></i>
+                                                                    target="_blank">
+                                                                    <i class="fa-solid fa-calculator btn-ico"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Extrato"></i>
                                                                 </a>
                                                                 <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
-                                                                    class="me-2" target="_blank">
-                                                                    <i data-feather="layers" class="action-edit"></i>
+                                                                    target="_blank">
+                                                                    <i class="fa-solid fa-file-arrow-down btn-ico"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Recibos"></i>
                                                                 </a>
                                                                 @if ($registro->atd == 0)
                                                                     <a href="#" class="me-e" data-bs-toggle="modal"
                                                                         data-bs-target="#delete-movimento"
                                                                         data-id="{{ $registro->id }}">
-                                                                        <i data-feather="trash-2" class="action-edit"></i>
+                                                                        <i class="fa-solid fa-trash-can btn-ico"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-custom-class="tooltip-dark"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-original-title="Excluir"></i>
                                                                     </a>
                                                                     <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
-                                                                    class="me-2" target="_blank">
-                                                                    <i data-feather="message-circle" class="action-edit"></i>
-                                                                </a>
+                                                                        target="_blank">
+                                                                        <i class="fa-solid fa-comment-dots btn-ico"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-custom-class="tooltip-dark"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-original-title="Enviar mensagem"></i>
+                                                                    </a>
                                                                 @else
                                                                     <a href="#" class="me-2 delete-btn" disabled>
-                                                                        <i data-feather="trash" class="action-edit"></i>
+                                                                        <i class="fa-regular fa-trash-can"></i>
                                                                     </a>
                                                                 @endif
                                                             </div>
