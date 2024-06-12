@@ -47,7 +47,9 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" style="width: 253.3px">
-                                                       <i class="fa-regular fa-calendar-check"></i> {{ $registrosPorAno->first()->anoCompetencia->ano }}</th>
+                                                        <i class="fa-regular fa-calendar-check"></i>
+                                                        {{ $registrosPorAno->first()->anoCompetencia->ano }}
+                                                    </th>
                                                     </th>
                                                     <th scope="col" style="width: 213.3px">Cálculo</th>
                                                     <th scope="col" style="width: 206.3px">Mês</th>
@@ -124,8 +126,22 @@
                                                                             data-bs-original-title="Enviar mensagem"></i>
                                                                     </a>
                                                                 @else
-                                                                    <a href="#" class="me-2 delete-btn" disabled>
-                                                                        <i class="fa-regular fa-trash-can"></i>
+                                                                    <a href="#" class="me-e" data-bs-toggle="modal"
+                                                                        data-bs-target="#delete-movimento"
+                                                                        data-id="{{ $registro->id }}">
+                                                                        <i class="fa-solid fa-trash-can btn-ico"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-custom-class="tooltip-dark"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-original-title="Excluir"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
+                                                                        target="_blank">
+                                                                        <i class="fa-solid fa-comment-dots btn-ico"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-custom-class="tooltip-dark"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-original-title="Enviar mensagem"></i>
                                                                     </a>
                                                                 @endif
                                                             </div>
@@ -137,8 +153,11 @@
                                     @endforeach
                                 @endif
                             </div>
+                            <!-- Exibir a paginação -->
+                            <div class="d-flex justify-content-end">
+                                @include('components.pagination', ['registros' => $registros])
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
