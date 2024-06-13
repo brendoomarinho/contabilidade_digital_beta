@@ -1062,6 +1062,13 @@ ul .btn-primary:not(:disabled):not(.disabled):active:focus, ul .btn-primary:not(
 .btn-ico:hover {
   color: #FF9F43;
 }
+.btn-ico.btn-disabled {
+  color: #dbe0e6;
+  font-size: 18px;
+  padding: 3px 3px;
+  pointer-events: none;
+  opacity: 0.6;
+}
 
 .btn-submit {
   background: #FF9F43;

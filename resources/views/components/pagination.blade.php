@@ -7,11 +7,9 @@
     $totalShown = ($currentPage - 1) * $registros->perPage() + $registros->count();
 @endphp
 <div class="d-flex align-items-center justify-content-between w-100 px-4 mb-2">
-
     <div class="mb-3 justify-content-start">
         Mostrando <b>{{ $totalShown }}</b> registros de <b>{{ $registros->total() }}</b>
     </div>
-
     <div aria-label="Page navigation" class="pagination-style-3">
         <ul class="pagination justify-content-end mb-3 flex-wrap">
             <!-- Link para a página anterior -->
@@ -20,7 +18,6 @@
                     <i class="fa fa-chevron-left"></i>
                 </a>
             </li>
-
             <!-- Links para as páginas -->
             @if ($start > 1)
                 <li class="page-item"><a class="page-link" href="{{ $registros->url(1) }}">1</a></li>
@@ -48,7 +45,6 @@
                 <li class="page-item"><a class="page-link"
                         href="{{ $registros->url($lastPage) }}">{{ $lastPage }}</a></li>
             @endif
-
             <!-- Link para a próxima página -->
             <li class="page-item {{ $registros->hasMorePages() ? '' : 'disabled' }}">
                 <a class="page-link" href="{{ $registros->nextPageUrl() }}" aria-label="Next">

@@ -39,59 +39,60 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                @if ($registros->isEmpty())
-                                    <p>Nenhum registro encontrado!</p>
-                                @else
-                                    @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
-                                        <table class="table text-nowrap">
-                                            <thead class="thead-light">
+
+                                @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
+                                    <table class="table text-nowrap">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="width: 253.3px">
+                                                    <i class="fa-regular fa-calendar-check me-2"></i>
+                                                    <b>{{ $registrosPorAno->first()->anoCompetencia->ano }}</b>
+                                                </th>
+                                                </th>
+                                                <th scope="col" style="width: 213.3px">Cálculo</th>
+                                                <th scope="col" style="width: 206.3px">Mês</th>
+                                                <th scope="col" style="width: 226.65px">Valor</th>
+                                                <th scope="col" class="text-center">Resumo</th>
+                                                <th scope="col" class="text-center">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($registrosPorAno as $registro)
                                                 <tr>
-                                                    <th scope="col" style="width: 253.3px">
-                                                        <i class="fa-regular fa-calendar-check"></i>
-                                                        {{ $registrosPorAno->first()->anoCompetencia->ano }}
-                                                    </th>
-                                                    </th>
-                                                    <th scope="col" style="width: 213.3px">Cálculo</th>
-                                                    <th scope="col" style="width: 206.3px">Mês</th>
-                                                    <th scope="col" style="width: 226.65px">Valor</th>
-                                                    <th scope="col" class="text-center">Resumo</th>
-                                                    <th scope="col" class="text-center">Ações</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($registrosPorAno as $registro)
-                                                    <tr>
-                                                        <td>
-                                                            {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i') }}
-                                                        </td>
-                                                        <td>
+                                                    <td>
+                                                        {{ \Carbon\Carbon::parse($registro->created_at)->format('d/m/Y H:i') }}
+                                                    </td>
+                                                    <td>
+                                                        @if ($registro->recebido == false)
+                                                            <i class="fa-solid fa-spinner fa-spin-pulse ms-3"></i>
+                                                        @else
                                                             <span
-                                                                class="badge rounded-pill bg-outline-{{ $registro->atd == 0 ? 'success' : 'warning' }}">
-                                                                {{ $registro->atd == 0 ? 'Original' : 'Retificado' }}
+                                                                class="badge rounded-pill bg-outline-{{ $registro->retificador == 0 ? 'success' : 'warning' }}">
+                                                                {{ $registro->retificador == 0 ? 'Original' : 'Retificado' }}
                                                             </span>
-                                                        </td>
-                                                        <td>
-                                                            {{ $registro->mesCompetencia->mes }}
-                                                        </td>
-                                                        <td>
-                                                            @if ($registro->valor)
-                                                                R$ {{ number_format($registro->valor, 2, ',', '.') }}
-                                                            @else
-                                                                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
-                                                            @endif
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <a href="#" class="me-2 delete-btn" disabled>
-                                                                <i class="fa-solid fa-receipt btn-ico"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-custom-class="tooltip-dark"
-                                                                    data-bs-placement="top"
-                                                                    data-bs-original-title="Resumo da folha"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td class="d-flex justify-content-center">
-                                                            <div class="hstack gap-2">
-                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        {{ $registro->mesCompetencia->mes }}
+                                                    </td>
+                                                    <td>
+                                                        @if ($registro->recebido == false)
+                                                            <i class="fa-solid fa-spinner fa-spin-pulse ms-2"></i>
+                                                        @else
+                                                            R$ {{ number_format($registro->valor, 2, ',', '.') }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\resumos', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}">
+                                                            <i class="fa-solid fa-receipt btn-ico" data-bs-toggle="tooltip"
+                                                                data-bs-custom-class="tooltip-dark" data-bs-placement="top"
+                                                                data-bs-original-title="Resumo da folha"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <div class="hstack gap-2">
+                                                            @if ($registro->recebido == true)
+                                                                <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\extratos', 'action' => 'view', 'file' => $registro->extrato]) }}"
                                                                     target="_blank">
                                                                     <i class="fa-solid fa-calculator btn-ico"
                                                                         data-bs-toggle="tooltip"
@@ -99,7 +100,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Extrato"></i>
                                                                 </a>
-                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
+                                                                <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\recibos', 'action' => 'view', 'file' => $registro->recibos]) }}"
                                                                     target="_blank">
                                                                     <i class="fa-solid fa-file-arrow-down btn-ico"
                                                                         data-bs-toggle="tooltip"
@@ -107,51 +108,59 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Recibos"></i>
                                                                 </a>
-                                                                @if ($registro->atd == 0)
-                                                                    <a href="#" class="me-e" data-bs-toggle="modal"
-                                                                        data-bs-target="#delete-movimento"
-                                                                        data-id="{{ $registro->id }}">
-                                                                        <i class="fa-solid fa-trash-can btn-ico"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-custom-class="tooltip-dark"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-original-title="Excluir"></i>
-                                                                    </a>
-                                                                    <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
-                                                                        target="_blank">
-                                                                        <i class="fa-solid fa-comment-dots btn-ico"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-custom-class="tooltip-dark"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-original-title="Enviar mensagem"></i>
-                                                                    </a>
-                                                                @else
-                                                                    <a href="#" class="me-e" data-bs-toggle="modal"
-                                                                        data-bs-target="#delete-movimento"
-                                                                        data-id="{{ $registro->id }}">
-                                                                        <i class="fa-solid fa-trash-can btn-ico"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-custom-class="tooltip-dark"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-original-title="Excluir"></i>
-                                                                    </a>
-                                                                    <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}"
-                                                                        target="_blank">
-                                                                        <i class="fa-solid fa-comment-dots btn-ico"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-custom-class="tooltip-dark"
-                                                                            data-bs-placement="top"
-                                                                            data-bs-original-title="Enviar mensagem"></i>
-                                                                    </a>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    @endforeach
-                                @endif
+                                                                <a href="#" class="btn-ico btn-disabled">
+                                                                    <i class="fa-solid fa-trash-can"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Excluir"></i>
+                                                                </a>
+                                                                <a href="#">
+                                                                    <i class="fa-solid fa-comment-dots btn-ico"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Enviar mensagem"></i>
+                                                                </a>
+                                                            @else
+                                                                <a href="#" class="btn-ico btn-disabled">
+                                                                    <i class="fa-solid fa-calculator"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Extrato"></i>
+                                                                </a>
+                                                                 <a href="#" class="btn-ico btn-disabled">
+                                                                    <i class="fa-solid fa-file-arrow-down"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Recibos"></i>
+                                                                </a>
+                                                                <a href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#delete-movimento"
+                                                                    data-id="{{ $registro->id }}">
+                                                                    <i class="fa-solid fa-trash-can btn-ico"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Excluir"></i>
+                                                                </a>
+                                                                 <a href="#" class="btn-ico btn-disabled">
+                                                                    <i class="fa-solid fa-comment-dots"
+                                                                        data-bs-toggle="tooltip"
+                                                                        data-bs-custom-class="tooltip-dark"
+                                                                        data-bs-placement="top"
+                                                                        data-bs-original-title="Enviar mensagem"></i>
+                                                                </a>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endforeach
                             </div>
                             <!-- Exibir a paginação -->
                             <div class="d-flex justify-content-end">

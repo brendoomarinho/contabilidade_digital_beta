@@ -40,14 +40,14 @@ class FolhaController extends Controller {
         $rules = [
             'ano' => 'required',
             'mes' => 'required',
-            'doc_anexo' => 'required|file|mimes:pdf,zip,rar|max:10240',
+            'doc_anexo' => 'required|file|mimes:pdf,doc,xlsx',
         ];
     
         $messages = [
             'ano.required' => 'campo obrigatório.',
             'mes.required' => 'campo obrigatório.',
             'doc_anexo.required' => 'anexo obrigatório.',
-            'doc_anexo.mimes' => 'formato deve ser .pdf, .rar ou .zip',
+            'doc_anexo.mimes' => 'formato deve ser .pdf, doc ou xlsx',
             'doc_anexo.max' => 'Documento excede tamanho permitido.',
         ];
     
@@ -64,8 +64,7 @@ class FolhaController extends Controller {
                 ->exists();
     
             if ($existingRecord) {
-                $validator->errors()->add('ano', 'Já existe um resumo informado para esta competência.');
-                $validator->errors()->add('mes', 'Já existe um resumo informado para esta competência.');
+                $validator->errors()->add('mes', 'Competência já informada!');
             }
         });
     
@@ -80,11 +79,14 @@ class FolhaController extends Controller {
     
         try {
             $doc_anexo = $request->file('doc_anexo');
-    
-            $originalName = $doc_anexo->getClientOriginalName();
-    
-            $doc_anexo->storeAs('folha_resumo', $originalName, 'public');
-    
+        
+            $user_id = auth()->id();
+            $timestamp = now()->format('dmY_His');
+            $extension = $doc_anexo->getClientOriginalExtension();
+            $fileName = "resumo_{$user_id}_{$timestamp}.{$extension}";
+
+            $doc_anexo->storeAs('folha_pagamento/resumos', $fileName, 'public');
+
             FolhaPagamento::create([
                 'user_id' => auth()->id(),
                 'atd' => false,
@@ -92,14 +94,14 @@ class FolhaController extends Controller {
                 'mes_id' => $request->input('mes'),
                 'ano_id' => $request->input('ano'),
                 'recebido' => false,
-                'anexo_resumo' => $originalName,
+                'anexo_resumo' => $fileName,
             ]);
     
             DB::commit();
     
             return redirect()->back()->with([
                 'successMessageTitle' => 'Enviado com sucesso!',
-                'successMessageSubTitle' => 'O contador(a) está preparando o cálculo.'
+                'successMessageSubTitle' => 'Aguarde! Em breve, sua folha será calculada.'
             ]);
         } catch (\Exception $e) {
             DB::rollback();
