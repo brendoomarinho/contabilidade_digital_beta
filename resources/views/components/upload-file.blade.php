@@ -1,6 +1,4 @@
-
- </style>
- <div class="profile-pic-upload flex-column align-items-start mt-2">
+<div class="profile-pic-upload flex-column align-items-start mt-2">
      <label for="doc_anexo" class="profile-pic w-100 w-100 border-container" style="cursor: pointer"
          id="anexo-label">
          <i data-feather="upload" class="m-2"></i> Clique para anexar
