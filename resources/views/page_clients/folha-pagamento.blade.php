@@ -83,16 +83,18 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\resumos', 'action' => 'download', 'file' => $registro->anexo_resumo]) }}">
+                                                        <a href="{{ Storage::url('folha_pagamento/resumos/' . $registro->anexo_resumo) }}"
+                                                            target="_blank">
                                                             <i class="fa-solid fa-receipt btn-ico" data-bs-toggle="tooltip"
                                                                 data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                                data-bs-original-title="Resumo da folha"></i>
+                                                                title="Resumo da folha">
+                                                            </i>
                                                         </a>
                                                     </td>
                                                     <td class="d-flex justify-content-center">
                                                         <div class="hstack gap-2">
                                                             @if ($registro->recebido == true)
-                                                                <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\extratos', 'action' => 'view', 'file' => $registro->extrato]) }}"
+                                                                <a href="{{ Storage::url('folha_pagamento/extratos/' . $registro->extrato) }}"
                                                                     target="_blank">
                                                                     <i class="fa-solid fa-calculator btn-ico"
                                                                         data-bs-toggle="tooltip"
@@ -100,7 +102,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Extrato"></i>
                                                                 </a>
-                                                                <a href="{{ route('fileAction', ['directory' => 'folha_pagamento\recibos', 'action' => 'view', 'file' => $registro->recibos]) }}"
+                                                                <a href="{{ Storage::url('folha_pagamento/recibos/' . $registro->recibos) }}"
                                                                     target="_blank">
                                                                     <i class="fa-solid fa-file-arrow-down btn-ico"
                                                                         data-bs-toggle="tooltip"
@@ -130,7 +132,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Extrato"></i>
                                                                 </a>
-                                                                 <a href="#" class="btn-ico btn-disabled">
+                                                                <a href="#" class="btn-ico btn-disabled">
                                                                     <i class="fa-solid fa-file-arrow-down"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-custom-class="tooltip-dark"
@@ -146,7 +148,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Excluir"></i>
                                                                 </a>
-                                                                 <a href="#" class="btn-ico btn-disabled">
+                                                                <a href="#" class="btn-ico btn-disabled">
                                                                     <i class="fa-solid fa-comment-dots"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-custom-class="tooltip-dark"

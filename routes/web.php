@@ -28,6 +28,7 @@
         /** Folha Pagamento */
         Route::get('folha-pagamento', [FolhaController::class, 'indexFolhaPagamento'])->name('pagamento.index');
         Route::post('folha-pagamento', [FolhaController::class, 'storeFolhaPagamento'])->name('pagamento.store');
+        Route::get('folha-download', [FolhaController::class, 'downloadFolhaPagamento'])->name('pagamento.download');
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');
         Route::post('funcionarios', [FolhaController::class, 'storeFuncionario'])->name('funcionarios.store');
         Route::get('funcionarios/recrutamento/{id}', [FolhaController::class, 'showRecrutamento'])->name('recrutamento.show');
@@ -42,11 +43,6 @@
     /** Rotas Settings */
     Route::get('pusher-settings', function() { return view('page_admin.pusher-settings'); })->name('pusher.index');
     Route::put('pusher-setting', [SettingController::class, 'UpdatePusherSetting'])->name('pusher.update');
-
-    /** Rotas Download */
-    Route::get('/repositorio/{directory}/{action}/{file}', [CatchFileController::class, 'handleFile'])
-        ->where('action', 'download|view')
-        ->name('fileAction');
 
     /** Notifications Events */
     Route::get('guiapag-event', function(){

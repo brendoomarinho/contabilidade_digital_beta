@@ -89,10 +89,8 @@ class FolhaController extends Controller {
         $extension = $doc_anexo->getClientOriginalExtension();
         $fileName = "resumo_{$user_id}_{$timestamp}.{$extension}";
 
-        // Salvar o arquivo com um nome único
         $doc_anexo->storeAs('folha_pagamento/resumos', $fileName, 'public');
 
-        // Criar o registro da folha de pagamento
         $folhaPagamento = FolhaPagamento::create([
             'user_id' => $user_id,
             'atd' => false,
