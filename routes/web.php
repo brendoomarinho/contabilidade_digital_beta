@@ -28,7 +28,7 @@
         /** Folha Pagamento */
         Route::get('folha-pagamento', [FolhaController::class, 'indexFolhaPagamento'])->name('folha.pagamento.index');
         Route::post('folha-pagamento', [FolhaController::class, 'storeFolhaPagamento'])->name('folha.pagamento.store');
-        Route::get('folha-download', [FolhaController::class, 'downloadFolhaPagamento'])->name('pagamento.download');
+        Route::delete('folha-delete/{id}', [FolhaController::class, 'deleteFolhaPagamento'])->name('folha.pagamento.delete');
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');
         Route::post('funcionarios', [FolhaController::class, 'storeFuncionario'])->name('funcionarios.store');
         Route::get('funcionarios/recrutamento/{id}', [FolhaController::class, 'showRecrutamento'])->name('recrutamento.show');

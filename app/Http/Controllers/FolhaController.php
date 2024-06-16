@@ -36,82 +36,103 @@ class FolhaController extends Controller {
     }
 
     public function storeFolhaPagamento(Request $request)
-{
-    $rules = [
-        'ano' => 'required',
-        'mes' => 'required',
-        'doc_anexo' => 'required|file|mimes:pdf,doc,xlsx|max:2048', // Limitado a 2MB
-    ];
+    {
+        $rules = [
+            'ano' => 'required',
+            'mes' => 'required',
+            'doc_anexo' => 'required|file|mimes:pdf,doc,xlsx|max:2048', // Limitado a 2MB
+        ];
 
-    $messages = [
-        'ano.required' => 'Campo obrigatório.',
-        'mes.required' => 'Campo obrigatório.',
-        'doc_anexo.required' => 'Anexo obrigatório.',
-        'doc_anexo.mimes' => 'Formato deve ser .pdf, .doc ou .xlsx',
-        'doc_anexo.max' => 'Documento excede tamanho permitido.',
-    ];
+        $messages = [
+            'ano.required' => 'Campo obrigatório.',
+            'mes.required' => 'Campo obrigatório.',
+            'doc_anexo.required' => 'Anexo obrigatório.',
+            'doc_anexo.mimes' => 'Formato deve ser .pdf, .doc ou .xlsx',
+            'doc_anexo.max' => 'Documento excede tamanho permitido.',
+        ];
 
-    $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-    $validator->after(function ($validator) use ($request) {
-        $ano = $request->input('ano');
-        $mes = $request->input('mes');
-        $user_id = auth()->id();
+        $validator->after(function ($validator) use ($request) {
+            $ano = $request->input('ano');
+            $mes = $request->input('mes');
+            $user_id = auth()->id();
 
-        $existingRecord = FolhaPagamento::where('user_id', $user_id)
-            ->where('mes_id', $mes)
-            ->where('ano_id', $ano)
-            ->exists();
+            $existingRecord = FolhaPagamento::where('user_id', $user_id)
+                ->where('mes_id', $mes)
+                ->where('ano_id', $ano)
+                ->exists();
 
-        if ($existingRecord) {
-            $validator->errors()->add('mes', 'Competência já informada!');
+            if ($existingRecord) {
+                $validator->errors()->add('mes', 'Competência já informada!');
+            }
+        });
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
         }
-    });
 
-    if ($validator->fails()) {
-        return redirect()
-            ->back()
-            ->withErrors($validator)
-            ->withInput();
+        if (!$request->hasFile('doc_anexo')) {
+            return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $doc_anexo = $request->file('doc_anexo');
+
+            $user_id = auth()->id();
+            $timestamp = now()->format('dmY_His');
+            $extension = $doc_anexo->getClientOriginalExtension();
+            $fileName = "resumo_{$user_id}_{$timestamp}.{$extension}";
+
+            $doc_anexo->storeAs('folha_pagamento/resumos', $fileName, 'public');
+
+            $folhaPagamento = FolhaPagamento::create([
+                'user_id' => $user_id,
+                'atd' => false,
+                'retificador' => false,
+                'mes_id' => $request->input('mes'),
+                'ano_id' => $request->input('ano'),
+                'recebido' => false,
+                'anexo_resumo' => $fileName,
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()->with([
+                'successMessageTitle' => 'Enviado com sucesso!',
+                'successMessageSubTitle' => 'Aguarde! Em breve, sua folha será calculada.'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
+        }
     }
 
-    if (!$request->hasFile('doc_anexo')) {
-        return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
+    public function deleteFolhaPagamento($id)
+    {
+        try {
+            $folhaPagamento = FolhaPagamento::findOrFail($id);
+    
+            $filename = $folhaPagamento->anexo_resumo;
+    
+            $folhaPagamento->delete();
+    
+            if ($filename) {
+                Storage::disk('public')->delete('folha_pagamento/resumos/' . $filename);
+            }
+    
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o registro de folha de pagamento.');
+        }
     }
-
-    DB::beginTransaction();
-
-    try {
-        $doc_anexo = $request->file('doc_anexo');
-
-        $user_id = auth()->id();
-        $timestamp = now()->format('dmY_His');
-        $extension = $doc_anexo->getClientOriginalExtension();
-        $fileName = "resumo_{$user_id}_{$timestamp}.{$extension}";
-
-        $doc_anexo->storeAs('folha_pagamento/resumos', $fileName, 'public');
-
-        $folhaPagamento = FolhaPagamento::create([
-            'user_id' => $user_id,
-            'atd' => false,
-            'retificador' => false,
-            'mes_id' => $request->input('mes'),
-            'ano_id' => $request->input('ano'),
-            'recebido' => false,
-            'anexo_resumo' => $fileName,
-        ]);
-
-        DB::commit();
-
-        return redirect()->back()->with([
-            'successMessageTitle' => 'Enviado com sucesso!',
-            'successMessageSubTitle' => 'Aguarde! Em breve, sua folha será calculada.'
-        ]);
-    } catch (\Exception $e) {
-        DB::rollback();
-        return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
-    }
-}
+    
+    
 
 
     public function indexFuncionario() {

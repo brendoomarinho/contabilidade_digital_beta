@@ -181,7 +181,7 @@
             </div>
         </div>
     </div>
-    <!-- Delete Note -->
+    <!-- Delete Modal -->
     <div class="modal fade" id="delete-movimento">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

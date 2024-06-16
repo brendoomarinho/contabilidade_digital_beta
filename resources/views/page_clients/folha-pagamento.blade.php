@@ -39,7 +39,6 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-
                                 @foreach ($registros->groupBy('ano_id') as $anoCompetenciaId => $registrosPorAno)
                                     <table class="table text-nowrap">
                                         <thead class="thead-light">
@@ -140,13 +139,12 @@
                                                                         data-bs-original-title="Recibos"></i>
                                                                 </a>
                                                                 <a href="#" data-bs-toggle="modal"
-                                                                    data-bs-target="#delete-movimento"
-                                                                    data-id="{{ $registro->id }}">
+                                                                    data-bs-target="#delete-folha"
+                                                                    data-id="{{ $registro->id }}" class="delete-btn">
                                                                     <i class="fa-solid fa-trash-can btn-ico"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-custom-class="tooltip-dark"
-                                                                        data-bs-placement="top"
-                                                                        data-bs-original-title="Excluir"></i>
+                                                                        data-bs-placement="top" title="Excluir"></i>
                                                                 </a>
                                                                 <a href="#" class="btn-ico btn-disabled">
                                                                     <i class="fa-solid fa-comment-dots"
@@ -164,7 +162,7 @@
                                     </table>
                                 @endforeach
                             </div>
-                            <!-- Exibir a paginação -->
+                            <!-- Exibir paginação -->
                             <div class="d-flex justify-content-end">
                                 @include('components.pagination', ['registros' => $registros])
                             </div>
@@ -197,7 +195,8 @@
                             </button>
                         </div>
                         <div class="modal-body custom-modal-body">
-                            <form method="post" action="{{ route('folha.pagamento.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('folha.pagamento.store') }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -249,8 +248,8 @@
             </div>
         </div>
     </div>
-    <!-- Delete Note -->
-    <div class="modal fade" id="delete-movimento">
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delete-folha">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="page-wrapper-new p-0">
@@ -267,7 +266,10 @@
                             <div class="modal-footer-btn delete-footer">
                                 <button type="button" class="btn btn-cancel me-2"
                                     data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-submit confirm-delete">Sim</button>
+                                <button type="button" class="btn btn-warning confirm-delete"
+                                    onclick="this.disabled=true; this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Excluindo...'; this.form.submit();">
+                                    <span>Sim</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -275,29 +277,27 @@
             </div>
         </div>
     </div>
-    <!-- /Delete Note -->
-    <!-- AJAX Request -->
+    <!-- Requisição AJAX -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var deleteButtons = document.querySelectorAll('.delete-btn');
 
             deleteButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var id = button.getAttribute('data-id');
-                    var confirmDeleteButton = document.querySelector('.confirm-delete');
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); 
 
+                    var id = button.getAttribute('data-id');
+
+                    var confirmDeleteButton = document.querySelector('.confirm-delete');
                     confirmDeleteButton.addEventListener('click', function() {
-                        fetch('/meu-movimento/' + id, {
+                        fetch('/folha-delete/' + id, {
                             method: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                             }
-                        }).then(response => {
-                            if (response.ok) {
-                                location.reload();
-                            } else {
-                                console.error('Erro ao excluir registro');
-                            }
+                        }).then(() => {
+                            location
+                        .reload(); 
                         }).catch(error => {
                             console.error('Erro ao excluir registro:', error);
                         });
