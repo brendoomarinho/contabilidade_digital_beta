@@ -70,8 +70,8 @@
                                                         <td>{{ $registro->movimentoTitle->title }}</td>
                                                         <td>
                                                             <div class="hstack gap-2 fs-15">
-                                                                <a href="{{ route('fileAction', ['directory' => 'movimentos-mensais', 'action' => 'download', 'file' => $registro->doc_anexo]) }}"
-                                                                    class="me-2" target="_blank">
+                                                                <a href="{{ Storage::url('movimentos-mensais/' . $registro->doc_anexo) }}"
+                                                                    target="_blank">
                                                                     <i data-feather="folder" class="action-edit"></i>
                                                                 </a>
                                                                 @if ($registro->atd == 0)
