@@ -69,7 +69,7 @@
                                 <i data-feather="users"></i><span>Folha Pagamento </span><span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="{{ route('pagamento.index') }}"
+                                <li><a href="{{ route('folha.pagamento.index') }}"
                                         class="{{ Request::is('folha-pagamento') ? 'active' : '' }}">Folha mensal</a>
                                 </li>
                                 <li><a href="{{ route('funcionarios.index') }}"

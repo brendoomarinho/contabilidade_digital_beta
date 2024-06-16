@@ -197,7 +197,7 @@
                             </button>
                         </div>
                         <div class="modal-body custom-modal-body">
-                            <form method="post" action="{{ route('pagamento.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('folha.pagamento.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">

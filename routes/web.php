@@ -26,8 +26,8 @@
         Route::delete('meu-movimento/{id}', [MovimentoController::class, 'destroy'])->name('movimento.destroy');
 
         /** Folha Pagamento */
-        Route::get('folha-pagamento', [FolhaController::class, 'indexFolhaPagamento'])->name('pagamento.index');
-        Route::post('folha-pagamento', [FolhaController::class, 'storeFolhaPagamento'])->name('pagamento.store');
+        Route::get('folha-pagamento', [FolhaController::class, 'indexFolhaPagamento'])->name('folha.pagamento.index');
+        Route::post('folha-pagamento', [FolhaController::class, 'storeFolhaPagamento'])->name('folha.pagamento.store');
         Route::get('folha-download', [FolhaController::class, 'downloadFolhaPagamento'])->name('pagamento.download');
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');
         Route::post('funcionarios', [FolhaController::class, 'storeFuncionario'])->name('funcionarios.store');
