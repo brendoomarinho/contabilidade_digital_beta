@@ -16,8 +16,8 @@ use App\Models\Competencia;
 class FolhaController extends Controller {
 
 
-    public function indexFolhaPagamento() {
-
+    public function indexFolhaPagamento() 
+    {
         $user = auth()->user();
 
         $registros = $user->folhaPagamento()->with('anoCompetencia', 'mesCompetencia')
@@ -79,8 +79,6 @@ class FolhaController extends Controller {
             return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
         }
 
-        DB::beginTransaction();
-
         try {
             $doc_anexo = $request->file('doc_anexo');
 
@@ -101,42 +99,37 @@ class FolhaController extends Controller {
                 'anexo_resumo' => $fileName,
             ]);
 
-            DB::commit();
-
             return redirect()->back()->with([
                 'successMessageTitle' => 'Enviado com sucesso!',
                 'successMessageSubTitle' => 'Aguarde! Em breve, sua folha será calculada.'
             ]);
         } catch (\Exception $e) {
-            DB::rollback();
             return redirect()->back()->withErrors(['error' => 'Ocorreu um erro ao processar a solicitação. Por favor, tente novamente.']);
         }
     }
+
 
     public function deleteFolhaPagamento($id)
     {
         try {
             $folhaPagamento = FolhaPagamento::findOrFail($id);
-    
+
             $filename = $folhaPagamento->anexo_resumo;
-    
+
             $folhaPagamento->delete();
-    
+
             if ($filename) {
                 Storage::disk('public')->delete('folha_pagamento/resumos/' . $filename);
             }
-    
+
             return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocorreu um erro ao excluir o registro de folha de pagamento.');
         }
     }
-    
-    
 
-
-    public function indexFuncionario() {
-
+    public function indexFuncionario() 
+    {
         $user = auth()->user();
 
         $funcionarios = FolhaFuncionario::where( 'user_id', $user->id )->get();
@@ -144,8 +137,8 @@ class FolhaController extends Controller {
         return view( 'page_clients.folha-funcionarios-index', compact( 'funcionarios' ) );
     }
 
-    public function storeFuncionario( Request $request ) {
-
+    public function storeFuncionario( Request $request ) 
+    {
         $user_id = auth()->id();
 
         $validatedData = $request->validate([
@@ -202,7 +195,6 @@ class FolhaController extends Controller {
                 'doc_anexo' => $filename,
             ] );
 
-            // Criação do registro em FolhaRecrutamento
             $funcionario->recrutamento()->create( [
                 'etapa' => 0,
             ] );

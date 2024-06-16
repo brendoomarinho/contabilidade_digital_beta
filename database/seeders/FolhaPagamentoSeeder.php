@@ -11,6 +11,6 @@ class FolhaPagamentoSeeder extends Seeder
 {
     public function run(): void
     {
-        FolhaPagamento::factory(50)->create();
+        FolhaPagamento::factory(750)->create();
     }
 }
