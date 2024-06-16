@@ -172,7 +172,6 @@ class FolhaController extends Controller {
         ]);
         
         try {
-
             DB::beginTransaction();
 
             $filename = $request->file( 'doc_anexo' )->hashName();
