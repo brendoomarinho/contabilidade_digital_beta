@@ -47,7 +47,6 @@
                                                     <i class="fa-regular fa-calendar-check me-2"></i>
                                                     <b>{{ $registrosPorAno->first()->anoCompetencia->ano }}</b>
                                                 </th>
-                                                </th>
                                                 <th scope="col" style="width: 213.3px">Cálculo</th>
                                                 <th scope="col" style="width: 206.3px">Mês</th>
                                                 <th scope="col" style="width: 226.65px">Valor</th>
@@ -116,7 +115,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Excluir"></i>
                                                                 </a>
-                                                                <a href="#">
+                                                                <a href="{{ route('folha.mensagens', ['registro' => $registro->id]) }}">
                                                                     <i class="fa-solid fa-comment-dots btn-ico"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-custom-class="tooltip-dark"

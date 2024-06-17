@@ -26,6 +26,7 @@ class FolhaController extends Controller {
         ->paginate(12);
 
         $anosCompetencia = CompetenciaAno::all();
+
         $mesesCompetencia = CompetenciaMes::all();
 
         return view('page_clients.folha-pagamento', [
@@ -216,6 +217,21 @@ class FolhaController extends Controller {
 
         $funcionario = FolhaFuncionario::with( 'recrutamento' )->findOrFail( $id );
 
-        return view( 'page_clients.folha-recrutamento', compact( 'funcionario' ) );
+        return view( 'page_clients.folha-recrutamento', compact('funcionario') );
+    }
+
+    public function folhaMensagens($registro)
+    {
+        $folhaMsg = FolhaPagamento::findOrFail( $registro );
+
+        $anosCompetencia = CompetenciaAno::all();
+
+        $mesesCompetencia = CompetenciaMes::all();
+
+        return view('page_clients.folha-mensagens', [
+            'folhaMsg' => $folhaMsg,
+            'anosCompetencia' => $anosCompetencia,
+            'mesesCompetencia' => $mesesCompetencia,
+        ]);
     }
 }

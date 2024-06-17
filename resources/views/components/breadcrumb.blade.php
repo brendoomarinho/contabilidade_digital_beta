@@ -384,6 +384,7 @@
 @if (
     !Route::is([
         'recrutamento.show',
+        'folha.mensagens',
     ]))
     <div class="page-header">
         <div class="add-item d-flex">
@@ -403,6 +404,44 @@
     </div>
 @endif
 
+@if (
+    Route::is([
+        'folha.mensagens',
+    ]))
+    <div class="page-header">
+        <div class="add-item d-flex">
+            <div class="page-title">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url('index') }}"><i class="fa-solid fa-house"></i> {{ $li_1 }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('folha.pagamento.index') }}">{{ $li_2 }}</a></li>
+                    <li class="breadcrumb-item active">{{ $li_3 }}</li>
+                </ul>
+            </div>
+        </div>
+        <ul class="table-top-head">
+            <li>
+                <a onclick="location.reload();" data-bs-toggle="tooltip" data-bs-placement="top" title="Atualizar"><i data-feather="rotate-ccw"
+                        class="feather-rotate-ccw"></i></a>
+            </li>
+        </ul>
+    </div>
+@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @if (
@@ -412,7 +451,6 @@
     <div class="page-header">
         <div class="add-item d-flex">
             <div class="page-title">
-                <h4>{{ $title }}</h4>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('index') }}">{{ $li_1 }}</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('funcionarios.index') }}">{{ $li_2 }}</a></li>
