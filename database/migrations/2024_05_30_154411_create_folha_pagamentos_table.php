@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('anexo_resumo');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('ano_id')->references('id')->on('competencia_meses');
-            $table->foreign('mes_id')->references('id')->on('competencia_anos');
+            $table->foreign('ano_id')->references('id')->on('competencia_anos');
+            $table->foreign('mes_id')->references('id')->on('competencia_meses');
         });
     }
 
