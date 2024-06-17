@@ -180,103 +180,8 @@
             });
         </script>
     @endif
-    <!-- Modal Folha -->
-    <div class="modal fade" id="add-folha">
-        <div class="modal-dialog modal-dialog-centered custom-modal-two">
-            <div class="modal-content">
-                <div class="page-wrapper-new p-0">
-                    <div class="content">
-                        <div class="modal-header border-0 custom-modal-header">
-                            <div class="page-title">
-                                <h4>Enviar resumo da folha</h4>
-                            </div>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body custom-modal-body">
-                            <form method="post" action="{{ route('folha.pagamento.store') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Mês</label>
-                                            <select class="select" id="mes" name="mes">
-                                                <option value="">Selecione</option>
-                                                @foreach ($mesesCompetencia as $mes)
-                                                    <option value="{{ $mes->id }}">
-                                                        {{ $mes->mes }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('mes')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Ano</label>
-                                            <select class="select" id="ano" name="ano">
-                                                <option value="">Selecione</option>
-                                                @foreach ($anosCompetencia as $ano)
-                                                    <option value="{{ $ano->id }}">
-                                                        {{ $ano->ano }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('ano')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- anexo -->
-                                @component('components.upload-file')
-                                @endcomponent
-                                <script src="{{ asset('build/js/upload-file.js') }}"></script>
-                                <div class="modal-footer-btn">
-                                    <button type="button" class="btn btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-submit">Enviar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Delete Modal -->
-    <div class="modal fade" id="delete-folha">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="page-wrapper-new p-0">
-                    <div class="content">
-                        <div class="delete-popup">
-                            <div class="delete-image text-center mx-auto">
-                                <img src="{{ URL::asset('/build/img/icons/close-circle.png') }}" alt="Img"
-                                    class="img-fluid">
-                            </div>
-                            <div class="delete-heads">
-                                <h4>Excluir registro</h4>
-                                <p>Tem certeza que deseja excluir este registro?</p>
-                            </div>
-                            <div class="modal-footer-btn delete-footer">
-                                <button type="button" class="btn btn-cancel me-2"
-                                    data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-warning confirm-delete"
-                                    onclick="this.disabled=true; this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Excluindo...'; this.form.submit();">
-                                    <span>Sim</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- Modais incluir/deletar folha --}}
+    @include('components.modalpopup', ['registros' => $registros])
     <!-- Requisição AJAX -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -284,7 +189,7 @@
 
             deleteButtons.forEach(function(button) {
                 button.addEventListener('click', function(e) {
-                    e.preventDefault(); 
+                    e.preventDefault();
 
                     var id = button.getAttribute('data-id');
 
@@ -297,7 +202,7 @@
                             }
                         }).then(() => {
                             location
-                        .reload(); 
+                                .reload();
                         }).catch(error => {
                             console.error('Erro ao excluir registro:', error);
                         });

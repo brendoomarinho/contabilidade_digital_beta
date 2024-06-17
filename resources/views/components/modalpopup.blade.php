@@ -1,62 +1,4 @@
 {{-- Meu projeto --}}
-@if (Route::is(['movimento.index']))
-    <!-- Adicionar Movimento -->
-    <div class="modal fade" id="add-movimento">
-        <div class="modal-dialog modal-dialog-centered custom-modal-two">
-            <div class="modal-content">
-                <div class="page-wrapper-new p-0">
-                    <div class="content">
-                        <div class="modal-header border-0 custom-modal-header">
-                            <div class="page-title">
-                                <h4>Enviar movimento</h4>
-                            </div>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body custom-modal-body">
-                            <form action="designation">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Selecione a competência</label>
-                                            {{-- <select class="form-select @error('competencia_id') is-invalid @enderror" id="competencia_id" name="competencia_id">
-                                                    <option></option>
-                                                    @foreach ($competencias->reverse() as $competencia)
-                                                    <option value="{{ $competencia->id }}">
-                                                        {{ $competencia->mes->mes }}
-                                                        {{ $competencia->ano->ano }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                                    @error('competencia_id')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror --}}
-                                        </div>
-                                    </div>
-                                    <div class="input-blocks m-0">
-                                        <div
-                                            class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                            <span class="status-label">Status</span>
-                                            <input type="checkbox" id="user5" class="check" checked>
-                                            <label for="user5" class="checktoggle"> </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer-btn">
-                                    <button type="button" class="btn btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-submit">Enviar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Add Department -->
-@endif
 
 @if (Route::is(['funcionarios.index']))
     <!-- Modal Admissão -->
@@ -101,9 +43,11 @@
                                                 <select class="select" name="jornada">
                                                     <option value="">Selecione</option>
                                                     <option value="1"
-                                                        @if (old('jornada') == '1') selected @endif>Jornada de trabalho regular</option>
+                                                        @if (old('jornada') == '1') selected @endif>Jornada de
+                                                        trabalho regular</option>
                                                     <option value="2"
-                                                        @if (old('jornada') == '2') selected @endif>Escala de trabalho</option>
+                                                        @if (old('jornada') == '2') selected @endif>Escala de
+                                                        trabalho</option>
                                                 </select>
                                                 @error('jornada')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -137,8 +81,8 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Salário</label>
-                                                <input type="text" name="salario" class="form-control"
-                                                    id="valor" value="{{ old('salario') }}">
+                                                <input type="text" name="salario" class="form-control" id="valor"
+                                                    value="{{ old('salario') }}">
                                                 @error('salario')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
@@ -155,8 +99,7 @@
                                                     <input class="form-check-input" type="radio" name="modalidade"
                                                         id="gender_female" value="estágio"
                                                         @if (old('modalidade') == 'estágio') checked @endif>
-                                                    <label class="form-check-label"
-                                                        for="gender_female">Estágio</label>
+                                                    <label class="form-check-label" for="gender_female">Estágio</label>
                                                 </div>
                                                 @error('modalidade')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -272,10 +215,107 @@
 @endif
 
 
-
-
-
-
+@if (Route::is(['folha.pagamento.index']))
+    {{-- modal folha pagamento --}}
+    @if (isset($registros))
+        <div class="modal fade" id="add-folha">
+            <div class="modal-dialog modal-dialog-centered custom-modal-two">
+                <div class="modal-content">
+                    <div class="page-wrapper-new p-0">
+                        <div class="content">
+                            <div class="modal-header border-0 custom-modal-header">
+                                <div class="page-title">
+                                    <h4>Enviar resumo da folha</h4>
+                                </div>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body custom-modal-body">
+                                <form method="post" action="{{ route('folha.pagamento.store') }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mês</label>
+                                                <select class="select" id="mes" name="mes">
+                                                    <option value="">Selecione</option>
+                                                    @foreach ($mesesCompetencia as $mes)
+                                                        <option value="{{ $mes->id }}">
+                                                            {{ $mes->mes }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('mes')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Ano</label>
+                                                <select class="select" id="ano" name="ano">
+                                                    <option value="">Selecione</option>
+                                                    @foreach ($anosCompetencia as $ano)
+                                                        <option value="{{ $ano->id }}">
+                                                            {{ $ano->ano }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('ano')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- anexo -->
+                                    @component('components.upload-file')
+                                    @endcomponent
+                                    <script src="{{ asset('build/js/upload-file.js') }}"></script>
+                                    <div class="modal-footer-btn">
+                                        <button type="button" class="btn btn-cancel me-2"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-submit">Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Delete modal --}}
+        <div class="modal fade" id="delete-folha">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="page-wrapper-new p-0">
+                        <div class="content">
+                            <div class="delete-popup">
+                                <div class="delete-image text-center mx-auto">
+                                    <img src="{{ URL::asset('/build/img/icons/close-circle.png') }}" alt="Img"
+                                        class="img-fluid">
+                                </div>
+                                <div class="delete-heads">
+                                    <h4>Excluir registro</h4>
+                                    <p>Tem certeza que deseja excluir este registro?</p>
+                                </div>
+                                <div class="modal-footer-btn delete-footer">
+                                    <button type="button" class="btn btn-cancel me-2"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-warning confirm-delete"
+                                        onclick="this.disabled=true; this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Excluindo...'; this.form.submit();">
+                                        <span>Sim</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endif
 
 
 {{-- @if (Route::is(['product-list']))
