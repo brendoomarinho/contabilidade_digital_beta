@@ -1036,6 +1036,7 @@ ul .btn-primary:not(:disabled):not(.disabled):active:focus, ul .btn-primary:not(
   color: #000000;
   font-size: 14px;
   border-radius: 20px;
+  border: none;
   padding: 10px 20px;
   -webkit-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;

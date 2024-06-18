@@ -3,6 +3,7 @@
     color: $black;
     font-size: $font-size-14;
     border-radius: 20px;
+    border: none;
     @include margin-padding(null, 10px 20px);
     @include transition(all 0.2s ease);
     &:hover{

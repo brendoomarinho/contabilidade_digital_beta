@@ -11,7 +11,7 @@
                     Folha pagamento
                 @endslot
                 @slot('li_3')
-                    Mensagens
+                    Atendimento Folha
                 @endslot
             @endcomponent
             @include('components.success-message')
@@ -30,7 +30,7 @@
                             <div class="table-top">
                                 <div class="search-set">
                                     <i data-feather="users" class="me-2"></i>
-                                    <h4 class="mt-1"> Mensagens</h4>
+                                    <h4 class="mt-1"> Atendimento Folha</h4>
                                 </div>
                                 <div>
                                     <div class="d-flex align-items-center">
@@ -41,106 +41,22 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col" style="width: 253.3px">Competência</th>
-                                            <th scope="col" style="width: 213.3px">Cálculo</th>
-                                            <th scope="col" style="width: 226.65px">Valor</th>
-                                            <th scope="col" class="text-center">Resumo</th>
-                                            <th scope="col" class="text-center">Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                {{ $folhaMsg->mesCompetencia->mes }}/{{ $folhaMsg->anoCompetencia->ano }}
-                                            </td>
-                                            <td>
-                                                @if ($folhaMsg->recebido == false)
-                                                    <i class="fa-solid fa-spinner fa-spin-pulse ms-3"></i>
-                                                @else
-                                                    <span
-                                                        class="badge rounded-pill bg-outline-{{ $folhaMsg->retificador == 0 ? 'success' : 'warning' }}">
-                                                        {{ $folhaMsg->retificador == 0 ? 'Original' : 'Retificado' }}
-                                                    </span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($folhaMsg->recebido == false)
-                                                    <i class="fa-solid fa-spinner fa-spin-pulse ms-2"></i>
-                                                @else
-                                                    R$ {{ number_format($folhaMsg->valor, 2, ',', '.') }}
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{ Storage::url('folha_pagamento/resumos/' . $folhaMsg->anexo_resumo) }}"
-                                                    target="_blank">
-                                                    <i class="fa-solid fa-receipt btn-ico" data-bs-toggle="tooltip"
-                                                        data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                        title="Resumo da folha">
-                                                    </i>
-                                                </a>
-                                            </td>
-                                            <td class="d-flex justify-content-center">
-                                                <div class="hstack gap-2">
-                                                    @if ($folhaMsg->recebido == true)
-                                                        <a href="{{ Storage::url('folha_pagamento/extratos/' . $folhaMsg->extrato) }}"
-                                                            target="_blank">
-                                                            <i class="fa-solid fa-calculator btn-ico"
-                                                                data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark"
-                                                                data-bs-placement="top"
-                                                                data-bs-original-title="Extrato"></i>
-                                                        </a>
-                                                        <a href="{{ Storage::url('folha_pagamento/recibos/' . $folhaMsg->recibos) }}"
-                                                            target="_blank">
-                                                            <i class="fa-solid fa-file-arrow-down btn-ico"
-                                                                data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark"
-                                                                data-bs-placement="top"
-                                                                data-bs-original-title="Recibos"></i>
-                                                        </a>
-                                                        <a href="#" class="btn-ico btn-disabled">
-                                                            <i class="fa-solid fa-trash-can" data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                                data-bs-original-title="Excluir"></i>
-                                                        </a>
-                                                        <a
-                                                            href="{{ route('folha.mensagens', ['registro' => $folhaMsg->id]) }}">
-                                                            <i class="fa-solid fa-comment-dots btn-ico"
-                                                                data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark"
-                                                                data-bs-placement="top"
-                                                                data-bs-original-title="Enviar mensagem"></i>
-                                                        </a>
-                                                    @else
-                                                        <a href="#" class="btn-ico btn-disabled">
-                                                            <i class="fa-solid fa-calculator" data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                                data-bs-original-title="Extrato"></i>
-                                                        </a>
-                                                        <a href="#" class="btn-ico btn-disabled">
-                                                            <i class="fa-solid fa-file-arrow-down" data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                                data-bs-original-title="Recibos"></i>
-                                                        </a>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#delete-folha" data-id="{{ $folhaMsg->id }}"
-                                                            class="delete-btn">
-                                                            <i class="fa-solid fa-trash-can btn-ico"
-                                                                data-bs-toggle="tooltip" data-bs-custom-class="tooltip-dark"
-                                                                data-bs-placement="top" title="Excluir"></i>
-                                                        </a>
-                                                        <a href="#" class="btn-ico btn-disabled">
-                                                            <i class="fa-solid fa-comment-dots" data-bs-toggle="tooltip"
-                                                                data-bs-custom-class="tooltip-dark" data-bs-placement="top"
-                                                                data-bs-original-title="Enviar mensagem"></i>
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
+                            <h4 class="mb-2">Dados do chamado</h4>
+                                <span class="mb-2">Competência:</span>
+                                {{ $folhaMsg->mesCompetencia->mes }}/{{ $folhaMsg->anoCompetencia->ano }}<br>
 
-                                    </tbody>
+                                Valor da folha: R$
+                                {{ number_format($folhaMsg->valor, 2, ',', '.') }}<br>
                                 </table>
+                                <div class="mb-3 mt-5">
+                                    <label class="form-label">Enviar mensagem:</label>
+                                    <textarea rows="5" cols="5" class="form-control" placeholder="Digite a mensagem..."></textarea>
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn-menu"><i class="fa-solid fa-paper-plane"></i> Enviar
+                                        mensagem</button>
+                                </div>
                             </div>
                         </div>
                     </div>
