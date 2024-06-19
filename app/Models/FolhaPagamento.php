@@ -12,6 +12,7 @@ class FolhaPagamento extends Model
     protected $fillable = [
         'user_id',
         'atd',
+        'user_admin',
         'retificador',
         'recebido',
         'ano_id',
@@ -41,6 +42,11 @@ class FolhaPagamento extends Model
     public function mesCompetencia()
     {
         return $this->belongsTo(CompetenciaMes::class, 'mes_id');
+    }
+
+    public function folhaMensagens()
+    {
+        return $this->hasMany(FolhaMensagem::class, 'folha_id');
     }
 
 }

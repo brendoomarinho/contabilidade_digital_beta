@@ -41,22 +41,63 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                            <h4 class="mb-2">Dados do chamado</h4>
+                                <h4 class="mb-2">Dados do chamado</h4>
                                 <span class="mb-2">Competência:</span>
                                 {{ $folhaMsg->mesCompetencia->mes }}/{{ $folhaMsg->anoCompetencia->ano }}<br>
 
                                 Valor da folha: R$
                                 {{ number_format($folhaMsg->valor, 2, ',', '.') }}<br>
                                 </table>
-                                <div class="mb-3 mt-5">
-                                    <label class="form-label">Enviar mensagem:</label>
-                                    <textarea rows="5" cols="5" class="form-control" placeholder="Digite a mensagem..."></textarea>
-                                </div>
 
-                                <div>
-                                    <button type="submit" class="btn-menu"><i class="fa-solid fa-paper-plane"></i> Enviar
-                                        mensagem</button>
-                                </div>
+
+                              
+                                    <div class="mt-5">
+                                        @foreach ($folhaMsg->folhaMensagens as $mensagem)
+                                            <div
+                                                class="d-flex @if ($mensagem->user_id == $mensagem->sender_id) justify-content-end @else justify-content-start @endif">
+                                                <div
+                                                    class="message @if ($mensagem->user_id == $mensagem->sender_id) sender @else recipient @endif">
+                                                    <p class="mb-1 @if ($mensagem->user_id == $mensagem->sender_id) text-end @endif">
+                                                        {{ $mensagem->message }}
+                                                    </p>
+                                                    <!-- Outros campos da mensagem, se houver -->
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                              
+
+                                <form method="post" action="{{ route('folha.mensagens.store') }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="folha_id" value="{{ $folhaMsg->id }}">
+                                    <input type="hidden" name="user_admin" value="{{ $folhaMsg->user_admin }}">
+
+                                    <div class="mb-3 mt-5">
+                                        <label class="form-label">Enviar mensagem:</label>
+                                        <textarea rows="5" cols="5" class="form-control" name="message" placeholder="Digite a mensagem..."></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn-menu">
+                                            <i class="fa-solid fa-paper-plane"></i> Enviar mensagem
+                                        </button>
+                                    </div>
+                                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>

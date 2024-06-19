@@ -384,7 +384,7 @@
 @if (
     !Route::is([
         'recrutamento.show',
-        'folha.mensagens',
+        'folha.mensagens.index',
     ]))
     <div class="page-header">
         <div class="add-item d-flex">
@@ -406,7 +406,7 @@
 
 @if (
     Route::is([
-        'folha.mensagens',
+        'folha.mensagens.index',
     ]))
     <div class="page-header">
         <div class="add-item d-flex">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\FolhaFuncionario;
 use App\Models\FolhaPagamento;
+use App\Models\FolhaMensagem;
 use App\Models\CompetenciaAno;
 use App\Models\CompetenciaMes;
 use App\Models\Competencia;
@@ -220,9 +221,9 @@ class FolhaController extends Controller {
         return view( 'page_clients.folha-recrutamento', compact('funcionario') );
     }
 
-    public function folhaMensagens($registro)
+    public function folhaMensagensIndex($registro)
     {
-        $folhaMsg = FolhaPagamento::findOrFail( $registro );
+        $folhaMsg = FolhaPagamento::with('folhaMensagens')->findOrFail($registro);
 
         $anosCompetencia = CompetenciaAno::all();
 
@@ -234,4 +235,27 @@ class FolhaController extends Controller {
             'mesesCompetencia' => $mesesCompetencia,
         ]);
     }
+    public function folhaMensagensStore(Request $request)
+    {
+        $user_id = auth()->id();
+
+        $request->validate([
+            'folha_id' => 'required',
+            'message' => 'required',
+        ]);
+
+        FolhaMensagem::create([
+            'folha_id' => $request->input('folha_id'),
+            'atd' => false,
+            'user_id' => $user_id,
+            'sender_id' => $user_id,
+            'recipient_id' => $request->input('user_admin'),
+            'message' => $request->input('message'),
+        ]);
+
+        return redirect()->back()->with( [
+            'successMessageTitle' => 'Mensagem enviada!',
+            'successMessageSubTitle' => 'Em breve retornaremos seu contato.'
+        ] );
+    } 
 }

@@ -29,7 +29,8 @@
         Route::get('folha-pagamento', [FolhaController::class, 'indexFolhaPagamento'])->name('folha.pagamento.index');
         Route::post('folha-pagamento', [FolhaController::class, 'storeFolhaPagamento'])->name('folha.pagamento.store');
         Route::delete('folha-delete/{id}', [FolhaController::class, 'deleteFolhaPagamento'])->name('folha.pagamento.delete');
-        Route::get('folha-mensagens/{registro}', [FolhaController::class, 'folhaMensagens'])->name('folha.mensagens');
+        Route::get('folha-mensagens/{registro}', [FolhaController::class, 'folhaMensagensIndex'])->name('folha.mensagens.index');
+        Route::post('folha-mensagens', [FolhaController::class, 'folhaMensagensStore'])->name('folha.mensagens.store');
 
 
         Route::get('funcionarios', [FolhaController::class, 'indexFuncionario'])->name('funcionarios.index');

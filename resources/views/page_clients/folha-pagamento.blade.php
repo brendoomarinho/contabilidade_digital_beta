@@ -115,7 +115,7 @@
                                                                         data-bs-placement="top"
                                                                         data-bs-original-title="Excluir"></i>
                                                                 </a>
-                                                                <a href="{{ route('folha.mensagens', ['registro' => $registro->id]) }}">
+                                                                <a href="{{ route('folha.mensagens.index', ['registro' => $registro->id]) }}">
                                                                     <i class="fa-solid fa-comment-dots btn-ico"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-custom-class="tooltip-dark"
