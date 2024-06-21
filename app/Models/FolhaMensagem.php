@@ -15,9 +15,9 @@ class FolhaMensagem extends Model
         'folha_id',
         'atd',
         'user_id',
-        'sender_id',
-        'recipient_id',
-        'message',
+        'user_admin_id',
+        'remetente_id',
+        'mensagem',
         'doc_anexo',
     ];
 
@@ -26,8 +26,13 @@ class FolhaMensagem extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function userAdmin()
+    {
+        return $this->belongsTo(User::class, 'user_admin_id');
+    }
+
     public function folhaPagamento()
     {
-        return $this->belogsTo(FolhaPagamento::class);
+        return $this->belongsTo(FolhaPagamento::class, 'folha_id');
     }
 }

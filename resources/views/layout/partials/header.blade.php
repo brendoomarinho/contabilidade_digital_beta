@@ -193,7 +193,7 @@
                             class="img-fluid">
                     </span>
                     <span class="user-detail">
-                        <span class="user-name">Guilherme</span>
+                         <span class="user-name">{{ auth()->user()->name }}</span>
                         <span class="user-role">34.391.002/0001-70</span>
                     </span>
                 </span>

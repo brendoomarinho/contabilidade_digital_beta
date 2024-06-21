@@ -50,33 +50,40 @@
                                 </table>
 
 
-                              
-                                    <div class="mt-5">
-                                        @foreach ($folhaMsg->folhaMensagens as $mensagem)
-                                            <div
-                                                class="d-flex @if ($mensagem->user_id == $mensagem->sender_id) justify-content-end @else justify-content-start @endif">
-                                                <div
-                                                    class="message @if ($mensagem->user_id == $mensagem->sender_id) sender @else recipient @endif">
-                                                    <p class="mb-1 @if ($mensagem->user_id == $mensagem->sender_id) text-end @endif">
-                                                        {{ $mensagem->message }}
-                                                    </p>
-                                                    <!-- Outros campos da mensagem, se houver -->
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
 
-                              
+                                <div class="mt-5">
+                                    @foreach ($folhaMsg->folhaMensagens as $mensagem)
+                                        <div>
+                                            @if ($mensagem->user_id == $mensagem->remetente_id)
+                                                <div>
+                                                   <b> {{ $folhaMsg->user->name }} </b>
+                                                    <p>
+                                                        {{ $mensagem->mensagem }}
+                                                    </p>
+                                                </div>
+                                        </div>
+                                    @else
+                                        <div>
+                                            <b>{{ $folhaMsg->userAdmin->name }}</b>
+                                            <p>
+                                                {{ $mensagem->mensagem }}
+                                            </p>
+                                        </div>
+                                    @endif
+                                    @endforeach
+                                </div>
+
+
 
                                 <form method="post" action="{{ route('folha.mensagens.store') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="folha_id" value="{{ $folhaMsg->id }}">
-                                    <input type="hidden" name="user_admin" value="{{ $folhaMsg->user_admin }}">
+                                    <input type="hidden" name="user_admin_id" value="{{ $folhaMsg->user_admin_id }}">
 
                                     <div class="mb-3 mt-5">
                                         <label class="form-label">Enviar mensagem:</label>
-                                        <textarea rows="5" cols="5" class="form-control" name="message" placeholder="Digite a mensagem..."></textarea>
+                                        <textarea rows="5" cols="5" class="form-control" name="mensagem" placeholder="Digite a mensagem..."></textarea>
                                     </div>
                                     <div>
                                         <button type="submit" class="btn-menu">

@@ -29,6 +29,11 @@ class FolhaPagamento extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function userAdmin()
+    {
+        return $this->belongsTo(User::class, 'user_admin_id');
+    }
+
     public function competencia()
     {
         return $this->belongsTo(Competencia::class, 'competencia_id');

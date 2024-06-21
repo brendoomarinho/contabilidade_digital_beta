@@ -36,11 +36,6 @@ class User extends Authenticatable implements CanResetPassword
         $this->notify(new ResetPasswordNotification($token, $this->email, $this->name));
     }
 
-    public function userAdmin()
-    {
-        return $this->hasOne(UserAdmin::class, 'user_id');
-    }
-
     public function movimentoEnvios()
     {
         return $this->hasMany(MovimentoEnvio::class);
@@ -73,7 +68,7 @@ class User extends Authenticatable implements CanResetPassword
 
     public function folhaMensagem()
     {
-        return $this->hasMany(FolhaMensagem::class);
+        return $this->hasMany(FolhaMensagem::class, 'folha_id');
     }
 }
 

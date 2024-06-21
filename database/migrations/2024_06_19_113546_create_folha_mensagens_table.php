@@ -13,15 +13,14 @@ return new class extends Migration
             $table->unsignedBigInteger('folha_id');
             $table->boolean('atd')->default(false);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sender_id');
-            $table->unsignedBigInteger('recipient_id');
-            $table->text('message');
+            $table->unsignedBigInteger('user_admin_id');
+            $table->unsignedBigInteger('remetente_id');
+            $table->text('mensagem');
             $table->string('doc_anexo')->nullable();
             $table->timestamps();
             $table->foreign('folha_id')->references('id')->on('folha_pagamentos');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sender_id')->references('id')->on('users');
-            $table->foreign('recipient_id')->references('id')->on('users');
+            $table->foreign('user_admin_id')->references('id')->on('users');
         });
     }
 

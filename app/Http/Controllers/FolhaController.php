@@ -224,9 +224,7 @@ class FolhaController extends Controller {
     public function folhaMensagensIndex($registro)
     {
         $folhaMsg = FolhaPagamento::with('folhaMensagens')->findOrFail($registro);
-
         $anosCompetencia = CompetenciaAno::all();
-
         $mesesCompetencia = CompetenciaMes::all();
 
         return view('page_clients.folha-mensagens', [
@@ -241,16 +239,17 @@ class FolhaController extends Controller {
 
         $request->validate([
             'folha_id' => 'required',
-            'message' => 'required',
+            'user_admin_id' => 'required',
+            'mensagem' => 'required',
         ]);
 
         FolhaMensagem::create([
             'folha_id' => $request->input('folha_id'),
             'atd' => false,
             'user_id' => $user_id,
-            'sender_id' => $user_id,
-            'recipient_id' => $request->input('user_admin'),
-            'message' => $request->input('message'),
+            'user_admin_id' => $request->input('user_admin_id'),
+            'remetente_id' => $user_id,
+            'mensagem' => $request->input('mensagem'),
         ]);
 
         return redirect()->back()->with( [
