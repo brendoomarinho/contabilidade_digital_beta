@@ -3442,15 +3442,16 @@ ul.list-inline .list-inline-item {
 	margin-bottom: .8rem;
 }
 
-.main-wrapper {
-	height: 100vh;
-	overflow: hidden;
-}
+//Oculta a barra de rolagem lateral
+// .main-wrapper {
+// 	height: 100vh;
+// 	overflow: hidden;
+// }
 
-.main-wrapper .content {
-	display: flex;
-	display: -webkit-flex;
-}
+// .main-wrapper .content {
+// 	display: flex;
+// 	display: -webkit-flex;
+// }
 
 .main-wrapper .content .sidebar-group {
 	display: flex;

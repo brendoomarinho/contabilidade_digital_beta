@@ -19978,14 +19978,6 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu > ul > li.submenu-open ul l
 .main-chat-blk .tab-content .form-item {
   margin-bottom: 0.8rem;
 }
-.main-chat-blk .main-wrapper {
-  height: 100vh;
-  overflow: hidden;
-}
-.main-chat-blk .main-wrapper .content {
-  display: flex;
-  display: -webkit-flex;
-}
 .main-chat-blk .main-wrapper .content .sidebar-group {
   display: flex;
   display: -webkit-flex;

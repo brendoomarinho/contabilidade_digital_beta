@@ -304,7 +304,7 @@
                                     <button type="button" class="btn btn-cancel me-2"
                                         data-bs-dismiss="modal">Cancelar</button>
                                     <button type="button" class="btn btn-warning confirm-delete"
-                                        onclick="this.disabled=true; this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Excluindo...'; this.form.submit();">
+                                        onclick="this.disabled=true; this.innerHTML='<i class=\'fa-solid fa-spinner fa-spin\'></i> Aguarde...'; this.form.submit();">
                                         <span>Sim</span>
                                     </button>
                                 </div>

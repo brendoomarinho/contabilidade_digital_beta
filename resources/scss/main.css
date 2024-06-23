@@ -16884,6 +16884,7 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu > ul > li.submenu-open ul l
   color: #5B6670;
 }
 .main-chat-blk .emoj-group ul {
+  
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

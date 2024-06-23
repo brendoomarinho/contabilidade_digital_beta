@@ -31,7 +31,7 @@
 
     </head>
 
-    @if (Route::is(['chat']))
+    @if (Route::is(['chat', 'folha.mensagens.index']))
 
         <body class="main-chat-blk">
     @endif
