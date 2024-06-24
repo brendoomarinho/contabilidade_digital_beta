@@ -60,7 +60,7 @@
      <link rel="stylesheet" href="{{ url('build/plugins/stickynote/sticky.css') }}">
  @endif
 
- @if (Route::is(['ui-scrollbar']))
+ @if (Route::is(['ui-scrollbar', 'folha.mensagens.index']))
      <link rel="stylesheet" href="{{ url('build/plugins/scrollbar/scroll.min.css') }}">
  @endif
 

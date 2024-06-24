@@ -2,8 +2,7 @@
 @extends('layout.mainlayout')
 @section('content')
     <div class="page-wrapper cardhead">
-        <div class="content ">
-
+        <div class="content">
             @component('components.breadcrumb')
                 @slot('title')
                     Scroll Bar

@@ -1,7 +1,7 @@
 <?php $page = 'folha_mensagens'; ?>
 @extends('layout.mainlayout')
 @section('content')
-    <div class="page-wrapper">
+    <div class="page-wrapper cardhead">
         <div class="content container-fluid">
             @component('components.breadcrumb')
                 @slot('li_1')
@@ -49,9 +49,8 @@
                                     Valor da folha: R$
                                     {{ number_format($folhaMsg->valor, 2, ',', '.') }}<br>
                                 </div> --}}
-                                <!-- Chat -->
-                                <div class="chat chat-messages">
-                                    <div class="slimscroll">
+                                <div class="vertical-scroll scroll-demo">
+                                    <div class="chat chat-messages">
                                         <div class="chat-body">
                                             <div class="messages">
                                                 @foreach ($folhaMsg->folhaMensagens as $mensagem)
@@ -62,7 +61,8 @@
                                                                 class="rounded-circle dreams_chat" alt="image">
                                                         </div>
                                                         <div class="chat-content">
-                                                            <div class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
+                                                            <div
+                                                                class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
                                                                 <h6>
                                                                     @if ($mensagem->user_id == $mensagem->remetente_id)
                                                                         {{ $mensagem->user->name }}
@@ -72,9 +72,10 @@
                                                                 </h6>
                                                             </div>
                                                             <div class="message-content">
-                                                               {{ $mensagem->mensagem }}
+                                                                {{ $mensagem->mensagem }}
                                                                 @if ($mensagem->doc_anexo)
-                                                                    <div class="file-download d-flex align-items-center mb-0">
+                                                                    <div
+                                                                        class="file-download d-flex align-items-center mb-0">
                                                                         <div
                                                                             class="file-type d-flex align-items-center justify-content-center me-2">
                                                                             <i class="bx bxs-file-doc"></i>
@@ -83,7 +84,6 @@
                                                                             <span
                                                                                 class="file-name">{{ $mensagem->doc_anexo }}</span>
                                                                             <ul>
-                                                                                <li>80 Bytes</li>
                                                                                 <li>
                                                                                     <a
                                                                                         href="{{ route('folha.mensagens.index', ['registro' => $mensagem->doc_anexo]) }}">Download</a>
@@ -105,7 +105,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /Chat -->
                                 <div class="chat-footer">
                                     <form method="post" action="{{ route('folha.mensagens.store') }}"
                                         enctype="multipart/form-data">
