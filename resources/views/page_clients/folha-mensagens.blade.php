@@ -54,196 +54,55 @@
                                     <div class="slimscroll">
                                         <div class="chat-body">
                                             <div class="messages">
-
-                                                @foreach ($folhaMsg as $mensagem)
-                                                
-                                                    <div class="chats">
+                                                @foreach ($folhaMsg->folhaMensagens as $mensagem)
+                                                    <div
+                                                        class="chats @if ($mensagem->user_id !== $mensagem->remetente_id) @else chats-right @endif">
                                                         <div class="chat-avatar">
                                                             <img src="{{ URL::asset('/build/img/avatar/avatar-2.jpg') }}"
                                                                 class="rounded-circle dreams_chat" alt="image">
                                                         </div>
                                                         <div class="chat-content">
-                                                            <div class="chat-profile-name">
-                                                                <h6>Mark Villiams<span>8:16 PM</span></h6>
+                                                            <div
+                                                                class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
+                                                                <h6>
+                                                                    @if ($mensagem->user_id == $mensagem->remetente_id)
+                                                                        {{ $mensagem->user->name }}
+                                                                    @else
+                                                                        {{ $mensagem->userAdmin->name }}
+                                                                    @endif
+                                                                </h6>
                                                             </div>
                                                             <div class="message-content">
-                                                                Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                                the beautiful web
-                                                                design ahead schedule.
+                                                                {{ $mensagem->mensagem }}
+                                                                @if ($mensagem->doc_anexo)
+                                                                    <div
+                                                                        class="file-download d-flex align-items-center mb-0">
+                                                                        <div
+                                                                            class="file-type d-flex align-items-center justify-content-center me-2">
+                                                                            <i class="bx bxs-file-doc"></i>
+                                                                        </div>
+                                                                        <div class="file-details">
+                                                                            <span
+                                                                                class="file-name">{{ $mensagem->doc_anexo }}</span>
+                                                                            <ul>
+                                                                                <li>80 Bytes</li>
+                                                                                <li>
+                                                                                    <a
+                                                                                        href="{{ route('folha.mensagens.index', ['registro' => $mensagem->doc_anexo]) }}">Download</a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                            <div
+                                                                class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
+                                                                <h6><span>{{ \Carbon\Carbon::parse($mensagem->created_at)->format('d-m-Y H:i') }}</span>
+                                                                </h6>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
-
-
-                                                <div class="chats chats-right">
-                                                    <div class="chat-content">
-                                                        <div class="chat-profile-name justify-content-end">
-                                                            <h6>Alex Smith<span>8:16 PM</span></h6>
-                                                        </div>
-                                                        <div class="message-content fancy-msg-box">
-                                                            Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                            the beautiful web
-                                                            design ahead schedule.
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-10.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="chats chats-right">
-                                                    <div class="chat-content">
-                                                        <div class="chat-profile-name justify-content-end">
-                                                            <h6>Alex Smith<span>8:16 PM</span></h6>
-                                                        </div>
-                                                        <div class="message-content fancy-msg-box">
-                                                            Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                            the beautiful web
-                                                            design ahead schedule.
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-10.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="chats chats-right">
-                                                    <div class="chat-content">
-                                                        <div class="chat-profile-name justify-content-end">
-                                                            <h6>Alex Smith<span>8:16 PM</span></h6>
-                                                        </div>
-                                                        <div class="message-content fancy-msg-box">
-                                                            Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                            the beautiful web
-                                                            design ahead schedule.
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-10.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="chats chats-right">
-                                                    <div class="chat-content">
-                                                        <div class="chat-profile-name justify-content-end">
-                                                            <h6>Alex Smith<span>8:16 PM</span></h6>
-                                                        </div>
-                                                        <div class="message-content fancy-msg-box">
-                                                            Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                            the beautiful web
-                                                            design ahead schedule.
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-10.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="chats chats-right">
-                                                    <div class="chat-content">
-                                                        <div class="chat-profile-name justify-content-end">
-                                                            <h6>Alex Smith<span>8:16 PM</span></h6>
-                                                        </div>
-                                                        <div class="message-content fancy-msg-box">
-                                                            Hello <a href="javascript:void(0);">@Alex</a> Thank you for
-                                                            the beautiful web
-                                                            design ahead schedule.
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-10.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                </div>
-                                                <div class="chats">
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-2.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                    <div class="chat-content">
-
-                                                        <div class="message-content review-files">
-                                                            <p class="d-flex align-items-center">Please check and review
-                                                                the files<span class="ms-1 d-flex"><img
-                                                                        src="{{ URL::asset('/build/img/icons/smile-chat.svg') }}"
-                                                                        alt="Icon"></span></p>
-                                                            <div class="file-download d-flex align-items-center mb-0">
-                                                                <div
-                                                                    class="file-type d-flex align-items-center justify-content-center me-2">
-                                                                    <i class="bx bxs-file-doc"></i>
-                                                                </div>
-                                                                <div class="file-details">
-                                                                    <span class="file-name">Landing_page_V1.doc</span>
-                                                                    <ul>
-                                                                        <li>80 Bytes</li>
-                                                                        <li><a href="javascript:void(0);">Download</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="chats">
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-2.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                    <div class="chat-content">
-
-                                                        <div class="message-content review-files">
-                                                            <p class="d-flex align-items-center">Please check and review
-                                                                the files<span class="ms-1 d-flex"><img
-                                                                        src="{{ URL::asset('/build/img/icons/smile-chat.svg') }}"
-                                                                        alt="Icon"></span></p>
-                                                            <div class="file-download d-flex align-items-center mb-0">
-                                                                <div
-                                                                    class="file-type d-flex align-items-center justify-content-center me-2">
-                                                                    <i class="bx bxs-file-doc"></i>
-                                                                </div>
-                                                                <div class="file-details">
-                                                                    <span class="file-name">Landing_page_V1.doc</span>
-                                                                    <ul>
-                                                                        <li>80 Bytes</li>
-                                                                        <li><a href="javascript:void(0);">Download</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="chats">
-                                                    <div class="chat-avatar">
-                                                        <img src="{{ URL::asset('/build/img/avatar/avatar-2.jpg') }}"
-                                                            class="rounded-circle dreams_chat" alt="image">
-                                                    </div>
-                                                    <div class="chat-content">
-
-                                                        <div class="message-content review-files">
-                                                            <p class="d-flex align-items-center">Please check and
-                                                                review
-                                                                the files<span class="ms-1 d-flex"><img
-                                                                        src="{{ URL::asset('/build/img/icons/smile-chat.svg') }}"
-                                                                        alt="Icon"></span></p>
-                                                            <div class="file-download d-flex align-items-center mb-0">
-                                                                <div
-                                                                    class="file-type d-flex align-items-center justify-content-center me-2">
-                                                                    <i class="bx bxs-file-doc"></i>
-                                                                </div>
-                                                                <div class="file-details">
-                                                                    <span class="file-name">Landing_page_V1.doc</span>
-                                                                    <ul>
-                                                                        <li>80 Bytes</li>
-                                                                        <li><a href="javascript:void(0);">Download</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -254,8 +113,7 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="folha_id" value="{{ $folhaMsg->id }}">
-                                        <input type="hidden" name="user_admin_id"
-                                            value="{{ $folhaMsg->user_admin_id }}">
+                                        <input type="hidden" name="user_admin_id" value="{{ $folhaMsg->user_admin_id }}">
 
                                         <div class="mb-3 mt-4">
                                             <label class="form-label">Enviar mensagem:</label>

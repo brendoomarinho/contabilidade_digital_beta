@@ -17256,7 +17256,6 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu > ul > li.submenu-open ul l
   color: #212529;
   font-size: 14px;
   font-weight: 400;
-  box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.031372549);
 }
 .main-chat-blk .chat .chat-body .messages .chats .message-content a {
   color: #299cdb;
@@ -17390,9 +17389,8 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu > ul > li.submenu-open ul l
 }
 .main-chat-blk .chat .chat-body .messages .file-download {
   position: relative;
-  background: #e8ebed;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 0;
   margin-bottom: 7px;
 }
 .main-chat-blk .chat .chat-body .messages .file-download .download-action {
