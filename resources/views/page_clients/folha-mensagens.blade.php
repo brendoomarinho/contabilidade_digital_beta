@@ -62,8 +62,7 @@
                                                                 class="rounded-circle dreams_chat" alt="image">
                                                         </div>
                                                         <div class="chat-content">
-                                                            <div
-                                                                class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
+                                                            <div class="chat-profile-name @if ($mensagem->user_id == $mensagem->remetente_id) justify-content-end @endif">
                                                                 <h6>
                                                                     @if ($mensagem->user_id == $mensagem->remetente_id)
                                                                         {{ $mensagem->user->name }}
@@ -73,10 +72,9 @@
                                                                 </h6>
                                                             </div>
                                                             <div class="message-content">
-                                                                {{ $mensagem->mensagem }}
+                                                               {{ $mensagem->mensagem }}
                                                                 @if ($mensagem->doc_anexo)
-                                                                    <div
-                                                                        class="file-download d-flex align-items-center mb-0">
+                                                                    <div class="file-download d-flex align-items-center mb-0">
                                                                         <div
                                                                             class="file-type d-flex align-items-center justify-content-center me-2">
                                                                             <i class="bx bxs-file-doc"></i>
